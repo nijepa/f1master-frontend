@@ -11,10 +11,10 @@
       </div>
       <div class="inputs">
         <input
+          v-model="state.emailRegistration"
           type="email"
           placeholder="email"
           class="emailRegistration"
-          v-model="state.emailRegistration"
         />
         <!-- <span v-if="v$.emailRegistration.$error" style="color: coral">{{
           v$.emailRegistration.$errors[0].$message

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <select v-model="selected" @change="setSelected($event, idx)" class="round">
+    <select v-model="selected" class="round" @change="setSelected($event, idx)">
       <option disabled value="0">{{ group }} {{ idx + 1 }}</option>
       <option v-for="item in items" :key="item.id" :value="item.name">
         {{ showItem(item.id) }}

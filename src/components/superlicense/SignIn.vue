@@ -15,23 +15,23 @@
 
     <div class="inputs">
       <input
+        v-model="state.emailLogin"
         type="email"
         placeholder="email"
         class="emailLogin"
-        v-model="state.emailLogin"
       />
       <span>{{ errorMessage }}</span>
       <input
+        v-model="state.password"
         type="password"
         placeholder="password"
         class="password"
-        v-model="state.password"
       />
       <span>{{ errorMessage }}</span>
     </div>
 
     <div class="keepCon">
-      <input type="checkbox" class="checkbox" v-model="state.keepConnected" />
+      <input v-model="state.keepConnected" type="checkbox" class="checkbox" />
       <p><a>Keep Connected</a></p>
     </div>
 

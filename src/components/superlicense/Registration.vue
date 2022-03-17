@@ -10,42 +10,42 @@
         </div>
       </div>
       <div class="inputs">
-        <input type="text" placeholder="name" class="" v-model="state.name" />
+        <input v-model="state.name" type="text" placeholder="name" class="" />
         <!-- <span v-if="v$.name.$error" style="color: coral">{{
           v$.name.$errors[0].$message
         }}</span> -->
         <input
+          v-model="state.surname"
           type="text"
           placeholder="surname"
           class=""
-          v-model="state.surname"
         />
         <!-- <span v-if="v$.surname.$error" style="color: coral">{{
           v$.surname.$errors[0].$message
         }}</span> -->
         <input
+          v-model="state.emailRegister"
           type="email"
           placeholder="email"
           class="emailRegister"
-          v-model="state.emailRegister"
         />
         <!-- <span v-if="v$.emailRegister.$error" style="color: coral">{{
           v$.emailRegister.$errors[0].$message
         }}</span> -->
         <input
+          v-model="state.password.password"
           type="password"
           placeholder="password"
           class="password"
-          v-model="state.password.password"
         />
         <!-- <span v-if="v$.password.password.$error" style="color: coral">{{
           v$.password.password.$errors[0].$message
         }}</span> -->
         <input
+          v-model="state.password.confirm"
           type="password"
           placeholder="password"
           class="password"
-          v-model="state.password.confirm"
         />
         <!-- <span v-if="v$.password.confirm.$error" style="color: coral">{{
           v$.password.confirm.$errors[0].$message

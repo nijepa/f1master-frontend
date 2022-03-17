@@ -14,7 +14,12 @@
 import { ref, watch } from "vue";
 
 export default {
-  props: ["reseted"],
+  props: {
+    reseted: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup(props, { emit }) {
     const mask = "#'##'###";
     const selected = ref(null);
