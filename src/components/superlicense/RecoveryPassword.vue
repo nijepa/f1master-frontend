@@ -16,9 +16,9 @@
           class="emailRegistration"
           v-model="state.emailRegistration"
         />
-        <span v-if="v$.emailRegistration.$error" style="color: coral">{{
+        <!-- <span v-if="v$.emailRegistration.$error" style="color: coral">{{
           v$.emailRegistration.$errors[0].$message
-        }}</span>
+        }}</span> -->
       </div>
       <div class="btn">
         <button @click.prevent="submitForm">CONFIRM</button>
@@ -28,29 +28,29 @@
 </template>
 
 <script>
-import useValidate from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
-import { reactive, computed } from "vue";
+// import useValidate from "@vuelidate/core";
+// import { required, email, minLength } from "@vuelidate/validators";
+import { reactive } from "vue";
 export default {
   setup() {
     const state = reactive({
       emailRegistration: "",
     });
-    const rules = computed(() => {
-      return {
-        emailRegistration: { required, email, minLength: minLength(3) },
-      };
-    });
-    const v$ = useValidate(rules, state);
+    // const rules = computed(() => {
+    //   return {
+    //     emailRegistration: { required, email, minLength: minLength(3) },
+    //   };
+    // });
+    // const v$ = useValidate(rules, state);
     function submitForm() {
-      this.v$.$validate();
-      if (!this.v$.$error) {
-        alert("its ok");
-      } else {
-        alert("check errors!!!");
-      }
+      // this.v$.$validate();
+      // if (!this.v$.$error) {
+      //   alert("its ok");
+      // } else {
+      //   alert("check errors!!!");
+      // }
     }
-    return { state, v$, submitForm };
+    return { state, submitForm };
   },
 };
 </script>
@@ -59,6 +59,7 @@ export default {
 .wrap {
   display: grid;
   justify-content: center;
+  align-items: center;
   padding: 10px 20px;
 }
 .card {

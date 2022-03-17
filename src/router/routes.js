@@ -64,6 +64,16 @@ const routes = [
     },
   },
   {
+    path: "/recovery-password",
+    component: () =>
+      import(
+        /* webpackChunkName "play" */ "@/components/superlicense/RecoveryPassword.vue"
+      ),
+    meta: {
+      layout: "AppLayoutHome",
+    },
+  },
+  {
     path: "/about",
     name: "About",
     component: () =>

@@ -7,7 +7,7 @@
 
       <div class="links">
         <router-link to="/registration"><a>Not a member yet?</a></router-link>
-        <router-link to="/recoveryPassword"
+        <router-link to="/recovery-password"
           ><a>Recovery Password?</a></router-link
         >
       </div>

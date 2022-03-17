@@ -35,7 +35,7 @@
       class="misc"
     />
     <div class="btn-wrapper">
-      <p>{{ liveBet }}</p>
+      <!-- <p>{{ liveBet }}</p> -->
       <button class="confirm" @click="handleConfirmation">Confirm</button>
     </div>
   </div>
@@ -98,7 +98,7 @@ export default {
           type: "createdAt",
           value: new Date(),
         });
-        alert("OK");
+        alert("OK - " + JSON.stringify(liveBet.value));
         return;
       }
       alert("NOT");
