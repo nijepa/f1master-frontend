@@ -1,0 +1,29 @@
+<template>
+  <div class="main">
+    <Navbar />
+    <!-- <AppLayoutLinks /> -->
+    <slot />
+    <Footer />
+  </div>
+</template>
+
+<script>
+//import AppLayoutLinks from '@/layouts/AppLayoutLinks'
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+export default {
+  name: "AppLayoutHome",
+  components: {
+    //AppLayoutLinks
+    Navbar,
+    Footer,
+  },
+};
+</script>
+<style>
+.main {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+</style>

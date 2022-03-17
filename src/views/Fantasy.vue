@@ -1,13 +1,15 @@
 <template>
-  <Doc />
+  <div>
+    <h1>Fantasy</h1>
+  </div>
 </template>
 
 <script>
-import Doc from "@/components/Documentation.vue";
 export default {
-  components: { Doc },
   setup() {
     return {};
   },
 };
 </script>
+
+<style scoped></style>
