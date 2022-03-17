@@ -42,11 +42,18 @@ export default {
       emit("select", { idx: i, id: item.id, val: e.target.value });
     };
 
-    const showItem = (id) => {
-      const idx = props.items.findIndex((i) => i.id === id);
+    const getNr = (idx) => {
       return props.items[0].number !== undefined
         ? `${props.items[idx].name}#${props.items[idx].number}`
         : props.items[idx].name;
+    };
+    const showItem = (id) => {
+      const idx = props.items.findIndex((i) => i.id === id);
+      return getNr(idx);
+    };
+    const showSelected = () => {
+      const idx = props.items.findIndex((i) => i.val === selected.value);
+      return getNr(idx);
     };
 
     watch(
@@ -57,7 +64,7 @@ export default {
       }
     );
 
-    return { selected, setSelected, showItem };
+    return { selected, setSelected, showItem, showSelected };
   },
 };
 </script>

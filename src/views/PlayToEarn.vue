@@ -6,7 +6,6 @@
   >
     <div class="wrap">
       <BetPanel />
-      <br /><br /><br />
     </div>
   </transition>
 </template>
@@ -23,10 +22,6 @@ export default {
 
 <style scoped>
 .wrap {
-  display: grid;
-  justify-items: center;
-}
-button {
-  max-width: 400px;
+  display: flex;
 }
 </style>

@@ -89,7 +89,6 @@ export default {
   width: 400px;
   height: auto;
   background: #060606;
-  margin-top: 100px;
   border-radius: 4px;
   border: solid 3px #070707;
   box-shadow: #272727 0px 0px 6px;
@@ -197,7 +196,7 @@ button {
   text-align: center;
   text-decoration: none;
   justify-self: center;
-  font-family: "Play";
+  font-family: "Play", cursive;
   font-weight: 700;
   cursor: pointer;
   transition: 0.4s;

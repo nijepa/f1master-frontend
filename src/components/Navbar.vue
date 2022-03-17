@@ -87,7 +87,7 @@ nav {
   text-decoration: none;
   justify-self: center;
   font-size: 0.65rem;
-  font-family: "Play";
+  font-family: "Play", cursive;
   font-weight: 700;
   cursor: pointer;
   transition: 0.4s;

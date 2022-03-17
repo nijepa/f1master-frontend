@@ -66,6 +66,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    resetAll: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props) {
@@ -99,6 +103,13 @@ export default {
       selected.value = [];
       reseted.value = true;
     };
+
+    watch(
+      () => props.resetAll,
+      (first) => {
+        first && reset();
+      }
+    );
 
     watch(
       () => [...selected.value],

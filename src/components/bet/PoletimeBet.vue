@@ -22,7 +22,14 @@ import { useStore } from "vuex";
 
 export default {
   components: { inputComp },
-  setup() {
+  props: {
+    resetAll: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  setup(props) {
     const store = useStore();
 
     const selected = ref("");
@@ -32,9 +39,15 @@ export default {
 
     const reseted = ref(false);
     const reset = () => {
-      selected.value = "";
+      selected.value = 0;
       reseted.value = true;
     };
+    watch(
+      () => props.resetAll,
+      (first) => {
+        first && reset();
+      }
+    );
 
     watch(
       () => selected.value,

@@ -2,13 +2,14 @@
   <div class="container">
     <div class="poletime">
       <h1>Poletime</h1>
-      <Poletime />
+      <Poletime :reset-all="resetAll" />
     </div>
     <SelectWrapper
       :title="'F1Masters'"
       :count="10"
       :list="masters"
       :group="'Position'"
+      :reset-all="resetAll"
       class="f1master"
       @confirmed="handleConfirmation"
     />
@@ -17,6 +18,7 @@
       :count="5"
       :list="masters"
       :group="'Evo'"
+      :reset-all="resetAll"
       class="evo"
     />
     <SelectWrapper
@@ -25,6 +27,7 @@
       :list="duels"
       :group="'Head'"
       :is-head="true"
+      :reset-all="resetAll"
       class="head"
     />
     <SelectWrapper
@@ -32,10 +35,12 @@
       :count="1"
       :list="misc"
       :group="'Misc'"
+      :reset-all="resetAll"
       class="misc"
     />
     <div class="btn-wrapper">
-      <!-- <p>{{ liveBet }}</p> -->
+      <p>{{ liveBet }}</p>
+      <button class="reset" @click="reset">Reset All</button>
       <button class="confirm" @click="handleConfirmation">Confirm</button>
     </div>
   </div>
@@ -104,6 +109,13 @@ export default {
       alert("NOT");
     };
 
+    const resetAll = ref(false);
+    const reset = () => {
+      resetAll.value = true;
+      store.dispatch("liveBetClear");
+      setTimeout(() => (resetAll.value = false), 0);
+    };
+
     const masters = ref(
       drivers.map((driver) => {
         return { id: driver.id, name: driver.name, number: driver.number };
@@ -132,8 +144,10 @@ export default {
       masters,
       duels,
       handleConfirmation,
+      reset,
       liveBet,
       misc,
+      resetAll,
     };
   },
 };
@@ -263,5 +277,10 @@ button:hover {
   background: rgba(0, 0, 0, 0.8);
   display: grid;
   align-items: baseline;
+}
+.reset {
+  background: transparent;
+  color: #ddd;
+  margin-bottom: 1em;
 }
 </style>
