@@ -123,7 +123,7 @@ h4:hover {
 }
 .links {
   display: grid;
-  justify-items: end;
+  justify-items: flex-end;
   text-align: left;
 }
 a {
@@ -161,7 +161,7 @@ input {
 }
 .keepCon {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   column-gap: 1em;
   color: #999999;
   width: 300px;
