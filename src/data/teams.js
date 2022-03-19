@@ -14,18 +14,3 @@ const teams = [
   {id: 11, historicalDate:'07/12/1959 00:00:00', active:false , historyNumber:1, teamName:'ANDRETTI', start: '23/01/2022', currentySeasonPosition: 11, seasonNumber:0} 
 ];
 export default teams;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

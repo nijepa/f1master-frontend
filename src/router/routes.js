@@ -17,14 +17,16 @@ const routes = [
   },
   {
     path: "/f1",
-    component: () => import(/* webpackChunkName "play" */ "@/views/F1.vue"),
+    component: () =>
+      import(/* webpackChunkName "play" */ "@/views/header/F1.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
   },
   {
     path: "/news",
-    component: () => import(/* webpackChunkName "play" */ "@/views/News.vue"),
+    component: () =>
+      import(/* webpackChunkName "play" */ "@/views/header/News.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -32,7 +34,7 @@ const routes = [
   {
     path: "/socialmedia",
     component: () =>
-      import(/* webpackChunkName "play" */ "@/views/SocialMedia.vue"),
+      import(/* webpackChunkName "play" */ "@/views/header/SocialMedia.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -40,7 +42,7 @@ const routes = [
   {
     path: "/fantasy",
     component: () =>
-      import(/* webpackChunkName "play" */ "@/views/Fantasy.vue"),
+      import(/* webpackChunkName "play" */ "@/views/header/Fantasy.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -77,10 +79,46 @@ const routes = [
     path: "/about",
     name: "About",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/footer/About.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () =>
+      import(/* webpackChunkName: "admin" */ "../views/Admin.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutAdmin",
+    },
+    children: [
+      {
+        path: "",
+        name: "Dashboard",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/admin/Dashboard.vue"
+          ),
+      },
+      {
+        path: "results",
+        name: "Results",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/admin/Results.vue"
+          ),
+      },
+      {
+        path: "drivers",
+        name: "Drivers",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/admin/Drivers.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/:pathMatch(.*)*",

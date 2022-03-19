@@ -51,8 +51,8 @@ export default {
 
     watch(
       () => selected.value,
-      (currentValue, oldValue) => {
-        console.log(oldValue, currentValue);
+      (currentValue) => {
+        //console.log(oldValue, currentValue);
         store.dispatch("liveBetUpdate", {
           type: "Pole",
           value: currentValue,

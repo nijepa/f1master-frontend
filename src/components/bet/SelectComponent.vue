@@ -6,7 +6,7 @@
         {{ showItem(item.id) }}
       </option>
       <option v-if="selected">
-        <h3 :style="{ color: selected }">{{ selected }}</h3>
+        <h3 :style="{ color: 'yellow' }">{{ selected }}</h3>
       </option>
     </select>
   </div>

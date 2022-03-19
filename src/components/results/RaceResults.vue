@@ -44,7 +44,6 @@ export default {
     const selected = ref([]);
     const disable = ref(true);
     const getSelected = (val) => {
-      console.log(val);
       const sels = selected.value.filter((s) => s.id === val.id);
       if (!sels.length && sels[0]?.id !== val.id && sels[0]?.val !== val.val) {
         selected.value.push(val);

@@ -113,8 +113,7 @@ export default {
 
     watch(
       () => [...selected.value],
-      (currentValue, oldValue) => {
-        console.log(oldValue, currentValue);
+      (currentValue) => {
         store.dispatch("liveBetUpdate", {
           type: props.title,
           value: currentValue,

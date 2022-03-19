@@ -14,6 +14,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
+    "vue/no-multiple-template-root": "off",
     'prettier/prettier': [
       'error',
       {
@@ -23,7 +24,7 @@ module.exports = {
   },
 
   'extends': [
-    'plugin:vue/recommended',
+    'plugin:vue/essential',
     'eslint:recommended',
     '@vue/prettier'
   ]

@@ -88,12 +88,12 @@ export default {
         liveBet.value.Head.length &&
         liveBet.value.Misc.length
       ) {
-        // find lest event before current date
+        // NOTE find lest event before current date
         store.dispatch("liveBetUpdate", {
           type: "Event",
           value: { id: currentRace.value.id, event: currentRace.value.event },
         });
-        // TODO get/set logged in user
+        // NOTE get/set logged in user
         store.dispatch("liveBetUpdate", {
           type: "User",
           value: { id: 0, email: "rayannezinha@f1master.com" },
@@ -103,6 +103,14 @@ export default {
           type: "createdAt",
           value: new Date(),
         });
+
+        store.dispatch("fetchBets");
+        store.dispatch("fetchBet", liveBet.value);
+        const bet = computed(() => store.getters.getBet);
+        liveBet.value._id = bet.value._id;
+        store.dispatch("betUpdate", liveBet.value);
+        const bets = computed(() => store.getters.getBets);
+        console.log("muuu", bets.value);
         alert("OK - " + JSON.stringify(liveBet.value));
         return;
       }

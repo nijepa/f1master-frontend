@@ -31,8 +31,13 @@
     </div>
 
     <div class="keepCon">
-      <input v-model="state.keepConnected" type="checkbox" class="checkbox" />
-      <p><a>Keep Connected</a></p>
+      <input
+        id="keep"
+        v-model="state.keepConnected"
+        type="checkbox"
+        class="checkbox"
+      />
+      <label for="keep">Keep Connected</label>
     </div>
 
     <div class="btn">
@@ -155,24 +160,29 @@ input {
   font-size: 1rem;
 }
 .keepCon {
-  display: grid;
-  /* grid-template-columns: 30px 200px; */
-  align-items: baseline;
-  /* justify-content: start;
-justify-items: start; */
+  display: flex;
+  align-items: end;
+  column-gap: 1em;
   color: #999999;
   width: 300px;
-  margin-left: 0;
-  padding: 30px 5px 0;
+  padding: 1em 0;
+}
+
+.keepCon label {
+  text-shadow: 2px 2px 3px black;
+  color: #999999;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+  color: lightgreen;
 }
 .keepCon p {
   display: inline;
   /* background: black; */
   padding: 2px;
-  text-shadow: 2px 2px 3px black;
 }
 .keepCon,
-p :active {
+label:active {
   color: lightgreen;
 }
 .checkbox {
@@ -201,8 +211,12 @@ button {
   cursor: pointer;
   transition: 0.4s;
   background: #fdd800;
-  border: none;
+  /* border: none; */
+  border: 2px solid transparent;
   font-size: 0.8rem;
   text-decoration: uppercase;
+}
+button:hover {
+  border: 2px solid #ffea72;
 }
 </style>
