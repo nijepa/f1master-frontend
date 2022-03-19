@@ -14,7 +14,7 @@ export default {
   name: "defaultInput",
   props: {
     modelValue: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: "",
     },
     inputType: {
@@ -52,20 +52,33 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  background: #101010;
-  //height: 30px;
+  background: rgba(16, 16, 16, 0.5);
   border-radius: 4px;
-  //width: 300px;
   border: none;
   color: #ddd;
   padding: 1em;
-  //margin-top: 20px;
   letter-spacing: 1.5px;
-  //font-size: 1rem;
+  transition: all 0.4s ease;
+}
+input:focus {
+  background: rgba(16, 16, 16, 1);
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 1px 1px #000000;
+  box-shadow: inset 0px 0px 1px 1px #5a5a5a;
 }
 .readonly {
   background-color: transparent;
   text-align: right;
   width: 50px;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 </style>

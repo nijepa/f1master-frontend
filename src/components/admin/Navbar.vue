@@ -2,9 +2,9 @@
   <nav>
     <div class="navlink">
       <router-link class="logo" to="/"></router-link>
-      <router-link to="/teams">Teams</router-link>
+      <router-link to="/admin/teams">Teams</router-link>
       <router-link to="/admin/drivers">Drivers</router-link>
-      <router-link to="/events">Events</router-link>
+      <router-link to="/admin/events">Events</router-link>
     </div>
     <router-link class="btn btn1" to="/admin/results">RESULTS</router-link>
     <router-link class="btn btn2" to="/superlicense">USERS</router-link>
@@ -118,5 +118,3 @@ nav {
   background: rgba(0, 128, 0, 0.02);
 }
 </style>
-
-/* eslint-enable */

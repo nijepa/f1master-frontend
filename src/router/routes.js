@@ -1,3 +1,6 @@
+import routesAdmin from "./routesAdmin";
+import routesInfo from "./routesInfo";
+
 const routes = [
   {
     path: "/",
@@ -16,41 +19,9 @@ const routes = [
     },
   },
   {
-    path: "/f1",
-    component: () =>
-      import(/* webpackChunkName "play" */ "@/views/header/F1.vue"),
-    meta: {
-      layout: "AppLayoutHome",
-    },
-  },
-  {
-    path: "/news",
-    component: () =>
-      import(/* webpackChunkName "play" */ "@/views/header/News.vue"),
-    meta: {
-      layout: "AppLayoutHome",
-    },
-  },
-  {
-    path: "/socialmedia",
-    component: () =>
-      import(/* webpackChunkName "play" */ "@/views/header/SocialMedia.vue"),
-    meta: {
-      layout: "AppLayoutHome",
-    },
-  },
-  {
-    path: "/fantasy",
-    component: () =>
-      import(/* webpackChunkName "play" */ "@/views/header/Fantasy.vue"),
-    meta: {
-      layout: "AppLayoutHome",
-    },
-  },
-  {
     path: "/superlicense",
     component: () =>
-      import(/* webpackChunkName "play" */ "@/views/SuperLicense.vue"),
+      import(/* webpackChunkName "login" */ "@/views/SuperLicense.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -59,7 +30,7 @@ const routes = [
     path: "/registration",
     component: () =>
       import(
-        /* webpackChunkName "play" */ "@/components/superlicense/Registration.vue"
+        /* webpackChunkName "login" */ "@/components/superlicense/Registration.vue"
       ),
     meta: {
       layout: "AppLayoutHome",
@@ -69,56 +40,11 @@ const routes = [
     path: "/recovery-password",
     component: () =>
       import(
-        /* webpackChunkName "play" */ "@/components/superlicense/RecoveryPassword.vue"
+        /* webpackChunkName "login" */ "@/components/superlicense/RecoveryPassword.vue"
       ),
     meta: {
       layout: "AppLayoutHome",
     },
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/footer/About.vue"),
-    meta: {
-      layout: "AppLayoutHome",
-    },
-  },
-  {
-    path: "/admin",
-    name: "Admin",
-    component: () =>
-      import(/* webpackChunkName: "admin" */ "../views/Admin.vue"),
-    meta: {
-      requiresAuth: true,
-      layout: "AppLayoutAdmin",
-    },
-    children: [
-      {
-        path: "",
-        name: "Dashboard",
-        component: () =>
-          import(
-            /* webpackChunkName: "admin" */ "../components/admin/Dashboard.vue"
-          ),
-      },
-      {
-        path: "results",
-        name: "Results",
-        component: () =>
-          import(
-            /* webpackChunkName: "admin" */ "../components/admin/Results.vue"
-          ),
-      },
-      {
-        path: "drivers",
-        name: "Drivers",
-        component: () =>
-          import(
-            /* webpackChunkName: "admin" */ "../components/admin/Drivers.vue"
-          ),
-      },
-    ],
   },
   {
     path: "/:pathMatch(.*)*",
@@ -126,5 +52,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "notfound" */ "../views/NotFound.vue"),
   },
+  ...routesInfo,
+  ...routesAdmin,
 ];
 export default routes;

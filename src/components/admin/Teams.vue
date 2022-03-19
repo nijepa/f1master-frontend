@@ -1,14 +1,14 @@
 <template>
-  <List :data-model="model" />
+  <DefaultList :data-model="model" />
 </template>
 
 <script>
 import models from "@/config/models";
-import List from "./List.vue";
+import DefaultList from "./DefaultList.vue";
 
 export default {
   components: {
-    List,
+    DefaultList,
   },
 
   setup() {
