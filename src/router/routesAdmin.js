@@ -61,6 +61,17 @@ const routesAdmin = [
           dataModel: "events",
         },
       },
+      {
+        path: "users",
+        name: "users",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/admin/Users.vue"
+          ),
+        meta: {
+          dataModel: "users",
+        },
+      },
     ],
   },
 ];

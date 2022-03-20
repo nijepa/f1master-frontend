@@ -169,7 +169,7 @@ export default {
   }
 }
 .btn-new {
-  padding: 1em;
+  padding: 0.5em 1em;
   border-radius: 4px;
   border: 1px solid transparent;
   background-color: $mercedes-silver;

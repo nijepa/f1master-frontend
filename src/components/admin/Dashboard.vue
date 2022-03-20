@@ -2,11 +2,11 @@
   <div class="dashboard">
     <h1>Dashboard</h1>
     <div class="panel__admin">
-      <router-link class="link__admin" to="/fantasy">results</router-link>
-      <router-link class="link__admin" to="/fantasy">teams</router-link>
-      <router-link class="link__admin" to="/fantasy">drivers</router-link>
-      <router-link class="link__admin" to="/fantasy">events</router-link>
-      <router-link class="link__admin" to="/fantasy">users</router-link>
+      <router-link class="link__admin" to="/admin/results">results</router-link>
+      <router-link class="link__admin" to="/admin/teams">teams</router-link>
+      <router-link class="link__admin" to="/admin/drivers">drivers</router-link>
+      <router-link class="link__admin" to="/admin/events">events</router-link>
+      <router-link class="link__admin" to="/admin/users">users</router-link>
     </div>
   </div>
 </template>
@@ -31,8 +31,8 @@ export default {
     column-gap: 1em;
     row-gap: 2em;
     .link__admin {
-      background-color: $ferrari-yellow;
-      color: black;
+      background-color: $mercedes-silver;
+      color: $mclaren-orange;
       padding: 1em;
       border-radius: 0.3em;
       text-decoration: none;
@@ -42,8 +42,11 @@ export default {
     }
     .link__admin:first-child,
     .link__admin:last-child {
-      background-color: $yellow;
+      background-color: $redbull-red;
       grid-column: 1/4;
+    }
+    .link__admin:last-child {
+      background-color: $astonmartin;
     }
     .link__admin:hover {
       background: $ferrari-red;
