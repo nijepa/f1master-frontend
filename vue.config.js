@@ -2,5 +2,13 @@ module.exports = {
   publicPath:
     process.env.NODE_ENV === "production" ? "/f1master_frontend/" : "/",
 
-  lintOnSave: false
+  lintOnSave: false,
+
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/assest/css/global.scss";`,
+      },
+    },
+  },
 };

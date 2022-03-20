@@ -3,7 +3,13 @@ const models = {
     id: 0,
     model: "drivers",
     fields: [
-      { name: "id", type: "number", readonly: true, placeholder: "" },
+      {
+        name: "id",
+        type: "number",
+        readonly: true,
+        placeholder: "",
+        heading: "ID",
+      },
       {
         name: "name",
         type: "text",
@@ -28,16 +34,29 @@ const models = {
     ],
   },
   teams: {
-    id: 0,
+    id: 1,
     model: "teams",
     fields: [
-      { name: "id", type: "number", readonly: true, placeholder: "" },
+      {
+        name: "id",
+        type: "number",
+        readonly: true,
+        placeholder: "",
+        heading: "ID",
+      },
       {
         name: "teamName",
         type: "text",
         readonly: false,
         placeholder: "team name",
         heading: "Name",
+      },
+      {
+        name: "start",
+        type: "text",
+        readonly: false,
+        placeholder: "start",
+        heading: "Start",
       },
       {
         name: "active",
@@ -49,10 +68,16 @@ const models = {
     ],
   },
   events: {
-    id: 0,
+    id: 2,
     model: "events",
     fields: [
-      { name: "id", type: "number", readonly: true, placeholder: "" },
+      {
+        name: "id",
+        type: "number",
+        readonly: true,
+        placeholder: "",
+        heading: "ID",
+      },
       {
         name: "event",
         type: "text",
@@ -64,22 +89,62 @@ const models = {
         name: "active",
         type: "checkbox",
         readonly: false,
-        placeholder: "team",
+        placeholder: "active",
         heading: "Active",
       },
       {
         name: "raceStart",
         type: "text",
         readonly: false,
-        placeholder: "team name",
+        placeholder: "race start",
         heading: "Race Start",
       },
       {
         name: "qualifyingStart",
         type: "text",
         readonly: false,
-        placeholder: "team name",
+        placeholder: "qualifying start",
+        heading: "Qualifying Start",
+      },
+    ],
+  },
+  results: {
+    id: 3,
+    fields: [
+      {
+        name: "id",
+        type: "number",
+        readonly: true,
+        placeholder: "",
+        heading: "ID",
+      },
+      {
+        name: "event",
+        type: "text",
+        readonly: false,
+        placeholder: "event name",
+        heading: "Name",
+      },
+      {
+        name: "pole",
+        type: "text",
+        readonly: false,
+        placeholder: "pole position",
+        heading: "pole Position",
+      },
+      {
+        name: "F1Masters",
+        type: "text",
+        readonly: false,
+        placeholder: "race start",
         heading: "Race Start",
+      },
+      {
+        name: "Misc",
+        type: "Boolean",
+        readonly: false,
+        placeholder: "misc",
+        heading: "Misc",
       },
     ],
   },

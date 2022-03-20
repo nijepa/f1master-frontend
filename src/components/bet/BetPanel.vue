@@ -168,7 +168,7 @@ export default {
   grid-template-areas: "poletime f1master evo h2h misc";
   grid-template-rows: auto 1fr;
   grid-template-columns: repeat(5, 150px);
-  background: url("../../assets/steeringwheel3.png") top / contain no-repeat;
+  background: url("../../assets/images/steeringwheel3.png") top / contain no-repeat;
   width: 100vw;
   margin-top: 50px;
 }

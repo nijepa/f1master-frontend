@@ -6,8 +6,8 @@
       <router-link to="/admin/drivers">Drivers</router-link>
       <router-link to="/admin/events">Events</router-link>
     </div>
-    <router-link class="btn btn1" to="/admin/results">RESULTS</router-link>
-    <router-link class="btn btn2" to="/superlicense">USERS</router-link>
+    <router-link class="btn btn1" active-class="active" to="/admin/results">RESULTS</router-link>
+    <router-link class="btn btn2" to="/admin/users">USERS</router-link>
   </nav>
 </template>
 <script>
@@ -36,7 +36,7 @@ nav {
   align-content: center;
   min-width: auto;
   width: 110px;
-  background: url("../../assets/logo.png") center / contain no-repeat;
+  background: url("../../assets/images/logo.png") center / contain no-repeat;
 }
 .navlink {
   display: flex;
@@ -116,5 +116,9 @@ nav {
   color: green;
   border: solid 1px green;
   background: rgba(0, 128, 0, 0.02);
+}
+.active {
+  color: white;
+  background: red;
 }
 </style>

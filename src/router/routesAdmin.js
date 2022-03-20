@@ -24,13 +24,16 @@ const routesAdmin = [
           import(
             /* webpackChunkName: "admin" */ "../components/admin/Results.vue"
           ),
+        meta: {
+          panel: "admin",
+        },
       },
       {
         path: "drivers",
         name: "drivers",
         component: () =>
           import(
-            /* webpackChunkName: "admin" */ "../components/admin/DefaultList.vue"
+            /* webpackChunkName: "admin" */ "../components/admin/PrimaryData.vue"
           ),
         meta: {
           dataModel: "drivers",
@@ -41,7 +44,7 @@ const routesAdmin = [
         name: "teams",
         component: () =>
           import(
-            /* webpackChunkName: "admin" */ "../components/admin/DefaultList.vue"
+            /* webpackChunkName: "admin" */ "../components/admin/PrimaryData.vue"
           ),
         meta: {
           dataModel: "teams",
@@ -52,7 +55,7 @@ const routesAdmin = [
         name: "events",
         component: () =>
           import(
-            /* webpackChunkName: "admin" */ "../components/admin/DefaultList.vue"
+            /* webpackChunkName: "admin" */ "../components/admin/PrimaryData.vue"
           ),
         meta: {
           dataModel: "events",

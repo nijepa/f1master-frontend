@@ -123,12 +123,12 @@ export default {
 
     return {
       items,
+      getItems,
       maxArray,
       selected,
       getSelected,
-      getItems,
-      reset,
       reseted,
+      reset,
       confirm,
     };
   },

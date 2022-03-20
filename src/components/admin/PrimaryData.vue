@@ -1,46 +1,28 @@
 <template>
-  <DefaultList :data-model="model" :list-dat="listData" />
-  <p>dsgdfgg</p>
+  <DefaultList :data-model="model" :title="title" :list-class="listClass" />
 </template>
 
 <script>
 import models from "@/config/models";
 import DefaultList from "./DefaultList.vue";
+//import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
-import { ref, computed, watch } from "vue";
-import { mapActions } from "vuex";
+import { ref } from "vue";
 
 export default {
+  name: "Primary Data",
   components: {
     DefaultList,
   },
-  // data() {
-  //   return {
-  //     listData: '',
-  //     model: ''
-  //   };
-  // },
-  // methods: {
-  //   ...mapActions(["fetchF1datas"]),
-  // },
-  // watch: {
-  //   $route(to, from) {
-  //     console.log(
-  //       `MyCoolComponent - watch route.name changed to ${to.name} from ${from.name}`
-  //     );
-  //     this.listData = to.name;
-  //     this.model = models[to.name].fields
-  //     console.log(this.model)
-  //   },
-  // },
 
   setup() {
     const route = useRoute();
     //const store = useStore();
     //const rt = computed(() => route)
     //const model = models.drivers.fields;
-    //const model = ref(models[route.name].fields);
+    const model = ref(models[route.name].fields);
+    const title = ref(route.name);
+    const listClass = ref(model.value.length);
     //const listData = computed(() => store.getters.getF1datas(route.name));
     // watch(
     //   () => rt.value,
@@ -55,7 +37,7 @@ export default {
     //     //}, { immediate: true });
     //   }
     // );
-    return {  };
+    return { model, title, listClass };
   },
 };
 </script>

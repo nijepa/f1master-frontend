@@ -33,7 +33,7 @@ export default {
   justify-items: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../assets/under-construction.png") center / cover no-repeat
+  background: url("../assets/images/under-construction.png") center / cover no-repeat
     black;
 }
 .container {

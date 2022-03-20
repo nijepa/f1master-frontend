@@ -71,7 +71,7 @@ const actions = {
     //     //   commit("setErrors", error);
     //     // }
     //   });
-    console.log(888,type);
+
     commit("setF1datas", { type: type, value: datas[type] });
   },
 

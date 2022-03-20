@@ -6,6 +6,7 @@
       <router-link to="/news">News</router-link>
       <router-link to="/socialmedia">SocialMedia</router-link>
       <router-link to="/fantasy">Fantasy</router-link>
+      <router-link to="/admin">admin</router-link>
     </div>
     <router-link class="btn btn1" to="/playtoearn">PLAY TO EARN</router-link>
     <router-link class="btn btn2" to="/superlicense">SUPERLICENSE</router-link>
@@ -37,7 +38,7 @@ nav {
   align-content: center;
   min-width: auto;
   width: 110px;
-  background: url("../assets/logo.png") center / contain no-repeat;
+  background: url("../assets/images/logo.png") center / contain no-repeat;
 }
 .navlink {
   display: flex;
