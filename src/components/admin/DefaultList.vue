@@ -20,7 +20,13 @@
           >
             {{ key.heading }}
           </h4>
+          <Datepicker
+            v-model="item[key.name]"
+            v-if="key.type === 'date'"
+            dark
+          ></Datepicker>
           <DefaultInput
+            v-else
             @changed="handleUpdated"
             v-model="item[key.name]"
             :input-type="key.type"
@@ -36,8 +42,9 @@
 </template>
 
 <script>
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 //import models from "@/config/models";
-import drivers from "@/data/drivers";
 import DefaultInput from "@/components/admin/DefaultInput.vue";
 import { ref, computed } from "@vue/reactivity";
 //import { watch } from "vue";
@@ -48,6 +55,7 @@ export default {
   name: "List",
   components: {
     DefaultInput,
+    Datepicker,
   },
   props: {
     dataModel: {
@@ -65,7 +73,6 @@ export default {
   },
 
   setup(props) {
-    const route = useRoute();
     // const model = ref(models[route.name].fields);
     // watch(
     //   () => route.name,
@@ -75,17 +82,14 @@ export default {
     //     model.value = ref(models[route.name].fields);
     //   }
     // );
+    const route = useRoute();
     const store = useStore();
-    console.log(111, route.name);
     store.dispatch("fetchF1datas", route.name);
     const listData = computed(() => store.getters.getF1datas(route.name));
-    console.log(333, listData.value);
     const model = ref(props.dataModel);
     //const model = ref(models[route.name].fields);
-    console.log(222, model.value);
-    // TODO implement vuex store for drivers
-    const list = ref(drivers);
 
+    // TODO implement vuex store for updating list
     const handleUpdated = (field) => {
       console.log(field);
     };
@@ -95,7 +99,7 @@ export default {
       sortOrder.value = !sortOrder.value;
       listData.value.sort((a, b) => {
         let x, y;
-        if (type === "number") {
+        if (type === "number" || type === "checkbox") {
           x = a[field];
           y = b[field];
         } else {
@@ -114,7 +118,13 @@ export default {
       return props.listClass === 4 ? "list-four" : "list-five";
     });
 
-    return { model, list, handleUpdated, handleSort, listData, fieldsClass };
+    return {
+      model,
+      listData,
+      fieldsClass,
+      handleUpdated,
+      handleSort,
+    };
   },
 };
 </script>
@@ -122,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 .list-title {
   margin: 0.5em 0;
-  color: #ff2800;
+  color: $ferrari-red;
   //text-shadow: 0 1px 0 #fdd700c4;
   text-transform: uppercase;
   text-shadow: none;
@@ -144,12 +154,12 @@ export default {
       .list-heading {
         font-variant: small-caps;
         margin-bottom: 0.5em;
-        color: #555555;
+        color: $alphatauri;
         cursor: pointer;
         transition: all 0.4s ease;
       }
       .list-heading:hover {
-        color: #fdd800;
+        color: $yellow;
       }
     }
   }
@@ -158,8 +168,8 @@ export default {
   padding: 1em;
   border-radius: 4px;
   border: 1px solid transparent;
-  background-color: #ff2800;
-  color: #ddd;
+  background-color: $ferrari-red;
+  color: $mclaren-orange;
   cursor: pointer;
   font-weight: 600;
   font-size: 1em;
@@ -167,9 +177,9 @@ export default {
   transition: all 0.4s ease;
 }
 .btn-new:hover {
-  border: 1px solid #fdd800;
-  color: #fdd800;
-  outline-color: #fdd800;
+  border: 1px solid $yellow;
+  color: $yellow;
+  outline-color: $yellow;
   outline-style: solid;
   outline-width: 1px;
 }

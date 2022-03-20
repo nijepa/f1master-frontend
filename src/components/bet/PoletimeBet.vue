@@ -2,7 +2,7 @@
   <div id="demo">
     <div class="cont">
       <inputComp
-        placeholder="  0'00''000'''"
+        placeholder="0'00''000'''"
         class="input"
         :reseted="reseted"
         @select="getSelected"
@@ -52,7 +52,6 @@ export default {
     watch(
       () => selected.value,
       (currentValue) => {
-        //console.log(oldValue, currentValue);
         store.dispatch("liveBetUpdate", {
           type: "Pole",
           value: currentValue,

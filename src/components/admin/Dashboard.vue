@@ -21,7 +21,7 @@ export default {
 .dashboard {
   margin-top: 2em;
   h1 {
-    color: lightgreen;
+    color: $mercedes;
   }
   .panel__admin {
     margin-top: 2em;
@@ -31,7 +31,7 @@ export default {
     column-gap: 1em;
     row-gap: 2em;
     .link__admin {
-      background-color: #ffff00;
+      background-color: $ferrari-yellow;
       color: black;
       padding: 1em;
       border-radius: 0.3em;
@@ -42,12 +42,12 @@ export default {
     }
     .link__admin:first-child,
     .link__admin:last-child {
-      background-color: #fdd800;
+      background-color: $yellow;
       grid-column: 1/4;
     }
     .link__admin:hover {
-      background: #ff2800;
-      color: #fff;
+      background: $ferrari-red;
+      color: $haas-light;
     }
   }
 }

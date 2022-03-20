@@ -1,7 +1,7 @@
 <template>
   <div id="demo">
     <div class="cont">
-      <h1>{{ title }}</h1>
+      <h1 v-if="title">{{ title }}</h1>
       <template v-if="isHead">
         <div v-for="i in items.length" :key="i" class="select-wrapper">
           <sel-comp
@@ -30,7 +30,7 @@
           />
         </div>
       </template>
-      <div class="btn">
+      <div v-if="resetBtn" class="btn">
         <button class="reset" @click="reset">Reset</button>
       </div>
     </div>
@@ -56,7 +56,7 @@ export default {
     },
     title: {
       type: String,
-      required: true,
+      default: "",
     },
     group: {
       type: String,
@@ -69,6 +69,10 @@ export default {
     resetAll: {
       type: Boolean,
       default: false,
+    },
+    resetBtn: {
+      type: Boolean,
+      default: true,
     },
   },
 

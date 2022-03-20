@@ -91,7 +91,7 @@ export default {
         // NOTE find lest event before current date
         store.dispatch("liveBetUpdate", {
           type: "Event",
-          value: { id: currentRace.value.id, event: currentRace.value.event },
+          value: { id: currentRace.value.id, name: currentRace.value.name },
         });
         // NOTE get/set logged in user
         store.dispatch("liveBetUpdate", {
@@ -151,11 +151,11 @@ export default {
     return {
       masters,
       duels,
-      handleConfirmation,
-      reset,
-      liveBet,
       misc,
+      reset,
       resetAll,
+      liveBet,
+      handleConfirmation,
     };
   },
 };

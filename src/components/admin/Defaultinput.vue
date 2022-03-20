@@ -52,10 +52,10 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  background: rgba(16, 16, 16, 0.5);
+  background: rgba(16, 16, 16, 0.502);
   border-radius: 4px;
   border: none;
-  color: #ddd;
+  color: $haas-light;
   padding: 1em;
   letter-spacing: 1.5px;
   transition: all 0.4s ease;
@@ -63,8 +63,8 @@ input {
 input:focus {
   background: rgba(16, 16, 16, 1);
   outline: none;
-  -webkit-box-shadow: inset 0px 0px 1px 1px #000000;
-  box-shadow: inset 0px 0px 1px 1px #5a5a5a;
+  -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
+  box-shadow: inset 0px 0px 1px 1px $haas;
 }
 .readonly {
   background-color: transparent;

@@ -6,7 +6,9 @@
       <router-link to="/admin/drivers">Drivers</router-link>
       <router-link to="/admin/events">Events</router-link>
     </div>
-    <router-link class="btn btn1" active-class="active" to="/admin/results">RESULTS</router-link>
+    <router-link class="btn btn1" active-class="active" to="/admin/results"
+      >RESULTS</router-link
+    >
     <router-link class="btn btn2" to="/admin/users">USERS</router-link>
   </nav>
 </template>
@@ -16,25 +18,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 nav {
   display: flex;
   justify-content: space-around;
   align-content: center;
   background: linear-gradient(#000 2%, #0a0a0a 52%, #000);
-  grid-gap: 5px;
-  padding: 0 10px;
-  box-shadow: 2px 0px 1px black;
+  box-shadow: 2px 0px 1px $mercedes-silver;
+  position: sticky;
   top: 0;
   height: 40px;
   z-index: 1;
 }
 .logo {
   height: 25px;
-  align-self: center;
-  align-items: center;
-  align-content: center;
-  min-width: auto;
   width: 110px;
   background: url("../../assets/images/logo.png") center / contain no-repeat;
 }
@@ -45,14 +42,13 @@ nav {
 }
 @media (min-width: 720px) {
   .navlink {
-    align-content: center;
     margin-top: 1.5px;
   }
 }
 .navlink a {
-  color: #555555;
+  color: $haas;
   font-size: 0.75rem;
-  text-shadow: 0px 0px 8px #000000;
+  text-shadow: 0px 0px 8px $mercedes-silver;
   letter-spacing: 1px;
   font-weight: bold;
   padding: 5px 15px;
@@ -65,11 +61,11 @@ nav {
   list-style: none;
 }
 .navlink a:hover {
-  color: #ddd;
+  color: $haas-light;
   text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
 }
 .navlink a.router-link-active {
-  color: #fdd800;
+  color: $yellow;
   transition: 0.4s;
 }
 .btn {
@@ -93,32 +89,32 @@ nav {
 }
 .btn1:hover {
   color: white;
-  background: red;
+  background: $ferrari-red;
 }
 .btn1:active {
   color: white;
-  background: red;
+  background: $ferrari-red;
 }
 
 .btn1 {
-  color: red;
-  border: solid 1px red;
+  color: $ferrari-red;
+  border: solid 1px $ferrari-red;
   background: rgba(255, 0, 0, 0.02);
 }
 .btn.btn2:hover,
 .btn.btn2 a.router-link-active {
   color: white;
-  background: green;
-  border: solid 1px green;
+  background: $astonmartin;
+  border: solid 1px $astonmartin;
 }
 
 .btn.btn2 {
-  color: green;
-  border: solid 1px green;
+  color: $astonmartin;
+  border: solid 1px $astonmartin;
   background: rgba(0, 128, 0, 0.02);
 }
 .active {
   color: white;
-  background: red;
+  background: $ferrari-red;
 }
 </style>

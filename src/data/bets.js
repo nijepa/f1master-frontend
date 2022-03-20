@@ -3,7 +3,7 @@ const bets = [
     _id: 1,
     createdAt: "2022-03-18T07:37:08.811Z",
     User: { id: 0, email: "rayannezinha@f1master.com" },
-    Event: { id: 0, event: "BAHRAIN GRAND PRIX" },
+    Event: { id: 0, name: "BAHRAIN GRAND PRIX" },
     Pole: "1'12'234",
     F1Masters: [
       { idx: 0, id: 1, val: "M.VERSTAPPEN" },
@@ -42,7 +42,7 @@ const bets = [
     _id: 2,
     createdAt: "2022-03-18T07:37:08.811Z",
     User: { id: 1, email: "rayannezinha@f1master.com" },
-    Event: { id: 0, event: "BAHRAIN GRAND PRIX" },
+    Event: { id: 0, name: "BAHRAIN GRAND PRIX" },
     Pole: "1'12'234",
     F1Masters: [
       { idx: 0, id: 1, val: "M.VERSTAPPEN" },
@@ -81,7 +81,7 @@ const bets = [
     _id: 3,
     createdAt: "2022-03-18T07:37:08.811Z",
     User: { id: 0, email: "rayannezinha@f1master.com" },
-    Event: { id: 1, event: "BAHRAIN GRAND PRIX" },
+    Event: { id: 1, name: "BAHRAIN GRAND PRIX" },
     Pole: "1'12'234",
     F1Masters: [
       { idx: 0, id: 1, val: "M.VERSTAPPEN" },

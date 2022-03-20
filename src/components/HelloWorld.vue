@@ -1,6 +1,6 @@
 <template>
   <div class="home-wrapper">
-    <h1>{{ currentRace.event }}</h1>
+    <h1>{{ currentRace.name }}</h1>
     <Counter :end="currentRace.raceStart" />
     <div class="hello">
       <!-- <button @click="getTeams">geeeet</button> -->
