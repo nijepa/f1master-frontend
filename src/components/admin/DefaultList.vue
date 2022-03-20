@@ -132,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 .list-title {
   margin: 0.5em 0;
-  color: $ferrari-red;
+  color: $grey;
   //text-shadow: 0 1px 0 #fdd700c4;
   text-transform: uppercase;
   text-shadow: none;
@@ -151,6 +151,10 @@ export default {
     column-gap: 0.5em;
     .list-item {
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       .list-heading {
         font-variant: small-caps;
         margin-bottom: 0.5em;
@@ -168,7 +172,7 @@ export default {
   padding: 1em;
   border-radius: 4px;
   border: 1px solid transparent;
-  background-color: $ferrari-red;
+  background-color: $mercedes-silver;
   color: $mclaren-orange;
   cursor: pointer;
   font-weight: 600;
@@ -177,11 +181,12 @@ export default {
   transition: all 0.4s ease;
 }
 .btn-new:hover {
-  border: 1px solid $yellow;
+  // border: 1px solid $yellow;
   color: $yellow;
-  outline-color: $yellow;
-  outline-style: solid;
-  outline-width: 1px;
+  // outline-color: $yellow;
+  // outline-style: solid;
+  // outline-width: 1px;
+  text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
 }
 .list-three {
   grid-template-columns: auto repeat(2, 1fr);
@@ -191,5 +196,29 @@ export default {
 }
 .list-five {
   grid-template-columns: auto repeat(4, 1fr);
+}
+@media (max-width: 992px) {
+  .list-ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .list-li {
+      grid-template-columns: 1fr;
+      padding: 1em;
+      background-color: rgba(11, 31, 42, 0.3);
+      border-radius: 4px;
+      .list-item {
+        padding: 0.5em 0;
+      }
+      h4 {
+        display: none;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  .list-ul {
+    flex-direction: column;
+  }
 }
 </style>

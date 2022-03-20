@@ -60,7 +60,8 @@ input {
   letter-spacing: 1.5px;
   transition: all 0.4s ease;
 }
-input:focus {
+input:focus,
+input:hover {
   background: rgba(16, 16, 16, 1);
   outline: none;
   -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
@@ -80,5 +81,13 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: $astonmartin;
+  height: 100%; /* not needed */
+  width: 1.3em; /* not needed */
+  outline: none;
 }
 </style>
