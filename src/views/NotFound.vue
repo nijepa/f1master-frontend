@@ -33,8 +33,8 @@ export default {
   justify-items: center;
   align-items: center;
   min-height: 100vh;
-  background: url("../assets/images/under-construction.png") center / cover no-repeat
-    black;
+  background: url("../assets/images/under-construction.png") center / cover
+    no-repeat black;
 }
 .container {
   display: flex;

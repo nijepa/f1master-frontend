@@ -1,5 +1,5 @@
 <template>
-  <header :class="{ 'scrolled-nav': scrolledNav }">
+  <header ref="elref" :class="{ 'scrolled-nav': scrolledNav }">
     <nav>
       <div class="branding">
         <router-link class="logo" to="/"></router-link>
@@ -63,22 +63,11 @@
         </svg>
       </div>
       <transition name="mobile-nav">
-        <ul v-show="mobileNav" class="dropdown-nav">
-          <router-link @click="mobileNav = false" class="link" to="/admin/teams"
-            >Teams</router-link
-          >
-          <router-link
-            @click="mobileNav = false"
-            class="link"
-            to="/admin/drivers"
-            >Drivers</router-link
-          >
-          <router-link
-            @click="mobileNav = false"
-            class="link"
-            to="/admin/events"
-            >Events</router-link
-          >
+        <ul
+          v-if="mobileNav"
+          v-click-outside="clickOutside"
+          class="dropdown-nav"
+        >
           <router-link
             @click="mobileNav = false"
             class="link btn btn1"
@@ -86,6 +75,26 @@
             to="/admin/results"
             >RESULTS</router-link
           >
+          <div class="dropdown__sub-nav">
+            <router-link
+              @click="mobileNav = false"
+              class="link"
+              to="/admin/teams"
+              >Teams</router-link
+            >
+            <router-link
+              @click="mobileNav = false"
+              class="link"
+              to="/admin/drivers"
+              >Drivers</router-link
+            >
+            <router-link
+              @click="mobileNav = false"
+              class="link"
+              to="/admin/events"
+              >Events</router-link
+            >
+          </div>
           <router-link
             @click="mobileNav = false"
             active-class="active2"
@@ -100,9 +109,13 @@
 </template>
 <script>
 import { reactive, ref, onMounted, onUnmounted, toRefs } from "vue";
+//import { useOnScroll } from "vue-composable";
 export default {
   name: "Navbar",
   setup() {
+    const elref = ref(null);
+
+    // const { scrollTop, scrollLeft, remove } = useOnScroll(elref);
     const state = reactive({
       scrolledNav: null,
       mobile: null,
@@ -132,6 +145,10 @@ export default {
       state.mobileNav = false;
       return;
     };
+    const clickOutside = () => {
+      state.mobileNav = false;
+      //setTimeout(() => (state.mobileNav = false), 10000);
+    };
     const onWidthChange = () => (windowWidth.value = window.innerWidth);
     const onScrollChange = () => (scrollPosition.value = window.screenY);
     onMounted(() => window.addEventListener("resize", checkScreen));
@@ -139,7 +156,7 @@ export default {
     onUnmounted(() => window.removeEventListener("resize", checkScreen));
     onUnmounted(() => window.removeEventListener("scroll", updateScroll));
 
-    return { ...toRefs(state), toggleMobileNav, updateScroll };
+    return { ...toRefs(state), toggleMobileNav, clickOutside };
   },
   /* data() {
     return {
@@ -225,6 +242,7 @@ header {
       font-size: 14px;
       transition: 0.5s ease all;
       padding-bottom: 4px;
+
       &:hover {
         color: $haas-light;
         text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
@@ -285,15 +303,31 @@ header {
     .dropdown-nav {
       display: flex;
       flex-direction: column;
+      align-items: center;
       position: fixed;
-      padding: 1em;
+      padding: 2em 1em 1em 1em;
       row-gap: 1em;
       width: 100%;
-      max-width: 250px;
+      max-width: 200px;
       height: 100%;
-      background-color: rgba(11, 31, 42, 0.6);
+      max-height: 350px;
+      background-color: rgba(11, 31, 42, 0.8);
+      border-bottom-right-radius: 2em;
       top: 0;
       left: 0;
+
+      .dropdown__sub-nav {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1em;
+      }
+
+      .link {
+        min-width: 100px;
+        padding: 1em;
+        background-color: $mercedes-silver;
+        border-radius: 4px;
+      }
 
       li {
         margin-left: 0;
@@ -304,7 +338,7 @@ header {
       }
 
       a:first-child {
-        margin-top: 2em;
+        // margin-top: 2em;
       }
     }
 
@@ -315,11 +349,11 @@ header {
 
     .mobile-nav-enter-from,
     .mobile-nav-leave-active {
-      transform: translateX(-250px);
+      transform: translateX(-200px) translateY(-350px);
     }
 
     .mobile-nav-enter-to {
-      transform: translateX(0);
+      transform: translateX(0) translateY(0);
     }
   }
 }

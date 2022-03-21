@@ -187,6 +187,7 @@ export default {
   // outline-style: solid;
   // outline-width: 1px;
   text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
+  box-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
 }
 .list-three {
   grid-template-columns: auto repeat(2, 1fr);
