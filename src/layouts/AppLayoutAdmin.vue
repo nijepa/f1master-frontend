@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <Navbar />
+    <Navbar :navName="'admin'" />
     <!-- <AppLayoutLinks /> -->
     <slot />
     <Footer />
@@ -9,7 +9,7 @@
 
 <script>
 //import AppLayoutLinks from '@/layouts/AppLayoutLinks'
-import Navbar from "@/components/admin/Navbar.vue";
+import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: "AppLayoutHome",

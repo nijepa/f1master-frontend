@@ -1,5 +1,5 @@
 <template>
-  <header ref="elref" :class="{ 'scrolled-nav': scrolledNav }">
+  <header :class="{ 'scrolled-nav': scrolledNav }">
     <nav>
       <div class="branding">
         <router-link class="logo" to="/"></router-link>
@@ -113,9 +113,6 @@ import { reactive, ref, onMounted, onUnmounted, toRefs } from "vue";
 export default {
   name: "Navbar",
   setup() {
-    const elref = ref(null);
-
-    // const { scrollTop, scrollLeft, remove } = useOnScroll(elref);
     const state = reactive({
       scrolledNav: null,
       mobile: null,
@@ -128,7 +125,6 @@ export default {
     };
     const updateScroll = () => {
       onScrollChange();
-      console.log(555, window.screenY);
       if (scrollPosition.value > 50) {
         state.scrolledNav = true;
         return;
@@ -150,7 +146,8 @@ export default {
       //setTimeout(() => (state.mobileNav = false), 10000);
     };
     const onWidthChange = () => (windowWidth.value = window.innerWidth);
-    const onScrollChange = () => (scrollPosition.value = window.screenY);
+    const onScrollChange = () =>
+      (scrollPosition.value = document.body.scrollTop);
     onMounted(() => window.addEventListener("resize", checkScreen));
     onMounted(() => window.addEventListener("scroll", updateScroll));
     onUnmounted(() => window.removeEventListener("resize", checkScreen));
@@ -158,44 +155,6 @@ export default {
 
     return { ...toRefs(state), toggleMobileNav, clickOutside };
   },
-  /* data() {
-    return {
-      scrolledNav: null,
-      mobile: null,
-      mobileNav: null,
-      windowwidth: null,
-    };
-  },
-  methods: {
-    toggleMobileNav() {
-      this.mobileNav = !this.mobileNav;
-    },
-    updateScroll() {
-      const scrollPosition = window.screenY;
-      if (scrollPosition > 50) {
-        this.scrolledNav = true;
-        return;
-      }
-      this.scrolledNav = false;
-    },
-    checkScreen() {
-      this.windowwidth = window.innerWidth;
-      if (this.windowwidth <= 750) {
-        this.mobile = true;
-        return;
-      }
-      this.mobile = false;
-      this.mobileNav = false;
-      return;
-    },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.updateScroll);
-  },
-  created() {
-    window.addEventListener("resize", this.checkScreen);
-    this.checkScreen();
-  }, */
 };
 </script>
 

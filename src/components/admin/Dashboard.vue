@@ -54,4 +54,15 @@ export default {
     }
   }
 }
+@media (max-width: 992px) {
+  .dashboard {
+    .panel__admin {
+      display: flex;
+      flex-direction: column;
+      max-width: 200px;
+      margin: 0 auto;
+      margin-top: 2em;
+    }
+  }
+}
 </style>

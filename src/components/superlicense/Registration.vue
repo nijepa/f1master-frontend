@@ -128,7 +128,7 @@ export default {
 .card {
   display: grid;
   justify-items: center;
-  width: 400px;
+  max-width: 350px;
   height: auto;
   background: #060606;
   border-radius: 4px;

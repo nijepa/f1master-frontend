@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <Navbar />
+    <Navbar :navName="'main'" />
     <!-- <AppLayoutLinks /> -->
     <slot />
     <Footer />
