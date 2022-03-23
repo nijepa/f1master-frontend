@@ -1,37 +1,39 @@
 <template>
   <div class="results">
     <h1>results</h1>
-    <div class="results-group">
-      <h3>event</h3>
-      <SelectWrapper
-        :count="1"
-        :list="events"
-        :group="'Event'"
-        :reset-all="resetAll"
-        :reset-btn="false"
-        class="misc"
-      />
-    </div>
-    <div class="results-group">
-      <h3>pole time</h3>
-      <inputComp
-        placeholder="0'00''000'''"
-        class="input"
-        :reseted="reseted"
-        @select="getSelected"
-        @cleared="reseted = false"
-      />
-    </div>
-    <div class="results-group">
-      <h3>placement</h3>
-      <SelectWrapper
-        :count="10"
-        :list="drivers"
-        :group="'Position'"
-        :reset-all="resetAll"
-        :reset-btn="false"
-        class="misc"
-      />
+    <div class="results-wrapper">
+      <div class="results-group">
+        <h3>event</h3>
+        <SelectWrapper
+          :count="1"
+          :list="events"
+          :group="'Event'"
+          :reset-all="resetAll"
+          :reset-btn="false"
+          class="misc"
+        />
+      </div>
+      <div class="results-group">
+        <h3>pole time</h3>
+        <inputComp
+          placeholder="0'00''000'''"
+          class="input"
+          :reseted="reseted"
+          @select="getSelected"
+          @cleared="reseted = false"
+        />
+      </div>
+      <div class="results-group">
+        <h3>placement</h3>
+        <SelectWrapper
+          :count="10"
+          :list="drivers"
+          :group="'Position'"
+          :reset-all="resetAll"
+          :reset-btn="false"
+          class="misc"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -77,12 +79,30 @@ export default {
 <style lang="scss" scoped>
 .results {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: 1em 0;
-  .results-group {
-    h3 {
-      font-variant: small-caps;
-      color: $grey;
+
+  h1 {
+    text-transform: uppercase;
+    color: $mercedes;
+    margin: 1em;
+  }
+
+  .results-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 1em;
+
+    .results-group {
+      margin-bottom: 1em;
+
+      h3 {
+        font-variant: small-caps;
+        color: $grey;
+      }
     }
   }
 }

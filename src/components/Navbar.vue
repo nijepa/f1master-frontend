@@ -12,12 +12,18 @@
         >
           <router-link :to="link.to" class="link">{{ link.title }}</router-link>
         </div>
-        <router-link class="btn btn1" :to="links.leftLink.to">{{
-          links.leftLink.title
-        }}</router-link>
-        <router-link class="btn btn2" :to="links.rightLink.to">{{
-          links.rightLink.title
-        }}</router-link>
+        <router-link
+          class="link btn btn1"
+          :to="links.leftLink.to"
+          active-class="active"
+          >{{ links.leftLink.title }}</router-link
+        >
+        <router-link
+          class="link btn btn2"
+          :to="links.rightLink.to"
+          active-class="active2"
+          >{{ links.rightLink.title }}</router-link
+        >
       </ul>
       <div class="icon">
         <svg

@@ -1,6 +1,5 @@
 <template>
   <div class="card">
-    <span class="driver-position">{{ position }}</span>
     <select v-model="selected" class="round" @change="setSelected($event, idx)">
       <option disabled value="0">{{ group }} {{ idx + 1 }}</option>
       <option v-for="item in items" :key="item.id" :value="item.name">
@@ -10,12 +9,11 @@
         <h3 :style="{ color: 'yellow' }">{{ selected }}</h3>
       </option>
     </select>
-    <span class="driver-nr">{{ nr }}</span>
   </div>
 </template>
 
 <script>
-import { ref, watch, computed } from "vue";
+import { ref, watch } from "vue";
 
 export default {
   props: {
@@ -38,25 +36,11 @@ export default {
   },
 
   setup(props, { emit }) {
-    // eslint-disable-next-line vue/return-in-computed-property
-    const position = computed(() => {
-      const nr = props.idx + 1;
-      if (props.group.includes("Position")) {
-        return nr < 10 ? 0 + nr.toString() : nr;
-      }
-      return;
-    });
-    console.log(props.group);
     const selected = ref(0);
     const setSelected = (e, i) => {
       const item = props.items.find((ind) => ind.name.includes(e.target.value));
-      item.number !== undefined
-        ? (nr.value = "#" + item.number)
-        : (nr.value = null);
       emit("select", { idx: i, id: item.id, val: e.target.value });
     };
-
-    const nr = ref(null);
 
     const getNr = (idx) => {
       return props.items[0].number !== undefined
@@ -80,15 +64,7 @@ export default {
       }
     );
 
-    return {
-      position,
-      selected,
-      nr,
-      setSelected,
-      showItem,
-      showSelected,
-      getNr,
-    };
+    return { selected, setSelected, showItem, showSelected };
   },
 };
 </script>
@@ -96,8 +72,8 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin: 0.2rem;
-  //width: 200px;
-  //height: 25px;
+  width: 150px;
+  height: 25px;
 
   /* background:linear-gradient(darkred,red); */
   font-size: 0.8rem;
@@ -106,13 +82,15 @@ export default {
 .card select {
   font-family: "Play", cursive;
   font-size: 0.8rem;
+  width: 140px;
+  height: 25px;
   border-radius: 4px;
+  border: solid 2px black;
   cursor: pointer;
-  background: $ferrari;
+  background: darkred;
   color: white;
   font-weight: bold;
-  border: 2px solid transparent;
-  padding: 0.5em;
+  /* border: 2px solid #a074c4; */
 }
 .optDisable {
   background: #101010;
@@ -123,14 +101,6 @@ option {
   background: #070707;
   font-weight: bold;
   color: #ccc;
-}
-.driver-nr {
-  margin-left: 0.5em;
-  color: $yellow;
-}
-.driver-position {
-  margin-right: 0.5em;
-  color: $ferrari;
 }
 
 // .card {

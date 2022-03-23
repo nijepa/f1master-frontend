@@ -180,6 +180,12 @@ button:hover {
   background-color: linear-gradient(#ffef93, #e8c500);
   letter-spacing: 1px;
 }
+.cont {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 // .cont {
 //   padding: 0 0.5em 0.5em 0.5em;
