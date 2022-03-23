@@ -38,12 +38,12 @@
       :reset-all="resetAll"
       class="misc"
     />
-    <div class="btn-wrapper">
-      <p>{{ liveBet }}</p>
-      <button class="reset" @click="reset">Reset All</button>
-      <button class="confirm" @click="handleConfirmation">Confirm</button>
-    </div>
   </div>
+  <div class="btn-wrapper">
+    <button class="reset" @click="reset">Reset All</button>
+    <button class="confirm" @click="handleConfirmation">Confirm</button>
+  </div>
+  <p>{{ liveBet }}</p>
 </template>
 
 <script>
@@ -138,7 +138,12 @@ export default {
             d.teamName.toLocaleLowerCase().includes(t.team.toLocaleLowerCase())
           )
           .map((m) => {
-            return { id: m.id, name: m.name, number: m.number };
+            return {
+              id: m.id,
+              name: m.name,
+              number: m.number,
+              team: d.teamName,
+            };
           });
       })
       .filter((d) => d.length);
@@ -163,104 +168,31 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  grid-template-areas: "poletime f1master evo h2h misc";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: repeat(5, 150px);
-  background: url("../../assets/images/steeringwheel3.png") top / contain no-repeat;
+  row-gap: 1em;
+  background: url("../../assets/images/steeringwheel3.png") top / contain
+    no-repeat;
   width: 100vw;
   margin-top: 50px;
-}
-.container select {
-  display: grid;
-  border: 3px solid black;
-  justify-content: center;
-  background: darkred;
-  color: #ddd;
-  width: 100%;
-  font-size: 0.85rem;
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
 
-h1 {
-  display: grid;
-  color: #ddd;
-  text-shadow: 2px 0px 0px black;
-  font-size: 1rem;
-  font-weight: bold;
-  /* background:rgba(0, 0, 0, 0.7); */
-  justify-items: center;
-  align-content: center;
-  width: 100%;
-}
-.poletime {
-  grid-area: poletime;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.f1master {
-  grid-area: f1master;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.evo {
-  grid-area: evo;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.h2h {
-  grid-area: h2h;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.misc {
-  grid-area: misc;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.btn {
-  grid-area: confirm;
-  background: rgba(0, 0, 0, 0.8);
-  height: auto;
-}
-.confirm h2 {
-  font-size: 10px;
-}
-.cont {
-  display: grid;
-  align-items: center;
-  width: 150px;
-  justify-items: center;
-  background: rgba(0, 0, 0, 0.8);
-}
-.paragh {
-  color: white;
-  font-size: 1rem;
-}
-.btn-wrapper {
-  grid-column: 1/6;
-  justify-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  p {
-    color: #ddd;
-    margin-bottom: 1em;
+  .poletime {
+    background: rgba(0, 0, 0, 0.8);
+    height: auto;
+
+    h1 {
+      color: #ddd;
+      text-shadow: 2px 0px 0px black;
+      font-size: 1rem;
+      font-weight: bold;
+      /* background:rgba(0, 0, 0, 0.7); */
+      width: 100%;
+    }
   }
 }
-.btn {
-  height: 70px;
-  justify-items: center;
-  align-items: end;
-  display: grid;
-}
+
 button {
-  display: grid;
-  align-items: center;
-  justify-items: center;
   font-size: 0.8em;
   font-weight: 700;
   width: 140px;
@@ -272,23 +204,30 @@ button {
   border: 1px solid transparent;
   transition: all 0.4s ease;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: linear-gradient(#ffef93, #e8c500);
+    letter-spacing: 1px;
+  }
 }
-.confirm {
-  background: #fdd800;
-  color: black;
-}
-button:hover {
-  background-color: linear-gradient(#ffef93, #e8c500);
-  letter-spacing: 1px;
-}
-.btn {
-  background: rgba(0, 0, 0, 0.8);
-  display: grid;
-  align-items: baseline;
-}
-.reset {
-  background: transparent;
-  color: #ddd;
-  margin-bottom: 1em;
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+
+  .reset {
+    background: transparent;
+    color: #ddd;
+    margin-bottom: 1em;
+  }
+
+  .confirm {
+    background: #fdd800;
+    color: black;
+    padding: 1em;
+    height: auto;
+  }
 }
 </style>

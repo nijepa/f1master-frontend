@@ -64,13 +64,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .btn {
-  height: 70px;
-  justify-items: center;
-  align-items: end;
   display: grid;
+  justify-items: center;
 }
+
 button {
   display: grid;
   align-items: center;
@@ -82,27 +81,19 @@ button {
   cursor: pointer;
   margin: 0 5px;
   border-radius: 4px;
-  box-shadow: 5px 5px 12px rgb(0 0 0 / 15%);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 15%);
   border: 1px solid transparent;
   transition: all 0.4s ease;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: linear-gradient(#ffef93, #e8c500);
+    letter-spacing: 1px;
+  }
 }
+
 .reset {
   background: #070707;
   color: #ddd;
-  border: solid 1px #050505;
-}
-.confirm {
-  background: #fdd800;
-  color: black;
-}
-button:hover {
-  background-color: linear-gradient(#ffef93, #e8c500);
-  letter-spacing: 1px;
-}
-.btn {
-  background: rgba(0, 0, 0, 0.8);
-  display: grid;
-  align-items: baseline;
 }
 </style>

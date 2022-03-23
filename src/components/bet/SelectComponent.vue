@@ -2,7 +2,10 @@
   <div class="card">
     <span class="driver-position">{{ position }}</span>
     <select v-model="selected" class="round" @change="setSelected($event, idx)">
-      <option disabled value="0">{{ group }} {{ idx + 1 }}</option>
+      <option v-if="group === 'Head'" disabled value="0">
+        {{ items[0].team }}
+      </option>
+      <option v-else disabled value="0">{{ group }} {{ idx + 1 }}</option>
       <option v-for="item in items" :key="item.id" :value="item.name">
         {{ showItem(item.id) }}
       </option>
@@ -46,7 +49,7 @@ export default {
       }
       return;
     });
-    console.log(props.group);
+
     const selected = ref(0);
     const setSelected = (e, i) => {
       const item = props.items.find((ind) => ind.name.includes(e.target.value));
@@ -76,6 +79,7 @@ export default {
       () => props.reseted,
       () => {
         selected.value = 0;
+        nr.value = null;
         emit("cleared");
       }
     );
@@ -98,7 +102,7 @@ export default {
   margin: 0.2rem;
   /* background:linear-gradient(darkred,red); */
   font-size: 0.8rem;
-  border: solid 2px black;
+  //border: solid 2px black;
 
   select {
     font-family: "Play", cursive;
@@ -110,6 +114,7 @@ export default {
     font-weight: bold;
     border: 2px solid transparent;
     padding: 0.5em;
+    width: 70%;
 
     option {
       background: #070707;

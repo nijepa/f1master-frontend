@@ -1,38 +1,32 @@
 <template>
-  <div id="demo">
-    <div class="cont">
-      <h1 v-if="title">{{ title }}</h1>
-      <template v-if="isHead">
-        <div v-for="i in items.length" :key="i" class="select-wrapper">
-          <sel-comp
-            :items="items[i - 1]"
-            :idx="i - 1"
-            :reseted="reseted"
-            :group="group"
-            @select="getSelected"
-            @cleared="reseted = false"
-          />
-        </div>
-      </template>
-      <template v-else>
-        <div
-          v-for="(item, i) in maxArray.length"
-          :key="i"
-          class="select-wrapper"
-        >
-          <sel-comp
-            :items="getItems"
-            :idx="i"
-            :reseted="reseted"
-            :group="group"
-            @select="getSelected"
-            @cleared="reseted = false"
-          />
-        </div>
-      </template>
-      <div v-if="resetBtn" class="btn">
-        <button class="reset" @click="reset">Reset</button>
+  <div class="cont">
+    <h1 v-if="title">{{ title }}</h1>
+    <template v-if="isHead">
+      <div v-for="i in items.length" :key="i" class="select-wrapper">
+        <sel-comp
+          :items="items[i - 1]"
+          :idx="i - 1"
+          :reseted="reseted"
+          :group="group"
+          @select="getSelected"
+          @cleared="reseted = false"
+        />
       </div>
+    </template>
+    <template v-else>
+      <div v-for="(item, i) in maxArray.length" :key="i" class="select-wrapper">
+        <sel-comp
+          :items="getItems"
+          :idx="i"
+          :reseted="reseted"
+          :group="group"
+          @select="getSelected"
+          @cleared="reseted = false"
+        />
+      </div>
+    </template>
+    <div v-if="resetBtn" class="btn reset-btn">
+      <button class="reset" @click="reset">Reset</button>
     </div>
   </div>
 </template>
@@ -157,20 +151,21 @@ button {
   justify-items: center;
   font-size: 0.8em;
   font-weight: 700;
-  width: 140px;
+  //width: 140px;
   height: 25px;
   cursor: pointer;
-  margin: 0 5px;
   border-radius: 4px;
   //box-shadow: 5px 5px 12px rgb(0 0 0 / 15%);
-  border: 1px solid transparent;
+  //border: 1px solid transparent;
   transition: all 0.4s ease;
   text-transform: uppercase;
 }
 .reset {
-  background: #070707;
+  //background: #070707;
+  background: transparent;
   color: #ddd;
-  border: solid 1px #050505;
+  //border: solid 1px #050505;
+  border: none;
 }
 .confirm {
   background: #fdd800;
@@ -185,15 +180,23 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  //background: rgba(253, 216, 0, .1);
+  //margin: 0 .1em;
 }
 
-// .cont {
-//   padding: 0 0.5em 0.5em 0.5em;
-//   width: 100%;
-//   .select-wrapper {
-//     width: 100%;
-//   }
-// }
+.cont {
+  // padding: 0 0.5em 0.5em 0.5em;
+  // width: 100%;
+  .select-wrapper {
+    width: 100%;
+  }
+}
+.reset-btn {
+  width: 100%;
+  .reset {
+    width: 100%;
+  }
+}
 // .btn {
 //   height: 70px;
 //   justify-items: center;

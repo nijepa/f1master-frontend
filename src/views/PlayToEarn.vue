@@ -23,5 +23,6 @@ export default {
 <style scoped>
 .wrap {
   display: flex;
+  flex-direction: column;
 }
 </style>
