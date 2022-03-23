@@ -43,36 +43,21 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin: 0.2rem;
-  // width: 150px;
-  // height: 25px;
-
   /* background:linear-gradient(darkred,red); */
   font-size: 0.8rem;
   border: solid 2px black;
-}
-.card input {
-  font-family: "Play", cursive;
-  font-size: 0.8rem;
-  /* width: 140px;
-  height: 25px; */
-  border-radius: 4px;
-  border: solid 2px transparent;
-  cursor: pointer;
-  background: $ferrari;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.5em;
-  /* border: 2px solid #a074c4; */
-}
-.optDisable {
-  background: #101010;
-  font-weight: bold;
-  color: #ccc;
-}
-option {
-  background: #070707;
-  font-weight: bold;
-  color: #ccc;
+
+  input {
+    font-family: "Play", cursive;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    border: solid 2px transparent;
+    cursor: pointer;
+    background: $ferrari;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5em;
+  }
 }
 </style>

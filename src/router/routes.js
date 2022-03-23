@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/playtoearn",
     component: () =>
-      import(/* webpackChunkName "play" */ "@/views/PlayToEarn.vue"),
+      import(/* webpackChunkName "plays" */ "@/views/PlayToEarn.vue"),
     meta: {
       layout: "AppLayoutHome",
       panel: "bet",
@@ -22,7 +22,7 @@ const routes = [
   {
     path: "/superlicense",
     component: () =>
-      import(/* webpackChunkName "auth" */ "@/views/SuperLicense.vue"),
+      import(/* webpackChunkName "auths" */ "@/views/SuperLicense.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -31,7 +31,7 @@ const routes = [
     path: "/registration",
     component: () =>
       import(
-        /* webpackChunkName "auth" */ "@/components/superlicense/Registration.vue"
+        /* webpackChunkName "auths" */ "@/components/superlicense/Registration.vue"
       ),
     meta: {
       layout: "AppLayoutHome",
@@ -41,7 +41,7 @@ const routes = [
     path: "/recovery-password",
     component: () =>
       import(
-        /* webpackChunkName "auth" */ "@/components/superlicense/RecoveryPassword.vue"
+        /* webpackChunkName "auths" */ "@/components/superlicense/RecoveryPassword.vue"
       ),
     meta: {
       layout: "AppLayoutHome",

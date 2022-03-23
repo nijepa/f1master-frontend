@@ -137,11 +137,13 @@ export default {
   text-transform: uppercase;
   text-shadow: none;
 }
+
 .list-ul {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1em 0;
+
   .list-li {
     display: grid;
     //grid-template-columns: auto 1fr auto 1fr;
@@ -149,12 +151,14 @@ export default {
     align-items: center;
     margin: 0.5em;
     column-gap: 0.5em;
+
     .list-item {
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
       .list-heading {
         font-variant: small-caps;
         margin-bottom: 0.5em;
@@ -162,12 +166,14 @@ export default {
         cursor: pointer;
         transition: all 0.4s ease;
       }
+
       .list-heading:hover {
         color: $yellow;
       }
     }
   }
 }
+
 .btn-new {
   padding: 0.5em 1em;
   border-radius: 4px;
@@ -180,6 +186,7 @@ export default {
   text-transform: uppercase;
   transition: all 0.4s ease;
 }
+
 .btn-new:hover {
   // border: 1px solid $yellow;
   color: $yellow;
@@ -189,34 +196,42 @@ export default {
   text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
   box-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
 }
+
 .list-three {
   grid-template-columns: auto repeat(2, 1fr);
 }
+
 .list-four {
   grid-template-columns: auto repeat(3, 1fr);
 }
+
 .list-five {
   grid-template-columns: auto repeat(4, 1fr);
 }
+
 @media (max-width: 992px) {
   .list-ul {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+
     .list-li {
       grid-template-columns: 1fr;
       padding: 1em;
       background-color: rgba(11, 31, 42, 0.3);
       border-radius: 4px;
+
       .list-item {
         padding: 0.5em 0;
       }
+
       h4 {
         display: none;
       }
     }
   }
 }
+
 @media (max-width: 576px) {
   .list-ul {
     flex-direction: column;

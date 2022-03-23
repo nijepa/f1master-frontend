@@ -52,15 +52,17 @@ export default {
   align-items: center;
   height: 100%;
   grid-template-rows: auto auto 1fr;
+
   h1 {
     color: #fdd800;
     box-shadow: none;
     margin-top: 2em;
   }
-}
-.hello {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  .hello {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

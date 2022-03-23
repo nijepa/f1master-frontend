@@ -59,25 +59,29 @@ input {
   padding: 1em;
   letter-spacing: 1.5px;
   transition: all 0.4s ease;
+
+  &:focus,
+  &:hover {
+    background: rgba(16, 16, 16, 1);
+    outline: none;
+    -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
+    box-shadow: inset 0px 0px 1px 1px $haas;
+  }
 }
-input:focus,
-input:hover {
-  background: rgba(16, 16, 16, 1);
-  outline: none;
-  -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
-  box-shadow: inset 0px 0px 1px 1px $haas;
-}
+
 .readonly {
   background-color: transparent;
   text-align: right;
   width: 50px;
 }
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;

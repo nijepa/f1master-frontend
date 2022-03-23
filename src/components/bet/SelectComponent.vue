@@ -96,38 +96,34 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin: 0.2rem;
-  //width: 200px;
-  //height: 25px;
-
   /* background:linear-gradient(darkred,red); */
   font-size: 0.8rem;
   border: solid 2px black;
+
+  select {
+    font-family: "Play", cursive;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    background: $ferrari;
+    color: white;
+    font-weight: bold;
+    border: 2px solid transparent;
+    padding: 0.5em;
+
+    option {
+      background: #070707;
+      font-weight: bold;
+      color: #ccc;
+    }
+  }
 }
-.card select {
-  font-family: "Play", cursive;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  background: $ferrari;
-  color: white;
-  font-weight: bold;
-  border: 2px solid transparent;
-  padding: 0.5em;
-}
-.optDisable {
-  background: #101010;
-  font-weight: bold;
-  color: #ccc;
-}
-option {
-  background: #070707;
-  font-weight: bold;
-  color: #ccc;
-}
+
 .driver-nr {
   margin-left: 0.5em;
   color: $yellow;
 }
+
 .driver-position {
   margin-right: 0.5em;
   color: $ferrari;
