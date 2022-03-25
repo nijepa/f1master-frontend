@@ -3,7 +3,6 @@
     <h1>{{ currentRace.name }}</h1>
     <Counter :end="currentRace.raceStart" />
     <div class="hello">
-      <!-- <button @click="getTeams">geeeet</button> -->
       <img src="@/assets/images/logo2.png" />
     </div>
   </div>

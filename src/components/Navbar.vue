@@ -189,7 +189,6 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  //background-color: rgba(0, 0, 0, 0.8);
   background: linear-gradient(#000 2%, #0a0a0a 52%, #000);
   box-shadow: 2px 0px 1px $mercedes-silver;
   z-index: 99;

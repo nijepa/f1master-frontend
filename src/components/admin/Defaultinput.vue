@@ -55,7 +55,7 @@ input {
   background: rgba(16, 16, 16, 0.502);
   border-radius: 4px;
   border: none;
-  color: $haas-light;
+  color: white;
   padding: 1em;
   letter-spacing: 1.5px;
   transition: all 0.4s ease;
@@ -91,7 +91,12 @@ input[type="checkbox"] {
   cursor: pointer;
   accent-color: $astonmartin;
   height: 100%; /* not needed */
-  width: 1.3em; /* not needed */
+  width: 1.5em; /* not needed */
   outline: none;
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+  }
 }
 </style>

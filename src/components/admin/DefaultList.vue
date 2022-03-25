@@ -38,7 +38,6 @@
       </template>
     </li>
   </ul>
-  <!-- <p>{{ list }}</p> -->
 </template>
 
 <script>
@@ -133,7 +132,6 @@ export default {
 .list-title {
   margin: 0.5em 0;
   color: $grey;
-  //text-shadow: 0 1px 0 #fdd700c4;
   text-transform: uppercase;
   text-shadow: none;
 }
@@ -188,11 +186,7 @@ export default {
 }
 
 .btn-new:hover {
-  // border: 1px solid $yellow;
   color: $yellow;
-  // outline-color: $yellow;
-  // outline-style: solid;
-  // outline-width: 1px;
   text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
   box-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
 }

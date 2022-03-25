@@ -4,7 +4,7 @@
       v-model="selected"
       v-maska="mask"
       :disable="false"
-      placeholder="0'00'000"
+      placeholder="0'00'000'''"
       @change="setSelected($event)"
     />
   </div>
@@ -21,7 +21,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const mask = "#'##'###";
+    const mask = "#'##'###'''";
     const selected = ref(null);
     const setSelected = (e) => {
       emit("select", e.target.value);
@@ -42,14 +42,10 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  margin: 0.2rem;
-  /* background:linear-gradient(darkred,red); */
-  font-size: 0.8rem;
   border: solid 2px black;
 
   input {
     font-family: "Play", cursive;
-    font-size: 0.8rem;
     border-radius: 4px;
     border: solid 2px transparent;
     cursor: pointer;
@@ -57,7 +53,12 @@ export default {
     color: white;
     font-weight: bold;
     text-align: center;
-    padding: 0.5em;
+    padding: 0.6em;
+
+    &::placeholder {
+      color: white;
+      opacity: 0.7;
+    }
   }
 }
 </style>

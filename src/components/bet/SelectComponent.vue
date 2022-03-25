@@ -1,7 +1,12 @@
 <template>
   <div class="card">
     <span class="driver-position">{{ position }}</span>
-    <select v-model="selected" class="round" @change="setSelected($event, idx)">
+    <select
+      v-model="selected"
+      class="round"
+      @change="setSelected($event, idx)"
+      :class="{ event: group === 'Event' }"
+    >
       <option v-if="group === 'Head'" disabled value="0">
         {{ items[0].team }}
       </option>
@@ -100,9 +105,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin: 0.2rem;
-  /* background:linear-gradient(darkred,red); */
   font-size: 0.8rem;
-  //border: solid 2px black;
 
   select {
     font-family: "Play", cursive;
@@ -134,68 +137,7 @@ export default {
   color: $ferrari;
 }
 
-// .card {
-//   //margin: 0.2rem;
-//   width: 100%;
-//   padding: 0.5em 0;
-//   color: #ccc;
-//   background: linear-gradient(darkred, red);
-//   font-size: 0.8rem;
-//   border: solid 2px black;
-//   position: relative;
-//   h3,
-//   p {
-//     color: #fdd800;
-//     margin: 0;
-//   }
-//   h3 {
-//     top: 2em;
-//     position: absolute;
-//     width: 100%;
-//   }
-// }
-// .card select {
-//   font-family: "Play", cursive;
-//   font-size: 1rem;
-//   //border-radius: 0.5em;
-//   cursor: pointer;
-//   //background: #070707;
-//   background: transparent;
-//   border: none;
-//   color: white;
-//   z-index: 1;
-//   position: relative;
-//   display: inline-block;
-//   line-height: 1.5em;
-//   padding: 0.5em 3.5em 0.5em 1em;
-
-//   /* reset */
-
-//   margin: 0;
-//   -webkit-box-sizing: border-box;
-//   -moz-box-sizing: border-box;
-//   box-sizing: border-box;
-//   -webkit-appearance: none;
-//   -moz-appearance: none;
-//   /* border: 2px solid #a074c4; */
-// }
-// select.round {
-//   background-image: linear-gradient(45deg, transparent 50%, #fdd800 50%),
-//     linear-gradient(135deg, #fdd800 50%, transparent 50%),
-//     radial-gradient(transparent 70%, transparent 72%);
-//   background-position: calc(100% - 20px) calc(1em + 2px),
-//     calc(100% - 15px) calc(1em + 2px), calc(100% - 5em) 20em;
-//   background-size: 5px 5px, 5px 5px, 1.5em 1.5em;
-//   background-repeat: no-repeat;
-// }
-// .optDisable {
-//   background: #101010;
-//   font-weight: bold;
-//   color: #ccc;
-// }
-// option {
-//   background: #070707;
-//   font-weight: bold;
-//   color: #ccc;
-// }
+.event {
+  width: 90% !important;
+}
 </style>

@@ -140,7 +140,6 @@ h1 {
   text-shadow: 2px 0px 0px black;
   font-size: 1rem;
   font-weight: bold;
-  /* background:rgba(0, 0, 0, 0.7); */
   justify-items: center;
   align-content: center;
   width: 100%;
@@ -151,20 +150,15 @@ button {
   justify-items: center;
   font-size: 0.8em;
   font-weight: 700;
-  //width: 140px;
   height: 25px;
   cursor: pointer;
   border-radius: 4px;
-  //box-shadow: 5px 5px 12px rgb(0 0 0 / 15%);
-  //border: 1px solid transparent;
   transition: all 0.4s ease;
   text-transform: uppercase;
 }
 .reset {
-  //background: #070707;
   background: transparent;
   color: #ddd;
-  //border: solid 1px #050505;
   border: none;
 }
 .confirm {
@@ -180,13 +174,9 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  //background: rgba(253, 216, 0, .1);
-  //margin: 0 .1em;
 }
 
 .cont {
-  // padding: 0 0.5em 0.5em 0.5em;
-  // width: 100%;
   .select-wrapper {
     width: 100%;
   }
@@ -197,40 +187,4 @@ button:hover {
     width: 100%;
   }
 }
-// .btn {
-//   height: 70px;
-//   justify-items: center;
-//   align-items: end;
-//   display: grid;
-// }
-
-// button {
-//   display: grid;
-//   align-items: center;
-//   justify-items: center;
-//   font-size: 0.8em;
-//   font-weight: 700;
-//   width: 140px;
-//   height: 25px;
-//   cursor: pointer;
-//   margin: 0 5px;
-//   border-radius: 4px;
-//   box-shadow: 5px 5px 12px rgba(0, 0, 0, 15%);
-//   border: 1px solid transparent;
-//   transition: all 0.4s ease;
-//   text-transform: uppercase;
-// }
-// .reset {
-//   background: #070707;
-//   color: #ddd;
-//   border: solid 1px #050505;
-// }
-// .confirm {
-//   background: #fdd800;
-//   color: black;
-// }
-// button:hover {
-//   background-color: linear-gradient(#ffef93, #e8c500);
-//   letter-spacing: 1px;
-// }
 </style>
