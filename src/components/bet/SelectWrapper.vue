@@ -25,8 +25,8 @@
         />
       </div>
     </template>
-    <div v-if="resetBtn" class="btn reset-btn">
-      <button class="reset" @click="reset">Reset</button>
+    <div v-if="resetBtn" class="reset-btn btn-wrapper">
+      <button class="btn reset" @click="reset">Reset</button>
     </div>
   </div>
 </template>
@@ -134,57 +134,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  display: grid;
-  color: #ddd;
-  text-shadow: 2px 0px 0px black;
-  font-size: 1rem;
-  font-weight: bold;
-  justify-items: center;
-  align-content: center;
-  width: 100%;
-}
-button {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  font-size: 0.8em;
-  font-weight: 700;
-  height: 25px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.4s ease;
-  text-transform: uppercase;
-}
-.reset {
-  background: transparent;
-  color: #ddd;
-  border: none;
-}
-.confirm {
-  background: #fdd800;
-  color: black;
-}
-button:hover {
-  background-color: linear-gradient(#ffef93, #e8c500);
-  letter-spacing: 1px;
-}
 .cont {
   width: 250px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
 
-.cont {
+  h1 {
+    color: $haas;
+    text-shadow: 2px 0px 0px black;
+    font-variant: small-caps;
+    font-size: 1rem;
+    font-weight: bold;
+    justify-items: center;
+    align-content: center;
+    width: 100%;
+  }
+
   .select-wrapper {
     width: 100%;
   }
-}
-.reset-btn {
-  width: 100%;
-  .reset {
+
+  .reset-btn {
     width: 100%;
+    .reset {
+      width: 100%;
+    }
   }
 }
 </style>

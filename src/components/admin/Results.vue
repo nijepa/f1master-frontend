@@ -3,52 +3,69 @@
     <h1>results</h1>
     <div class="results-wrapper">
       <div class="results-group">
-        <h3>event</h3>
         <SelectWrapper
+          :title="'Event'"
           :count="1"
           :list="events"
           :group="'Event'"
           :reset-all="resetAll"
-          :reset-btn="false"
           class="misc"
         />
       </div>
       <div class="results-group">
-        <h3>pole time</h3>
-        <inputComp
-          placeholder="0'00''000'''"
-          class="input"
-          :reseted="reseted"
-          @select="getSelected"
-          @cleared="reseted = false"
-        />
+        <Poletime title="Poletime" :reset-all="resetAll" />
       </div>
       <div class="results-group">
-        <h3>placement</h3>
         <SelectWrapper
-          :count="10"
+          :title="'Starting Grid'"
+          :count="20"
           :list="drivers"
           :group="'Position'"
           :reset-all="resetAll"
-          :reset-btn="false"
           class="misc"
         />
       </div>
+      <div class="results-group">
+        <SelectWrapper
+          :title="'Race Results'"
+          :count="20"
+          :list="drivers"
+          :group="'Position'"
+          :reset-all="resetAll"
+          class="misc"
+        />
+      </div>
+      <div class="results-group">
+        <SelectWrapper
+          :title="'Misc'"
+          :count="1"
+          :list="misc"
+          :group="'Misc'"
+          :reset-all="resetAll"
+          class="misc"
+        />
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <button class="btn reset" @click="reset">Reset All</button>
+      <button class="btn confirm" @click="handleConfirmation">Confirm</button>
     </div>
   </div>
 </template>
 
 <script>
-import InputComp from "@/components/bet/InputComponent.vue";
+//import InputComp from "@/components/bet/InputComponent.vue";
 import SelectWrapper from "@/components/bet/SelectWrapper.vue";
+import Poletime from "@/components/bet/PoletimeBet.vue";
 import { ref, computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 
 export default {
   name: "Results",
   components: {
-    InputComp,
+    //InputComp,
     SelectWrapper,
+    Poletime,
   },
 
   setup() {
@@ -71,7 +88,12 @@ export default {
       setTimeout(() => (resetAll.value = false), 0);
     };
 
-    return { drivers, events, reseted, getSelected, reset, resetAll };
+    const misc = ref([
+      { id: 0, name: "YES" },
+      { id: 1, name: "NO" },
+    ]);
+
+    return { drivers, events, misc, reseted, getSelected, reset, resetAll };
   },
 };
 </script>
@@ -100,8 +122,9 @@ export default {
       margin-bottom: 1em;
 
       h3 {
-        font-variant: small-caps;
-        color: $grey;
+        //font-variant: small-caps;
+        font-size: 16px;
+        color: rgb(221, 221, 221);
       }
     }
   }

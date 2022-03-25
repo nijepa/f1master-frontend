@@ -183,12 +183,12 @@ export default {
   font-size: 1em;
   text-transform: uppercase;
   transition: all 0.4s ease;
-}
 
-.btn-new:hover {
-  color: $yellow;
-  text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
-  box-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
+  &:hover {
+    color: $yellow;
+    text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
+    box-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
+  }
 }
 
 .list-three {

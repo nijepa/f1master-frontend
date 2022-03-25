@@ -13,13 +13,13 @@
           <router-link :to="link.to" class="link">{{ link.title }}</router-link>
         </div>
         <router-link
-          class="link btn btn1"
+          class="link nav-link nav-link1"
           :to="links.leftLink.to"
           active-class="active"
           >{{ links.leftLink.title }}</router-link
         >
         <router-link
-          class="link btn btn2"
+          class="link nav-link nav-link2"
           :to="links.rightLink.to"
           active-class="active2"
           >{{ links.rightLink.title }}</router-link
@@ -72,7 +72,7 @@
         >
           <router-link
             @click="mobileNav = false"
-            class="link btn btn1"
+            class="link nav-link nav-link1"
             active-class="active"
             :to="links.leftLink.to"
             >{{ links.leftLink.title }}</router-link
@@ -90,7 +90,7 @@
           <router-link
             @click="mobileNav = false"
             active-class="active2"
-            class="link btn btn2"
+            class="link nav-link nav-link2"
             :to="links.rightLink.to"
             >{{ links.rightLink.title }}</router-link
           >
@@ -369,30 +369,31 @@ header {
   background: url("../assets/images/logo.png") center / contain no-repeat;
 }
 
-.btn {
+.nav-link {
   padding: 0.2em 1em;
   border-radius: 4px;
   font-family: "Play", cursive;
 }
 
-.btn1 {
+.nav-link1 {
   color: $ferrari-red !important;
   border: solid 1px $ferrari-red;
   background: rgba(255, 0, 0, 0.02);
-  &.btn1:hover,
-  &.btn1:active {
+
+  &.nav-link1:hover,
+  &.nav-link1:active {
     color: white !important;
     background: $ferrari-red;
   }
 }
 
-.btn2 {
+.nav-link2 {
   color: $astonmartin !important;
   border: solid 1px $astonmartin;
   background: rgba(0, 128, 0, 0.02);
 
-  &.btn.btn2:hover,
-  &.btn.btn2 a.router-link-active {
+  &.nav-link.nav-link2:hover,
+  &.nav-link.nav-link2 a.router-link-active {
     color: white !important;
     background: $astonmartin;
     border: solid 1px $astonmartin;

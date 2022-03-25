@@ -67,6 +67,29 @@ input {
     -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
     box-shadow: inset 0px 0px 1px 1px $haas;
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  &[type="checkbox"] {
+    cursor: pointer;
+    accent-color: $astonmartin;
+    height: 100%; /* not needed */
+    width: 1.5em; /* not needed */
+    outline: none;
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
 }
 
 .readonly {
@@ -75,28 +98,28 @@ input {
   width: 50px;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+// /* Chrome, Safari, Edge, Opera */
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
 
 /* Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
+// input[type="number"] {
+//   -moz-appearance: textfield;
+// }
 
-input[type="checkbox"] {
-  cursor: pointer;
-  accent-color: $astonmartin;
-  height: 100%; /* not needed */
-  width: 1.5em; /* not needed */
-  outline: none;
+// input[type="checkbox"] {
+//   cursor: pointer;
+//   accent-color: $astonmartin;
+//   height: 100%; /* not needed */
+//   width: 1.5em; /* not needed */
+//   outline: none;
 
-  &:hover,
-  &:focus {
-    box-shadow: none;
-  }
-}
+//   &:hover,
+//   &:focus {
+//     box-shadow: none;
+//   }
+// }
 </style>

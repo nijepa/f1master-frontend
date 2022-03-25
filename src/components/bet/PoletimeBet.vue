@@ -1,6 +1,7 @@
 <template>
   <div id="demo">
     <div class="cont">
+      <h1 v-if="title">{{ title }}</h1>
       <inputComp
         placeholder="0'00''000'''"
         class="input"
@@ -9,8 +10,8 @@
         @cleared="reseted = false"
       />
     </div>
-    <div class="btn">
-      <button class="reset" @click="reset">Reset</button>
+    <div class="btn-wrapper">
+      <button class="btn reset" @click="reset">Reset</button>
     </div>
   </div>
 </template>
@@ -23,6 +24,10 @@ import { useStore } from "vuex";
 export default {
   components: { inputComp },
   props: {
+    title: {
+      type: String,
+      default: "",
+    },
     resetAll: {
       type: Boolean,
       default: false,
@@ -64,36 +69,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.btn {
-  display: grid;
-  justify-items: center;
-}
-
-button {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  font-size: 0.8em;
-  font-weight: 700;
-  width: 140px;
-  height: 25px;
-  cursor: pointer;
-  margin: 0 5px;
-  border-radius: 4px;
-  box-shadow: 5px 5px 12px rgba(0, 0, 0, 15%);
-  border: 1px solid transparent;
-  transition: all 0.4s ease;
-  text-transform: uppercase;
-
-  &:hover {
-    background-color: linear-gradient(#ffef93, #e8c500);
-    letter-spacing: 1px;
-  }
-}
-
-.reset {
-  background: #070707;
-  color: #ddd;
-}
-</style>
+<style lang="scss" scoped></style>

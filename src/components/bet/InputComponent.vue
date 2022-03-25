@@ -43,6 +43,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   border: solid 2px black;
+  width: 100%;
 
   input {
     font-family: "Play", cursive;

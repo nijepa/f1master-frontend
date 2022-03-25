@@ -40,8 +40,8 @@
     />
   </div>
   <div class="btn-wrapper">
-    <button class="reset" @click="reset">Reset All</button>
-    <button class="confirm" @click="handleConfirmation">Confirm</button>
+    <button class="btn reset" @click="reset">Reset All</button>
+    <button class="btn confirm" @click="handleConfirmation">Confirm</button>
   </div>
   <p>{{ liveBet }}</p>
 </template>
@@ -189,45 +189,6 @@ export default {
       /* background:rgba(0, 0, 0, 0.7); */
       width: 100%;
     }
-  }
-}
-
-button {
-  font-size: 0.8em;
-  font-weight: 700;
-  width: 140px;
-  height: 25px;
-  cursor: pointer;
-  margin: 0 5px;
-  border-radius: 4px;
-  box-shadow: 5px 5px 12px rgba(0, 0, 0, 15%);
-  border: 1px solid transparent;
-  transition: all 0.4s ease;
-  text-transform: uppercase;
-
-  &:hover {
-    background-color: linear-gradient(#ffef93, #e8c500);
-    letter-spacing: 1px;
-  }
-}
-
-.btn-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1em;
-
-  .reset {
-    background: transparent;
-    color: #ddd;
-    margin-bottom: 1em;
-  }
-
-  .confirm {
-    background: #fdd800;
-    color: black;
-    padding: 1em;
-    height: auto;
   }
 }
 </style>

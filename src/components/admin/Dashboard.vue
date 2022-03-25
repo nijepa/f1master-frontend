@@ -20,9 +20,11 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   margin-top: 2em;
+
   h1 {
     color: $mercedes;
   }
+
   .panel__admin {
     margin-top: 2em;
     display: grid;
@@ -30,6 +32,7 @@ export default {
     justify-content: center;
     column-gap: 1em;
     row-gap: 2em;
+
     .link__admin {
       background-color: $mercedes-silver;
       color: $mclaren-orange;
@@ -40,20 +43,24 @@ export default {
       font-family: "Play", cursive;
       transition: all 0.4s ease;
     }
+
     .link__admin:first-child,
     .link__admin:last-child {
       background-color: $redbull-red;
       grid-column: 1/4;
     }
+
     .link__admin:last-child {
       background-color: $astonmartin;
     }
+
     .link__admin:hover {
       background: $ferrari-red;
       color: $haas-light;
     }
   }
 }
+
 @media (max-width: 992px) {
   .dashboard {
     .panel__admin {
