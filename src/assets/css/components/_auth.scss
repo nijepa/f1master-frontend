@@ -1,0 +1,220 @@
+.wrap {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+
+  .auth-card {
+    display: grid;
+    justify-items: center;
+    width: 350px;
+    height: auto;
+    background: #060606;
+    border-radius: 4px;
+    border: solid 3px #070707;
+    box-shadow: #272727 0px 0px 6px;
+    transition: 600ms;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 30px;
+      width: 100%;
+
+      h4 {
+        font-weight: 700;
+        text-shadow: 2px 2px 4px black;
+        letter-spacing: 1px;
+        box-shadow: none;
+        border: none;
+        font-size: 2.2rem;
+        color: $astonmartin;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      .links {
+        display: grid;
+        justify-items: flex-end;
+        text-align: left;
+
+        a {
+          font-weight: 700;
+          //letter-spacing: 0.8px;
+          text-decoration: none;
+          color: #999999;
+          text-shadow: 2px 2px 3px black;
+          padding: 2px 0;
+
+          &:hover {
+            color: $mclaren-orange;
+            transition: 500ms;
+          }
+        }
+      }
+    }
+
+    .inputs {
+      width: 85%;
+
+      .input-field {
+        height: 90px;
+
+        span {
+          color: $redbull-yellow;
+        }
+
+        .error-msg {
+          color: $redbull-red;
+        }
+      }
+    }
+
+    .keepCon {
+      display: flex;
+      align-items: flex-end;
+      column-gap: 1em;
+      color: #999999;
+      width: 300px;
+      padding: 1em 0;
+
+      .checkbox {
+        cursor: pointer;
+        accent-color: $redbull-yellow;
+      }
+
+      label {
+        text-shadow: 2px 2px 3px black;
+        color: #999999;
+        cursor: pointer;
+        text-align: left;
+
+        &:active,
+        &:hover {
+          color: $redbull-yellow;
+        }
+      }
+
+      p {
+        display: inline;
+        padding: 2px;
+      }
+
+      .checkbox {
+        width: 20px;
+        height: 20px;
+        border: #999999;
+      }
+    }
+
+    button {
+      margin: 1.2em 0;
+      width: 200px;
+      padding: 0.5em 3em;
+      border-radius: 4px;
+      font-family: "Play", cursive;
+      font-weight: 700;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.4s;
+      background: $yellow;
+      border: 2px solid transparent;
+      text-decoration: uppercase;
+      color: $astonmartin;
+
+      &:hover {
+        box-shadow: $astonmartin 0px 0px 5px 2px;
+        letter-spacing: 1px;
+        color: $mercedes-silver;
+      }
+    }
+
+    label {
+      margin: 20px 0 0 0;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    label > span {
+      padding: 10px 20px;
+      pointer-events: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: 0.2s;
+      transition-timing-function: ease;
+      transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+      opacity: 0.5;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      background-color: $mercedes-silver !important;
+      border: 1px solid $mercedes-silver;
+      border-radius: 0.2em;
+      width: 100%;
+      font-family: Play;
+      font-size: 1em;
+      color: white;
+    }
+
+    input:hover {
+      border: 1px solid $ferrari;
+    }
+
+    input:focus {
+      border: 1px solid $red;
+      box-shadow: 0px 0px 3px $ferrari inset;
+      outline: none;
+    }
+
+    input:focus + span,
+    input:not(:placeholder-shown) + span {
+      opacity: 1;
+      color: $redbull-yellow;
+      transform: scale(0.9) translateY(-100%) translateX(-15px);
+    }
+
+    /* For IE Browsers*/
+    input:focus + span,
+    input:not(:-ms-input-placeholder) + span {
+      opacity: 1;
+      transform: scale(0.75) translateY(-100%) translateX(-30px);
+    }
+
+    textarea:hover {
+      border: 1px solid $ferrari;
+    }
+
+    textarea:focus {
+      background-color: whitesmoke;
+      border: 1px solid $red;
+      box-shadow: 0px 0px 2px $ferrari inset;
+    }
+
+    textarea:focus + span,
+    textarea:not(:placeholder-shown) + span {
+      opacity: 1;
+      color: $redbull-yellow;
+      transform: scale(0.9) translateY(-100%) translateX(-15px);
+    }
+
+    /* For IE Browsers*/
+    textarea:focus + span,
+    textarea:not(:-ms-input-placeholder) + span {
+      opacity: 1;
+      transform: scale(0.75) translateY(-100%) translateX(-30px);
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 50000s ease-in-out 0s,
+        color 5000s ease-in-out 0s;
+    }
+  }
+}

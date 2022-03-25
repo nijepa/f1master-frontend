@@ -20,10 +20,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.wrap {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-}
-</style>
+<style scoped></style>

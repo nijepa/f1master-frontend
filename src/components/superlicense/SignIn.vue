@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="auth-card">
     <div class="header">
       <div class="title">
         <h4>{{ state.formName }}</h4>
@@ -14,20 +14,34 @@
     </div>
 
     <div class="inputs">
-      <input
-        v-model="state.emailLogin"
-        type="email"
-        placeholder="email"
-        class="emailLogin"
-      />
-      <span>{{ errorMessage }}</span>
-      <input
-        v-model="state.password"
-        type="password"
-        placeholder="password"
-        class="password"
-      />
-      <span>{{ errorMessage }}</span>
+      <div class="input-field">
+        <label>
+          <input
+            type="email"
+            placeholder=""
+            class="emailLogin"
+            v-model="state.emailLogin"
+          />
+          <span>E-mail</span>
+        </label>
+        <span v-if="v$.emailLogin.$error" class="error-msg">{{
+          v$.emailLogin.$errors[0].$message
+        }}</span>
+      </div>
+      <div class="input-field">
+        <label>
+          <input
+            type="password"
+            placeholder=""
+            class="password"
+            v-model="state.password"
+          />
+          <span>Password</span>
+        </label>
+        <span v-if="v$.password.$error" class="error-msg">{{
+          v$.password.$errors[0].$message
+        }}</span>
+      </div>
     </div>
 
     <div class="keepCon">
@@ -40,17 +54,15 @@
       <label for="keep">Keep Connected</label>
     </div>
 
-    <div class="btn">
-      <button @click.prevent="submitForm">CONFIRM</button>
-    </div>
+    <button @click.prevent="submitForm">CONFIRM</button>
   </div>
 </template>
 
 <script>
-// import useValidate from "@vuelidate/core";
-// import { required, email, minLength } from "@vuelidate/validators";
-import { reactive } from "vue";
-import { useField } from "vee-validate";
+import useValidate from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
+import { reactive, computed } from "vue";
+
 export default {
   setup() {
     const state = reactive({
@@ -59,164 +71,27 @@ export default {
       keepConnected: false,
       formName: "SignIn",
     });
-    function validateField(value) {
-      if (!value) {
-        return "this field is required";
-      }
+    const rules = computed(() => {
+      return {
+        emailLogin: { required, email, minLength: minLength(3) },
+        password: { required, minLength: minLength(6) },
+      };
+    });
 
-      if (value < 8) {
-        return "this field must contain at least 8 characters";
-      }
+    const v$ = useValidate(rules, state);
 
-      return true;
+    function submitForm() {
+      this.v$.$validate();
+      if (!this.v$.$error) {
+        alert("its ok");
+      } else {
+        alert("check errors!!!");
+      }
     }
 
-    const { value, errorMessage } = useField(state.emailLogin, validateField);
-
-    const submitForm = () => {
-      validateField(state.emailLogin);
-    };
-
-    return { state, errorMessage, value, submitForm };
+    return { state, v$, submitForm };
   },
 };
 </script>
 
-<style scoped>
-.wrap {
-  display: grid;
-  justify-content: center;
-  padding: 10px 20px;
-}
-.card {
-  display: grid;
-  justify-items: center;
-  width: 350px;
-  height: auto;
-  background: #060606;
-  border-radius: 4px;
-  border: solid 3px #070707;
-  box-shadow: #272727 0px 0px 6px;
-  transition: 600ms;
-}
-.card:hover {
-  /* box-shadow: darkgray 0px 0px 6px; */
-  transition: 600ms;
-  cursor: pointer;
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
-  width: 100%;
-}
-h4 {
-  font-weight: 700;
-  text-shadow: 2px 2px 4px black;
-  letter-spacing: 1px;
-  box-shadow: none;
-  border: none;
-  font-size: 2.2rem;
-}
-h4:hover {
-  color: white;
-}
-.links {
-  display: grid;
-  justify-items: flex-end;
-  text-align: left;
-}
-a {
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-decoration: none;
-  color: #999999;
-  text-shadow: 2px 2px 3px black;
-  padding: 2px 0;
-  /* background: black; */
-}
-a :hover {
-  color: lightgreen;
-  transition: 500ms;
-}
-.dataInputs {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  width: 400px;
-}
-input {
-  display: grid;
-  justify-items: center;
-  background: #101010;
-  height: 30px;
-  border-radius: 4px;
-  width: 300px;
-  border: none;
-  color: #ddd;
-  padding: 25px;
-  margin-top: 20px;
-  letter-spacing: 1.5px;
-  font-size: 1rem;
-}
-.keepCon {
-  display: flex;
-  align-items: flex-end;
-  column-gap: 1em;
-  color: #999999;
-  width: 300px;
-  padding: 1em 0;
-}
-
-.keepCon label {
-  text-shadow: 2px 2px 3px black;
-  color: #999999;
-  cursor: pointer;
-}
-input[type="checkbox"]:checked + label {
-  color: lightgreen;
-}
-.keepCon p {
-  display: inline;
-  /* background: black; */
-  padding: 2px;
-}
-.keepCon,
-label:active {
-  color: lightgreen;
-}
-.checkbox {
-  width: 20px;
-  height: 20px;
-  border: #999999;
-  /* background: black;     */
-}
-.btn {
-  display: grid;
-  padding: 20px;
-}
-button {
-  display: grid;
-  width: 200px;
-  padding: 0 10px;
-  height: 35px;
-  border-radius: 4px;
-  align-content: center;
-  align-self: center;
-  text-align: center;
-  text-decoration: none;
-  justify-self: center;
-  font-family: "Play", cursive;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.4s;
-  background: #fdd800;
-  /* border: none; */
-  border: 2px solid transparent;
-  font-size: 0.8rem;
-  text-decoration: uppercase;
-}
-button:hover {
-  border: 2px solid #ffea72;
-}
-</style>
+<style lang="scss" scoped></style>
