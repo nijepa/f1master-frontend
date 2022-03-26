@@ -3,7 +3,7 @@
     <div class="auth-card">
       <div class="header">
         <div class="title">
-          <h4>Recovery<br />Password</h4>
+          <h4>Password<br />Recovery</h4>
         </div>
 
         <div class="links">

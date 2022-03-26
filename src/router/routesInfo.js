@@ -2,7 +2,7 @@ const routesInfo = [
   {
     path: "/f1",
     component: () =>
-      import(/* webpackChunkName "infos" */ "@/views/header/F1.vue"),
+      import(/* webpackChunkName "info" */ "@/views/header/F1.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -10,7 +10,7 @@ const routesInfo = [
   {
     path: "/news",
     component: () =>
-      import(/* webpackChunkName "infos" */ "@/views/header/News.vue"),
+      import(/* webpackChunkName "info" */ "@/views/header/News.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -18,7 +18,7 @@ const routesInfo = [
   {
     path: "/socialmedia",
     component: () =>
-      import(/* webpackChunkName "infos" */ "@/views/header/SocialMedia.vue"),
+      import(/* webpackChunkName "info" */ "@/views/header/SocialMedia.vue"),
     meta: {
       layout: "AppLayoutHome",
     },
@@ -26,7 +26,7 @@ const routesInfo = [
   {
     path: "/fantasy",
     component: () =>
-      import(/* webpackChunkName "infos" */ "@/views/header/Fantasy.vue"),
+      import(/* webpackChunkName "info" */ "@/views/header/Fantasy.vue"),
     meta: {
       layout: "AppLayoutHome",
     },

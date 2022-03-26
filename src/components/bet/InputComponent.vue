@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="input-wrapper">
     <input
       v-model="selected"
       v-maska="mask"
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
+.input-wrapper {
   border: solid 2px black;
   width: 100%;
 

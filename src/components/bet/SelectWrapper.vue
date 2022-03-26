@@ -134,32 +134,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cont {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.select-wrapper {
+  width: 100%;
+}
 
-  h1 {
-    color: $haas;
-    text-shadow: 2px 0px 0px black;
-    font-variant: small-caps;
-    font-size: 1rem;
-    font-weight: bold;
-    justify-items: center;
-    align-content: center;
+.reset-btn {
+  width: 100%;
+  .reset {
     width: 100%;
-  }
-
-  .select-wrapper {
-    width: 100%;
-  }
-
-  .reset-btn {
-    width: 100%;
-    .reset {
-      width: 100%;
-    }
   }
 }
 </style>
