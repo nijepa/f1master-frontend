@@ -1,6 +1,6 @@
 <template>
   <div class="btn-wrapper" :class="{ direction: 'direction' }">
-    <button class="btn reset" @click="reset">{{ titleNo }}</button>
+    <button class="btn reset" @click="handleReset">{{ titleNo }}</button>
     <button class="btn confirm" @click="handleConfirmation">
       {{ titleYes }}
     </button>
@@ -26,13 +26,13 @@ export default {
   },
 
   setup(props, { emit }) {
-    const reset = () => {
+    const handleReset = () => {
       emit("reseted");
     };
     const handleConfirmation = () => {
       emit("confirmed");
     };
-    return { reset, handleConfirmation };
+    return { handleReset, handleConfirmation };
   },
 };
 </script>

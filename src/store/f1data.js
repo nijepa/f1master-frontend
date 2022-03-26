@@ -1,17 +1,9 @@
-import driversd from "@/data/drivers";
-import teamsd from "@/data/teams";
-import eventsd from "@/data/events";
 import axios from "axios";
-
-const datas = {
-  drivers: driversd,
-  teams: teamsd,
-  events: eventsd,
-};
+const URL = process.env.VUE_APP_BACKEND_URL_LOCAL;
 
 const state = {
   f1data: { driver: {}, team: {}, event: {} },
-  f1datas: {  },
+  f1datas: { drivers: [], teams: [], events: [] },
 };
 
 /* -------------------------------------- GETTERS -------------------------------------- */
@@ -50,7 +42,7 @@ const mutations = {
 
   deleteF1data(state, id) {
     state.f1datas[id.type] = [
-      ...state.f1datas[id.type].filter((item) => item._id !== id.value),
+      ...state.f1datas[id.type].filter((item) => item.id !== id.value),
     ];
   },
 };
@@ -58,21 +50,19 @@ const mutations = {
 /* -------------------------------------- ACTIONS -------------------------------------- */
 const actions = {
   fetchF1datas({ commit }, type) {
-    // axios
-    //   .get(URL)
-    //   .then((response) => {
-    //     commit("setF1datas", response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     // if (error.response) {
-    //     //   commit("setErrors", error.response.data.error);
-    //     // } else {
-    //     //   commit("setErrors", error);
-    //     // }
-    //   });
-
-    commit("setF1datas", { type: type, value: datas[type] });
+    axios
+      .get(URL + type + "/")
+      .then((response) => {
+        commit("setF1datas", { type: type, value: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) {
+          commit("setErrors", error.response.data.error);
+        } else {
+          commit("setErrors", error);
+        }
+      });
   },
 
   async fetchF1data({ commit }, f1dataData) {
@@ -91,9 +81,10 @@ const actions = {
 
   async f1dataAdd({ commit }, f1dataData) {
     await axios
-      .post(URL + "api/v1/langs", f1dataData)
+      .post(URL + f1dataData.type, f1dataData.value)
       .then((response) => {
-        commit("addF1data", response.data);
+        const res = { type: f1dataData.type, value: response.data };
+        commit("addF1data", res);
         //router.push("/dashboard")
       })
       .catch((error) => {
@@ -106,27 +97,24 @@ const actions = {
   },
 
   async f1dataUpdate({ commit }, f1dataData) {
-    console.log(f1dataData)
-    f1dataData.id =55
-    commit("updateF1data", f1dataData);
-    // await axios
-    //   .put(URL + "api/v1/langs/" + f1dataData._id, f1dataData)
-    //   .then((response) => {
-    //     commit("updateF1data", response.data);
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       commit("setErrors", error.response.data.error);
-    //     } else {
-    //       commit("setErrors", error);
-    //     }
-    //   });
-    commit("updateF1data", f1dataData);
+    await axios
+      .put(URL + f1dataData.type + "/" + f1dataData.value.id, f1dataData.value)
+      .then((response) => {
+        const res = { type: f1dataData.type, value: response.data };
+        commit("updateF1data", res);
+      })
+      .catch((error) => {
+        if (error.response) {
+          commit("setErrors", error.response.data.error);
+        } else {
+          commit("setErrors", error);
+        }
+      });
   },
 
   async f1dataDelete({ commit }, f1dataData) {
     await axios
-      .delete(URL + "api/v1/langs/" + f1dataData._id, f1dataData)
+      .delete(URL + f1dataData.type + "/" + f1dataData.value, f1dataData.value)
       .then((response) => {
         commit("deleteF1data", response.data._id);
       })

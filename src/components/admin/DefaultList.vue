@@ -23,11 +23,12 @@
           <Datepicker
             v-model="item[key.name]"
             v-if="key.type === 'date'"
+            @update:modelValue="[setIndex(i), handleChange($event)]"
             dark
           ></Datepicker>
           <DefaultInput
             v-else
-            @changed="handleUpdated"
+            @changed="[setIndex(i), handleChange($event)]"
             v-model="item[key.name]"
             :input-type="key.type"
             :placeholder="key.placeholder"
@@ -36,13 +37,45 @@
           />
         </div>
       </template>
+      <div class="btn-update">
+        <h4 v-if="i === 0" class="action-heading"></h4>
+        <svg
+          v-if="selected && idx === i"
+          @click="handleUpdate"
+          width="20px"
+          height="20px"
+          viewBox="0 0 506.4 506.4"
+          fill="#fdd800"
+        >
+          <path
+            d="M75,252c-6-6-14-9.2-22.4-9.2c-8.4,0-16.4,3.2-22.4,9.2S21,266,21,274.4c0,8.4,3.2,16.4,9.2,22.4s14,9.2,22.4,9.2
+		c8.4,0,16.4-3.2,22.4-9.2s9.2-14,9.2-22.4C84.2,266,81,258,75,252z"
+          />
+          <path
+            d="M130.6,390.4c-10-10.4-18-21.6-24.8-33.6c-5.6-10-16-16-27.6-16c-5.2,0-10.8,1.2-15.6,4c-15.2,8.4-20.8,28-12,43.2
+		c9.2,16.8,20.8,32,34,46c6,6.4,14.4,10,23.2,10c8,0,16-3.2,21.6-8.8c6-6,9.6-13.6,10-22C139.8,404.8,136.6,396.8,130.6,390.4z"
+          />
+          <path
+            d="M355,450c-5.6-12-17.6-20-30.4-20c-4,0-7.6,0.8-11.2,2c-19.2,7.2-39.6,11.2-60,11.2c-14.4,0-28.4-1.6-42.4-5.2
+		c-1.2-0.4-2.4-0.4-3.2-0.8c-2.8-0.8-5.6-1.2-8.4-1.2c-14,0-26.8,9.6-30.4,23.2c-2.4,8-1.2,16.8,2.8,24S182.6,496,191,498
+		c1.6,0.4,3.2,0.8,4.8,1.2c18.8,4.8,38.4,7.2,58,7.2c28.4,0,56.4-5.2,82.8-15.2c8-3.2,14-8.8,17.6-16.8
+		C357.8,466.8,357.8,458,355,450z"
+          />
+          <path
+            d="M328.6,55.2c4.8-4.4,8-10,9.6-16.4c2-8.4,0.4-16.8-4-24c-6-9.2-16-14.8-26.8-14.8c-6,0-11.6,1.6-16.8,4.8l-58,36.8
+		c-7.2,4.4-12,11.6-14,19.6c-2,8.4-0.4,16.8,4,24l36.8,58c6,9.2,16,14.8,26.8,14.8c6,0,11.6-1.6,16.8-4.8c12-7.6,17.2-22,13.6-35.2
+		c63.2,25.6,105.2,87.6,105.2,156.4c0,38-12.4,74-35.6,104c-10.8,13.6-8.4,33.6,5.6,44.4c5.6,4.4,12.4,6.8,19.6,6.8
+		c10,0,18.8-4.4,24.8-12c32-41.2,49.2-90.4,49.2-142.8C485,174.4,422.6,87.6,328.6,55.2z"
+          />
+        </svg>
+      </div>
     </li>
   </ul>
   <DefaultEntry
     v-if="newEntry"
     :data-model="model"
     :title="title"
-    @canceled="handleCancel"
+    @finished="handleFinished"
   />
 </template>
 
@@ -98,9 +131,23 @@ export default {
 
     const newEntry = ref(false);
 
+    const idx = ref(null);
+    const setIndex = (i) => {
+      idx.value = i;
+      console.log(idx.value);
+    };
+    const selected = ref(false);
     // TODO implement vuex store for updating list
-    const handleUpdated = (field) => {
-      console.log(field);
+    const handleChange = (field) => {
+      selected.value = true;
+      console.log(666, listData.value[idx.value]);
+    };
+    const handleUpdate = () => {
+      const dataForVuex = {
+        type: route.name,
+        value: listData.value[idx.value],
+      };
+      store.dispatch("f1dataUpdate", dataForVuex);
     };
 
     const sortOrder = ref(false);
@@ -131,14 +178,15 @@ export default {
       newEntry.value = true;
     };
 
-    const handleCancel = (data) => {
+    const handleFinished = (data) => {
       if (data) {
         const dataForVuex = {
           type: route.name,
           value: data,
         };
-        store.dispatch("f1dataUpdate", dataForVuex);
-        console.log(27, listData.value)
+        store.dispatch("f1dataAdd", dataForVuex);
+        // const lll = computed(() => store.state.f1data.f1datas);
+        // console.log(27, lll.value);
       }
       newEntry.value = false;
     };
@@ -147,11 +195,15 @@ export default {
       model,
       listData,
       fieldsClass,
-      handleUpdated,
+      handleChange,
       handleSort,
       newEntry,
       addItem,
-      handleCancel,
+      handleFinished,
+      selected,
+      idx,
+      setIndex,
+      handleUpdate,
     };
   },
 };
@@ -198,6 +250,21 @@ export default {
         color: $yellow;
       }
     }
+
+    .btn-update {
+      height: 100%;
+      display: grid;
+      align-items: center;
+
+      svg {
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
+
+      &:hover > svg {
+        fill: $red;
+      }
+    }
   }
 }
 
@@ -221,15 +288,15 @@ export default {
 }
 
 .list-three {
-  grid-template-columns: auto repeat(2, 1fr);
+  grid-template-columns: auto repeat(2, 1fr) auto;
 }
 
 .list-four {
-  grid-template-columns: auto repeat(3, 1fr);
+  grid-template-columns: auto repeat(3, 1fr) auto;
 }
 
 .list-five {
-  grid-template-columns: auto repeat(4, 1fr);
+  grid-template-columns: auto repeat(4, 1fr) auto;
 }
 
 @media (max-width: 992px) {

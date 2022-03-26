@@ -30,8 +30,8 @@
         :title-yes="'Save'"
         :title-no="'Cancel'"
         :direction="true"
-        @reseted="cancelEntry"
-        @confirmed="cancelEntry(false)"
+        @reseted="handleConfirm"
+        @confirmed="handleConfirm(false)"
       />
     </div>
   </transition-group>
@@ -78,15 +78,24 @@ export default {
     // TODO implement vuex store for updating entry
     const handleUpdated = (field) => {
       console.log(field);
-      console.log(99, modelData);
+      //console.log(99, modelData);
     };
 
     const fieldsClass = computed(() => {
       return props.listClass === 4 ? "entry-four" : "entry-five";
     });
 
-    const cancelEntry = (entryData = true) => {
-      entryData ? emit("canceled") : emit("canceled", modelData);
+    const handleConfirm = (entryData = true) => {
+      if (!entryData) {
+        const isEmpty = Object.values(modelData).every(
+          (x) => x === null || x === ""
+        );
+        if (!isEmpty) {
+          emit("finished", modelData);
+          return;
+        }
+      }
+      emit("finished");
     };
 
     return {
@@ -94,7 +103,7 @@ export default {
       modelData,
       fieldsClass,
       handleUpdated,
-      cancelEntry,
+      handleConfirm,
     };
   },
 };
