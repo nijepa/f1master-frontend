@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { ref, computed, getCurrentInstance } from "vue";
+//import { useStore } from "vuex";
+//import { ref, computed, getCurrentInstance } from "vue";
 import Counter from "@/components/Counter.vue";
+import useCurrentRace from "@/composables/useCurrentRace";
 
 export default {
   name: "HelloWorld",
@@ -19,28 +20,9 @@ export default {
     Counter,
   },
   setup() {
-    const app = getCurrentInstance();
-    const dayjs = app.appContext.config.globalProperties.$dayjs;
-    const store = useStore();
+    const currentRace = useCurrentRace();
 
-    store.dispatch("fetchF1datas", "events");
-    const events = computed(() => store.getters.getF1datas("events"));
-
-    const currentRace = ref([]);
-    const currEv = () => {
-      const posibleEvents = events.value.filter((ev) => {
-        return (
-          dayjs(new Date(ev.raceStart)).format("YYYY-MM-DD") >
-          dayjs(new Date()).format("YYYY-MM-DD")
-        );
-      });
-      currentRace.value = posibleEvents.reduce((a, b) => {
-        return new Date(b.start) > new Date(a.start) ? b : a;
-      });
-    };
-    currEv();
-
-    return { events, currentRace };
+    return { currentRace };
   },
 };
 </script>

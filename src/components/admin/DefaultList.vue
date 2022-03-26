@@ -38,6 +38,12 @@
       </template>
     </li>
   </ul>
+  <DefaultEntry
+    v-if="newEntry"
+    :data-model="model"
+    :title="title"
+    @canceled="handleCancel"
+  />
 </template>
 
 <script>
@@ -45,6 +51,7 @@ import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 //import models from "@/config/models";
 import DefaultInput from "@/components/admin/DefaultInput.vue";
+import DefaultEntry from "@/components/admin/DefaultEntry.vue";
 import { ref, computed } from "@vue/reactivity";
 //import { watch } from "vue";
 import { useRoute } from "vue-router";
@@ -55,6 +62,7 @@ export default {
   components: {
     DefaultInput,
     Datepicker,
+    DefaultEntry,
   },
   props: {
     dataModel: {
@@ -88,6 +96,8 @@ export default {
     const model = ref(props.dataModel);
     //const model = ref(models[route.name].fields);
 
+    const newEntry = ref(false);
+
     // TODO implement vuex store for updating list
     const handleUpdated = (field) => {
       console.log(field);
@@ -117,12 +127,31 @@ export default {
       return props.listClass === 4 ? "list-four" : "list-five";
     });
 
+    const addItem = () => {
+      newEntry.value = true;
+    };
+
+    const handleCancel = (data) => {
+      if (data) {
+        const dataForVuex = {
+          type: route.name,
+          value: data,
+        };
+        store.dispatch("f1dataUpdate", dataForVuex);
+        console.log(27, listData.value)
+      }
+      newEntry.value = false;
+    };
+
     return {
       model,
       listData,
       fieldsClass,
       handleUpdated,
       handleSort,
+      newEntry,
+      addItem,
+      handleCancel,
     };
   },
 };

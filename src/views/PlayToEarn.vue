@@ -37,5 +37,6 @@ export default {
 .wrap {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 }
 </style>

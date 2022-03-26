@@ -11,7 +11,7 @@ const datas = {
 
 const state = {
   f1data: { driver: {}, team: {}, event: {} },
-  f1datas: { drivers: [], teams: [], events: [] },
+  f1datas: {  },
 };
 
 /* -------------------------------------- GETTERS -------------------------------------- */
@@ -38,7 +38,7 @@ const mutations = {
   updateF1data(state, f1data) {
     state.f1datas[f1data.type] = [
       ...state.f1datas[f1data.type].map((item) =>
-        item._id !== f1data.value._id
+        item.id !== f1data.value.id
           ? item
           : {
               ...item,
@@ -106,6 +106,9 @@ const actions = {
   },
 
   async f1dataUpdate({ commit }, f1dataData) {
+    console.log(f1dataData)
+    f1dataData.id =55
+    commit("updateF1data", f1dataData);
     // await axios
     //   .put(URL + "api/v1/langs/" + f1dataData._id, f1dataData)
     //   .then((response) => {

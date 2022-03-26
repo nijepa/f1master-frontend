@@ -1,5 +1,5 @@
 <template>
-  <div class="cont">
+  <div class="list-wrapper">
     <h1 v-if="title">{{ title }}</h1>
     <template v-if="isHead">
       <div v-for="i in items.length" :key="i" class="select-wrapper">

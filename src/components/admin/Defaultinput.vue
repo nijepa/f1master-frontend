@@ -23,7 +23,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "enter",
+      default: "",
     },
     readonly: {
       type: Boolean,

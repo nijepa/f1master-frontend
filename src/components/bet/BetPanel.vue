@@ -1,8 +1,8 @@
 <template>
+  <h1>{{ currentRace.name }}</h1>
   <div class="container">
     <div class="poletime">
-      <h1>Poletime</h1>
-      <Poletime :reset-all="resetAll" />
+      <Poletime title="Pole time" :reset-all="resetAll" />
     </div>
     <SelectWrapper
       :title="'F1Masters'"
@@ -39,45 +39,32 @@
       class="misc"
     />
   </div>
-  <div class="btn-wrapper">
+  <ConfirmGroup @reseted="reset" @confirmed="handleConfirmation" />
+  <!-- <div class="btn-wrapper">
     <button class="btn reset" @click="reset">Reset All</button>
     <button class="btn confirm" @click="handleConfirmation">Confirm</button>
-  </div>
-  <p>{{ liveBet }}</p>
+  </div> -->
+  <!-- <p>{{ liveBet }}</p> -->
 </template>
 
 <script>
 import Poletime from "./PoletimeBet.vue";
 import SelectWrapper from "./SelectWrapper.vue";
+import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
 import drivers from "@/data/drivers";
 import teams from "@/data/teams";
-import events from "@/data/events";
-import { ref, computed, getCurrentInstance } from "vue";
+import useCurrentRace from "@/composables/useCurrentRace";
+//import events from "@/data/events";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-  components: { Poletime, SelectWrapper },
+  components: { Poletime, SelectWrapper, ConfirmGroup },
 
   setup() {
-    const app = getCurrentInstance();
-    const dayjs = app.appContext.config.globalProperties.$dayjs;
-
     const store = useStore();
     const liveBet = computed(() => store.getters.getliveBet);
-
-    const currentRace = ref([]);
-    const currEv = () => {
-      const posibleEvents = events.filter((ev) => {
-        return (
-          dayjs(ev.start).format("YYYY-MM-DD") >
-          dayjs(new Date()).format("YYYY-MM-DD")
-        );
-      });
-      currentRace.value = posibleEvents.reduce((a, b) => {
-        return new Date(a.start) > new Date(b.start) ? b : a;
-      });
-    };
-    currEv();
+    const currentRace = useCurrentRace();
 
     const handleConfirmation = () => {
       if (
@@ -154,6 +141,7 @@ export default {
     ]);
 
     return {
+      currentRace,
       masters,
       duels,
       misc,
@@ -167,6 +155,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  color: $yellow;
+}
 .container {
   display: flex;
   flex-wrap: wrap;

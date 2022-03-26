@@ -46,10 +46,11 @@
         />
       </div>
     </div>
-    <div class="btn-wrapper">
+    <ConfirmGroup @reseted="reset" @confirmed="handleConfirmation" />
+    <!-- <div class="btn-wrapper">
       <button class="btn reset" @click="reset">Reset All</button>
       <button class="btn confirm" @click="handleConfirmation">Confirm</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -57,6 +58,7 @@
 //import InputComp from "@/components/bet/InputComponent.vue";
 import SelectWrapper from "@/components/bet/SelectWrapper.vue";
 import Poletime from "@/components/bet/PoletimeBet.vue";
+import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
 import { ref, computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 
@@ -66,6 +68,7 @@ export default {
     //InputComp,
     SelectWrapper,
     Poletime,
+    ConfirmGroup,
   },
 
   setup() {
@@ -93,7 +96,20 @@ export default {
       { id: 1, name: "NO" },
     ]);
 
-    return { drivers, events, misc, reseted, getSelected, reset, resetAll };
+    const handleConfirmation = () => {
+      console.log("confirmed");
+    };
+
+    return {
+      drivers,
+      events,
+      misc,
+      reseted,
+      getSelected,
+      reset,
+      resetAll,
+      handleConfirmation,
+    };
   },
 };
 </script>

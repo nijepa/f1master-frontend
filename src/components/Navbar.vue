@@ -191,7 +191,7 @@ export default {
 header {
   background: linear-gradient(#000 2%, #0a0a0a 52%, #000);
   box-shadow: 2px 0px 1px $mercedes-silver;
-  z-index: 99;
+  z-index: 9;
   width: 100%;
   position: sticky;
   top: 0;

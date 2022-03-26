@@ -1,6 +1,6 @@
 <template>
   <div id="demo">
-    <div class="cont">
+    <div class="list-wrapper">
       <h1 v-if="title">{{ title }}</h1>
       <inputComp
         placeholder="0'00''000'''"
