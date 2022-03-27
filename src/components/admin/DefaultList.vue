@@ -8,9 +8,6 @@
       class="list-li"
       :class="fieldsClass"
     >
-      <!-- <div v-for="key in Object.keys(item)" :key="key">
-          <Defaultinput @changed="handleUpdated" v-model="item[key]" />
-        </div> -->
       <template v-for="key in model" :key="key.name">
         <div class="list-item">
           <h4
@@ -37,7 +34,7 @@
           />
         </div>
       </template>
-      <div class="btn-update">
+      <div class="btn-update tooltip">
         <h4 v-if="i === 0" class="action-heading"></h4>
         <svg
           v-if="selected && idx === i"
@@ -68,6 +65,7 @@
 		c10,0,18.8-4.4,24.8-12c32-41.2,49.2-90.4,49.2-142.8C485,174.4,422.6,87.6,328.6,55.2z"
           />
         </svg>
+        <span class="tooltiptext">Update record</span>
       </div>
     </li>
   </ul>
@@ -82,11 +80,10 @@
 <script>
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-//import models from "@/config/models";
 import DefaultInput from "@/components/admin/DefaultInput.vue";
 import DefaultEntry from "@/components/admin/DefaultEntry.vue";
 import { ref, computed } from "@vue/reactivity";
-//import { watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
@@ -111,36 +108,34 @@ export default {
       default: 4,
     },
   },
+  emits: ["loaded"],
 
-  setup(props) {
-    // const model = ref(models[route.name].fields);
-    // watch(
-    //   () => route.name,
-    //   (currentValue) => {
-    //     console.log("ggggg", currentValue);
-    //     store.dispatch("fetchF1datas", currentValue);
-    //     model.value = ref(models[route.name].fields);
-    //   }
-    // );
+  setup(props, { emit }) {
     const route = useRoute();
     const store = useStore();
-    store.dispatch("fetchF1datas", route.name);
+
     const listData = computed(() => store.getters.getF1datas(route.name));
     const model = ref(props.dataModel);
-    //const model = ref(models[route.name].fields);
+
+    const loadData = async () => {
+      await store.dispatch("fetchF1datas", route.name);
+    };
+
+    onMounted(() => {
+      loadData();
+      console.log(1111)
+      emit("loaded", true);
+    });
 
     const newEntry = ref(false);
 
     const idx = ref(null);
     const setIndex = (i) => {
       idx.value = i;
-      console.log(idx.value);
     };
     const selected = ref(false);
-    // TODO implement vuex store for updating list
-    const handleChange = (field) => {
+    const handleChange = () => {
       selected.value = true;
-      console.log(666, listData.value[idx.value]);
     };
     const handleUpdate = () => {
       const dataForVuex = {
@@ -148,6 +143,21 @@ export default {
         value: listData.value[idx.value],
       };
       store.dispatch("f1dataUpdate", dataForVuex);
+    };
+
+    const addItem = () => {
+      newEntry.value = true;
+    };
+
+    const handleFinished = (data) => {
+      if (data) {
+        const dataForVuex = {
+          type: route.name,
+          value: data,
+        };
+        store.dispatch("f1dataAdd", dataForVuex);
+      }
+      newEntry.value = false;
     };
 
     const sortOrder = ref(false);
@@ -173,23 +183,6 @@ export default {
     const fieldsClass = computed(() => {
       return props.listClass === 4 ? "list-four" : "list-five";
     });
-
-    const addItem = () => {
-      newEntry.value = true;
-    };
-
-    const handleFinished = (data) => {
-      if (data) {
-        const dataForVuex = {
-          type: route.name,
-          value: data,
-        };
-        store.dispatch("f1dataAdd", dataForVuex);
-        // const lll = computed(() => store.state.f1data.f1datas);
-        // console.log(27, lll.value);
-      }
-      newEntry.value = false;
-    };
 
     return {
       model,
@@ -326,5 +319,33 @@ export default {
   .list-ul {
     flex-direction: column;
   }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  max-width: 120px;
+  padding: 0.5em;
+  background-color: $redbull-red;
+  color: $redbull-yellow;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 0.8em;
+  font-weight: 400;
+  font-family: $font-main;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  left: 2em;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 </style>

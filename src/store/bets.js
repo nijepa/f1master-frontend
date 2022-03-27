@@ -1,5 +1,6 @@
-import bets from "@/data/bets";
 import axios from "axios";
+const URL = process.env.VUE_APP_BACKEND_URL_LOCAL;
+
 const state = {
   bet: {},
   bets: [],
@@ -47,38 +48,35 @@ const mutations = {
 /* -------------------------------------- ACTIONS -------------------------------------- */
 const actions = {
   fetchBets({ commit }) {
-    // axios
-    //   .get(URL)
-    //   .then((response) => {
-    //     commit("setBets", response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     // if (error.response) {
-    //     //   commit("setErrors", error.response.data.error);
-    //     // } else {
-    //     //   commit("setErrors", error);
-    //     // }
-    //   });
+    axios
+      .get(URL)
+      .then((response) => {
+        commit("setBets", response);
+      })
+      .catch((error) => {
+        console.log(error);
+        // if (error.response) {
+        //   commit("setErrors", error.response.data.error);
+        // } else {
+        //   commit("setErrors", error);
+        // }
+      });
     commit("setBets", bets);
   },
 
   async fetchBet({ commit }, betData) {
-    // const response = await axios.get(
-    //   URL + "api/v1/langs/" + betData._id,
-    //   betData
+    const response = await axios.get(URL + "bets/" + betData, betData);
+    commit("setBet", response.data);
+    // const res = bets.find(
+    //   (b) => b.User.id === betData.User.id && b.Event.id === betData.Event.id
     // );
-    // commit("setBet", response.data);
-    const res = bets.find(
-      (b) => b.User.id === betData.User.id && b.Event.id === betData.Event.id
-    );
-    commit("setBet", res);
+    // commit("setBet", res);
     //console.log(betData);
   },
 
   async betAdd({ commit }, betData) {
     await axios
-      .post(URL + "api/v1/langs", betData)
+      .post(URL + "bets/", betData)
       .then((response) => {
         commit("addBet", response.data);
         //router.push("/dashboard")

@@ -35,6 +35,7 @@
 import selComp from "./SelectComponent.vue";
 import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default {
   components: { selComp },
@@ -51,6 +52,10 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+    dataName: {
+      type: String,
+      required: true,
     },
     group: {
       type: String,
@@ -72,6 +77,9 @@ export default {
 
   setup(props) {
     const store = useStore();
+
+    const route = useRoute();
+    const routeName = computed(() => route.meta.panel);
 
     const maxArray = ref(Array(props.count).fill(""));
 
@@ -112,8 +120,10 @@ export default {
     watch(
       () => [...selected.value],
       (currentValue) => {
-        store.dispatch("liveBetUpdate", {
-          type: props.title,
+        const source =
+          routeName.value == "bet" ? "liveBetUpdate" : "resultsUpdate";
+        store.dispatch(source, {
+          type: props.dataName,
           value: currentValue,
         });
       }

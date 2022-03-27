@@ -1,10 +1,11 @@
 <template>
   <div class="results">
     <h1>results</h1>
-    <div class="results-wrapper">
+    <div class="">
       <div class="results-group">
         <SelectWrapper
           :title="'Event'"
+          :data-name="'event'"
           :count="1"
           :list="events"
           :group="'Event'"
@@ -12,12 +13,15 @@
           class="misc"
         />
       </div>
+    </div>
+    <div class="results-wrapper">
       <div class="results-group">
-        <Poletime title="Poletime" :reset-all="resetAll" />
+        <Poletime title="Poletime" data-name="poletime" :reset-all="resetAll" />
       </div>
       <div class="results-group">
         <SelectWrapper
           :title="'Starting Grid'"
+          :data-name="'qualifying'"
           :count="20"
           :list="drivers"
           :group="'Position'"
@@ -28,6 +32,7 @@
       <div class="results-group">
         <SelectWrapper
           :title="'Race Results'"
+          :data-name="'race'"
           :count="20"
           :list="drivers"
           :group="'Position'"
@@ -38,6 +43,7 @@
       <div class="results-group">
         <SelectWrapper
           :title="'Misc'"
+          :data-name="'misc'"
           :count="1"
           :list="misc"
           :group="'Misc'"
@@ -52,6 +58,7 @@
       <button class="btn confirm" @click="handleConfirmation">Confirm</button>
     </div> -->
   </div>
+  <p>{{ results }}</p>
 </template>
 
 <script>
@@ -78,6 +85,13 @@ export default {
     const drivers = computed(() => store.getters.getF1datas("drivers"));
     const events = computed(() => store.getters.getF1datas("events"));
 
+    const results = computed(() => store.getters.getResults);
+
+    const misc = ref([
+      { id: 0, name: "YES" },
+      { id: 1, name: "NO" },
+    ]);
+
     const selected = ref("");
     const getSelected = (val) => {
       selected.value = val;
@@ -87,17 +101,45 @@ export default {
     const resetAll = ref(false);
     const reset = () => {
       resetAll.value = true;
-      //store.dispatch("liveBetClear");
+      store.dispatch("resultsClear");
       setTimeout(() => (resetAll.value = false), 0);
     };
 
-    const misc = ref([
-      { id: 0, name: "YES" },
-      { id: 1, name: "NO" },
-    ]);
-
     const handleConfirmation = () => {
-      console.log("confirmed");
+      if (
+        results.value !== undefined &&
+        results.value.pole &&
+        results.value.qualifying.length &&
+        results.value.race.length &&
+        results.value.Misc.length
+      ) {
+        // NOTE find lest event before current date
+        // store.dispatch("liveBetUpdate", {
+        //   type: "Event",
+        //   value: { id: currentRace.value.id, name: currentRace.value.name },
+        // });
+        // NOTE get/set logged in user
+        store.dispatch("resultsUpdate", {
+          type: "User",
+          value: { id: 0, email: "rayannezinha@f1master.com" },
+        });
+        // TODO load existing bets for logged in user and add/update new one
+        store.dispatch("resultsUpdate", {
+          type: "createdAt",
+          value: new Date(),
+        });
+
+        store.dispatch("fetchBets");
+        store.dispatch("fetchBet", results.value);
+        const bet = computed(() => store.getters.getBet);
+        results.value._id = bet.value._id;
+        store.dispatch("betUpdate", results.value);
+        const bets = computed(() => store.getters.getBets);
+        console.log("muuu", bets.value);
+        alert("OK - " + JSON.stringify(results.value));
+        return;
+      }
+      alert("NOT");
     };
 
     return {
@@ -109,6 +151,7 @@ export default {
       reset,
       resetAll,
       handleConfirmation,
+      results,
     };
   },
 };

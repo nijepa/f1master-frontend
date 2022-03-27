@@ -6,6 +6,7 @@
     </div>
     <SelectWrapper
       :title="'F1Masters'"
+      :data-name="'masters'"
       :count="10"
       :list="masters"
       :group="'Position'"
@@ -15,6 +16,7 @@
     />
     <SelectWrapper
       :title="'Evo'"
+      :data-name="'evo'"
       :count="5"
       :list="masters"
       :group="'Evo'"
@@ -23,6 +25,7 @@
     />
     <SelectWrapper
       :title="'Head'"
+      :data-name="'head'"
       :count="duels.length"
       :list="duels"
       :group="'Head'"
@@ -32,6 +35,7 @@
     />
     <SelectWrapper
       :title="'Misc'"
+      :data-name="'misc'"
       :count="1"
       :list="misc"
       :group="'Misc'"
@@ -44,7 +48,7 @@
     <button class="btn reset" @click="reset">Reset All</button>
     <button class="btn confirm" @click="handleConfirmation">Confirm</button>
   </div> -->
-  <!-- <p>{{ liveBet }}</p> -->
+  <p>{{ liveBet }}</p>
 </template>
 
 <script>
@@ -69,20 +73,20 @@ export default {
     const handleConfirmation = () => {
       if (
         liveBet.value !== undefined &&
-        liveBet.value.Pole &&
-        liveBet.value.F1Masters.length &&
-        liveBet.value.Evo.length &&
-        liveBet.value.Head.length &&
-        liveBet.value.Misc.length
+        liveBet.value.pole &&
+        liveBet.value.masters.length &&
+        liveBet.value.evo.length &&
+        liveBet.value.head.length &&
+        liveBet.value.misc.length
       ) {
         // NOTE find lest event before current date
         store.dispatch("liveBetUpdate", {
-          type: "Event",
+          type: "event",
           value: { id: currentRace.value.id, name: currentRace.value.name },
         });
         // NOTE get/set logged in user
         store.dispatch("liveBetUpdate", {
-          type: "User",
+          type: "user",
           value: { id: 0, email: "rayannezinha@f1master.com" },
         });
         // TODO load existing bets for logged in user and add/update new one
@@ -90,12 +94,11 @@ export default {
           type: "createdAt",
           value: new Date(),
         });
-
-        store.dispatch("fetchBets");
-        store.dispatch("fetchBet", liveBet.value);
-        const bet = computed(() => store.getters.getBet);
-        liveBet.value._id = bet.value._id;
-        store.dispatch("betUpdate", liveBet.value);
+        // store.dispatch("fetchBets");
+        // store.dispatch("fetchBet", liveBet.value);
+        // const bet = computed(() => store.getters.getBet);
+        // liveBet.value.id = bet.value.id;
+        store.dispatch("betAdd", liveBet.value);
         const bets = computed(() => store.getters.getBets);
         console.log("muuu", bets.value);
         alert("OK - " + JSON.stringify(liveBet.value));

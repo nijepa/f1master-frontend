@@ -1,7 +1,7 @@
 <template>
   <transition-group name="entry" mode="out-in" appear>
     <div class="backdrop" key="0"></div>
-    <div class="entry-wrapper" v-click-outside="cancelEntry" key="1">
+    <div class="entry-wrapper" v-click-outside="handleConfirm" key="1">
       <h2 class="entry-title">{{ title }}</h2>
       <div class="entry-li">
         <template v-for="key in model" :key="key.name">
@@ -17,7 +17,6 @@
             <label :for="key.name">{{ key.name }}</label>
             <DefaultInput
               :id="key.name"
-              @changed="handleUpdated"
               v-model="modelData[key.name]"
               :input-type="key.type"
               :disabled="key.readonly"
@@ -65,7 +64,7 @@ export default {
       default: 4,
     },
   },
-  emits: ["canceled"],
+  emits: ["canceled", "finished"],
 
   setup(props, { emit }) {
     const model = ref(props.dataModel.slice(1, props.dataModel.length));
@@ -74,16 +73,6 @@ export default {
       .slice(1, props.dataModel.length)
       .reduce((acc, key) => ((acc[key] = ""), acc), {});
     const modelData = reactive(res);
-
-    // TODO implement vuex store for updating entry
-    const handleUpdated = (field) => {
-      console.log(field);
-      //console.log(99, modelData);
-    };
-
-    const fieldsClass = computed(() => {
-      return props.listClass === 4 ? "entry-four" : "entry-five";
-    });
 
     const handleConfirm = (entryData = true) => {
       if (!entryData) {
@@ -98,11 +87,14 @@ export default {
       emit("finished");
     };
 
+    const fieldsClass = computed(() => {
+      return props.listClass === 4 ? "entry-four" : "entry-five";
+    });
+
     return {
       model,
       modelData,
       fieldsClass,
-      handleUpdated,
       handleConfirm,
     };
   },

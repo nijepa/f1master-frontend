@@ -18,13 +18,18 @@
 
 <script>
 import inputComp from "./InputComponent.vue";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 export default {
   components: { inputComp },
   props: {
     title: {
+      type: String,
+      default: "",
+    },
+    dataName: {
       type: String,
       default: "",
     },
@@ -37,6 +42,9 @@ export default {
   setup(props) {
     const store = useStore();
 
+    const route = useRoute();
+    const routeName = computed(() => route.meta.panel);
+
     const selected = ref("");
     const getSelected = (val) => {
       selected.value = val;
@@ -44,7 +52,7 @@ export default {
 
     const reseted = ref(false);
     const reset = () => {
-      selected.value = 0;
+      selected.value = null;
       reseted.value = true;
     };
     watch(
@@ -57,10 +65,17 @@ export default {
     watch(
       () => selected.value,
       (currentValue) => {
-        store.dispatch("liveBetUpdate", {
-          type: "Pole",
-          value: currentValue,
-        });
+        if (routeName.value == "bet") {
+          store.dispatch("liveBetUpdate", {
+            type: "pole",
+            value: currentValue,
+          });
+        } else {
+          store.dispatch("resultsUpdate", {
+            type: props.dataName,
+            value: currentValue,
+          });
+        }
       }
     );
 

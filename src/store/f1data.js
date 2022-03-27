@@ -71,11 +71,11 @@ const actions = {
     //   f1dataData
     // );
     // commit("setF1data", response.data);
-    const res = f1datas.find(
-      (b) =>
-        b.User.id === f1dataData.User.id && b.Event.id === f1dataData.Event.id
-    );
-    commit("setF1data", res);
+    // const res = f1datas.find(
+    //   (b) =>
+    //     b.User.id === f1dataData.User.id && b.Event.id === f1dataData.Event.id
+    // );
+    //commit("setF1data", res);
     //console.log(f1dataData);
   },
 
@@ -85,7 +85,6 @@ const actions = {
       .then((response) => {
         const res = { type: f1dataData.type, value: response.data };
         commit("addF1data", res);
-        //router.push("/dashboard")
       })
       .catch((error) => {
         if (error.response) {
@@ -116,7 +115,7 @@ const actions = {
     await axios
       .delete(URL + f1dataData.type + "/" + f1dataData.value, f1dataData.value)
       .then((response) => {
-        commit("deleteF1data", response.data._id);
+        commit("deleteF1data", response.data.id);
       })
       .catch((error) => {
         if (error.response) {

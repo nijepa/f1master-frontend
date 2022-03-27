@@ -1,13 +1,13 @@
 const state = {
   liveBet: {
     createdAt: "",
-    User: "",
-    Event: "",
-    Pole: "",
-    F1Masters: [],
-    Evo: [],
-    Head: [],
-    Misc: "",
+    user: "",
+    event: [],
+    pole: "",
+    masters: [],
+    evo: [],
+    head: [],
+    misc: [],
   },
 };
 
@@ -23,13 +23,13 @@ const mutations = {
   clearLiveBet(state) {
     state.liveBet = {
       createdAt: "",
-      User: "",
-      Event: "",
-      Pole: "",
-      F1Masters: [],
-      Evo: [],
-      Head: [],
-      Misc: "",
+      user: "",
+      event: [],
+      pole: "",
+      masters: [],
+      evo: [],
+      head: [],
+      misc: [],
     };
   },
 
