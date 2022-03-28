@@ -25,6 +25,7 @@ router.beforeEach((to, from, next) => {
   // }
 
   const publicPages = [
+    "/",
     "/superlicense",
     "/registration",
     "/recovery-password",

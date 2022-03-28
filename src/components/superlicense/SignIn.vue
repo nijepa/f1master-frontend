@@ -75,7 +75,6 @@ export default {
     if (loggedIn.value) router.push("/");
 
     const handleLogin = (user) => {
-      console.log(user)
       loading.value = true;
       store.dispatch("login", user).then(
         () => {

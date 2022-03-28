@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../router";
 const URL = process.env.VUE_APP_BACKEND_URL_LOCAL;
 
 const state = {
@@ -24,12 +25,12 @@ const mutations = {
   },
 
   addBet(state, betData) {
-    state.bets = [betData, ...state.bets];
+    state.bets.data = [betData, ...state.bets.data];
   },
 
   updateBet(state, bet) {
-    state.bets = [
-      ...state.bets.map((item) =>
+    state.bets.data = [
+      ...state.bets.data.map((item) =>
         item.id !== bet.id
           ? item
           : {
@@ -54,14 +55,8 @@ const actions = {
         commit("setBets", response);
       })
       .catch((error) => {
-        console.log(error);
-        // if (error.response) {
-        //   commit("setErrors", error.response.data.error);
-        // } else {
-        //   commit("setErrors", error);
-        // }
+        commit("setErrors", error);
       });
-    //commit("setBets", bets);
   },
 
   async fetchBet({ commit }, betData) {
@@ -79,14 +74,10 @@ const actions = {
       .post(URL + "bets/", betData)
       .then((response) => {
         commit("addBet", response.data);
-        //router.push("/dashboard")
+        router.push("/fantasy");
       })
       .catch((error) => {
-        if (error.response) {
-          commit("setErrors", error.response.data.error);
-        } else {
-          commit("setErrors", error);
-        }
+        commit("setErrors", error, { root: true });
       });
   },
 
@@ -95,13 +86,10 @@ const actions = {
       .put(URL + "bets/" + betData.id, betData)
       .then((response) => {
         commit("updateBet", response.data);
+        router.push("/fantasy");
       })
       .catch((error) => {
-        if (error.response) {
-          commit("setErrors", error.response.data.error);
-        } else {
-          commit("setErrors", error);
-        }
+        commit("setErrors", error, { root: true });
       });
   },
 
@@ -112,11 +100,7 @@ const actions = {
         commit("deleteBet", response.data.id);
       })
       .catch((error) => {
-        if (error.response) {
-          commit("setErrors", error.response.data.error);
-        } else {
-          commit("setErrors", error);
-        }
+        commit("setErrors", error, { root: true });
       });
   },
 

@@ -5,6 +5,7 @@ import results from "./results";
 import bets from "./bets";
 import f1data from "./f1data";
 import auth from "./auth";
+import global from "./global";
 
 export default createStore({
   modules: {
@@ -13,6 +14,7 @@ export default createStore({
     f1data,
     results,
     auth,
+    global,
   },
   plugins: [createPersistedState()],
 });

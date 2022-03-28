@@ -58,26 +58,26 @@ const actions = {
       .catch((error) => {
         console.log(error);
         if (error.response) {
-          commit("setErrors", error.response.data.error);
+          commit("setErrors", error.response.data.error, { root: true });
         } else {
-          commit("setErrors", error);
+          commit("setErrors", error, { root: true });
         }
       });
   },
 
-  async fetchF1data({ commit }, f1dataData) {
-    // const response = await axios.get(
-    //   URL + "api/v1/langs/" + f1dataData._id,
-    //   f1dataData
-    // );
-    // commit("setF1data", response.data);
-    // const res = f1datas.find(
-    //   (b) =>
-    //     b.User.id === f1dataData.User.id && b.Event.id === f1dataData.Event.id
-    // );
-    //commit("setF1data", res);
-    //console.log(f1dataData);
-  },
+  //async fetchF1data({ commit }, f1dataData) {
+  // const response = await axios.get(
+  //   URL + "api/v1/langs/" + f1dataData._id,
+  //   f1dataData
+  // );
+  // commit("setF1data", response.data);
+  // const res = f1datas.find(
+  //   (b) =>
+  //     b.User.id === f1dataData.User.id && b.Event.id === f1dataData.Event.id
+  // );
+  //commit("setF1data", res);
+  //console.log(f1dataData);
+  //},
 
   async f1dataAdd({ commit }, f1dataData) {
     await axios
@@ -88,9 +88,9 @@ const actions = {
       })
       .catch((error) => {
         if (error.response) {
-          commit("setErrors", error.response.data.error);
+          commit("setErrors", error.response.data.error, { root: true });
         } else {
-          commit("setErrors", error);
+          commit("setErrors", error, { root: true });
         }
       });
   },
@@ -104,9 +104,9 @@ const actions = {
       })
       .catch((error) => {
         if (error.response) {
-          commit("setErrors", error.response.data.error);
+          commit("setErrors", error.response.data.error, { root: true });
         } else {
-          commit("setErrors", error);
+          commit("setErrors", error, { root: true });
         }
       });
   },

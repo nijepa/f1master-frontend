@@ -7,7 +7,6 @@ const navigation = {
       { id: 2, title: "News", to: "/news" },
       { id: 3, title: "Social Media", to: "/socialmedia" },
       { id: 4, title: "Fantasy", to: "/fantasy", for: "ROLE_USER" },
-      //{ id: 5, title: "admin", to: "/admin", for: "ROLE_ADMIN" },
     ],
     adminLink: { title: "admin", to: "/admin", for: "ROLE_ADMIN" },
     profileLink: { title: "Profile", to: "/profile", for: "ROLE_USER" },
@@ -20,6 +19,7 @@ const navigation = {
       { id: 2, title: "Teams", to: "/admin/teams", for: "ROLE_ADMIN" },
       { id: 3, title: "Events", to: "/admin/events", for: "ROLE_ADMIN" },
     ],
+    profileLink: { title: "Profile", to: "/profile", for: "ROLE_USER" },
   },
 };
 export default navigation;

@@ -11,14 +11,18 @@
           class="navigation-sub"
         >
           <router-link
-            v-if="role('ROLE_USER') || link.title !== 'Fantasy'"
+            v-if="
+              role('ROLE_USER') ||
+              role('ROLE_ADMIN') ||
+              link.title !== 'Fantasy'
+            "
             :to="link.to"
             class="link"
             >{{ link.title }}</router-link
           >
         </div>
         <router-link
-          v-if="role('ROLE_USER')"
+          v-if="role('ROLE_USER') || role('ROLE_ADMIN')"
           class="link nav-link nav-link1"
           :to="links.leftLink.to"
           active-class="active"
@@ -144,7 +148,7 @@ import {
 } from "vue";
 import { useOnResize } from "vue-composable";
 import { useRoute } from "vue-router";
-import { useStore } from "vuex";
+import useCurrentUser from "@/composables/useCurrentUser";
 
 export default {
   name: "Navbar",
@@ -161,12 +165,7 @@ export default {
     const route = useRoute();
     const routeName = computed(() => route.name);
 
-    const store = useStore();
-    const currentUser = computed(() => store.state.auth.user);
-    if (currentUser.value) {
-      currentUser.value.username =
-        currentUser.value.firstname + " " + currentUser.value.lastname;
-    }
+    const currentUser = useCurrentUser();
 
     const role = (navrole) => {
       return currentUser.value?.roles.includes(navrole);
@@ -292,7 +291,7 @@ header {
 
     .link-user {
       max-width: 90px;
-      word-break: break-all;
+      word-break: break-word;
     }
 
     .navigation a.router-link-active {

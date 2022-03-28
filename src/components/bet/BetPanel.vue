@@ -58,9 +58,9 @@ import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
 import drivers from "@/data/drivers";
 import teams from "@/data/teams";
 import useCurrentRace from "@/composables/useCurrentRace";
-//import events from "@/data/events";
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
+import useCurrentUser from "@/composables/useCurrentUser";
 
 export default {
   components: { Poletime, SelectWrapper, ConfirmGroup },
@@ -69,6 +69,7 @@ export default {
     const store = useStore();
     const liveBet = computed(() => store.getters.getliveBet);
     const currentRace = useCurrentRace();
+    const currentUser = useCurrentUser();
 
     const masters = ref(
       drivers.map((driver) => {
@@ -116,7 +117,7 @@ export default {
         // NOTE get/set logged in user
         store.dispatch("liveBetUpdate", {
           type: "user",
-          value: { id: 0, email: "rayannezinha@f1master.com" },
+          value: { id: currentUser.value.id, email: currentUser.value.email },
         });
         // NOTE add date/time to live bet
         store.dispatch("liveBetUpdate", {
@@ -126,11 +127,13 @@ export default {
         // NOTE check if exists bet for same event
         store.dispatch("fetchBets");
         const bet = computed(() => store.getters.getBets);
-        const found = bet.value.data.find(
-          (b) => b.event.id === liveBet.value.event.id
+        const found = bet.value?.data.find(
+          (b) =>
+            b.event.id === liveBet.value.event.id &&
+            b.user.id === liveBet.value.user.id
         );
         // NOTE update existing or add new bet
-        if (found.event.id) {
+        if (found?.event.id) {
           liveBet.value.id = found.id;
           store.dispatch("betUpdate", liveBet.value);
         } else {
