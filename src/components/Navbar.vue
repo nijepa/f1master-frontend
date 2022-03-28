@@ -10,9 +10,15 @@
           :key="i"
           class="navigation-sub"
         >
-          <router-link :to="link.to" class="link">{{ link.title }}</router-link>
+          <router-link
+            v-if="role('ROLE_USER') || link.title !== 'Fantasy'"
+            :to="link.to"
+            class="link"
+            >{{ link.title }}</router-link
+          >
         </div>
         <router-link
+          v-if="role('ROLE_USER')"
           class="link nav-link nav-link1"
           :to="links.leftLink.to"
           active-class="active"
@@ -23,6 +29,18 @@
           :to="links.rightLink.to"
           active-class="active2"
           >{{ links.rightLink.title }}</router-link
+        >
+        <router-link
+          v-if="role(links.adminLink?.for)"
+          :to="links.adminLink.to"
+          class="link"
+          >{{ links.adminLink?.title }}</router-link
+        >
+        <router-link
+          v-if="currentUser"
+          :to="links.profileLink.to"
+          class="link link-user"
+          >{{ currentUser.username }}</router-link
         >
       </ul>
       <div class="icon">
@@ -71,6 +89,7 @@
           class="dropdown-nav"
         >
           <router-link
+            v-if="role('ROLE_USER')"
             @click="mobileNav = false"
             class="link nav-link nav-link1"
             active-class="active"
@@ -80,6 +99,7 @@
           <div class="dropdown__sub-nav">
             <div v-for="(link, i) in links.groupedLinks" :key="i">
               <router-link
+                v-if="role('ROLE_USER') || link.title !== 'Fantasy'"
                 @click="mobileNav = false"
                 class="link"
                 :to="link.to"
@@ -93,6 +113,18 @@
             class="link nav-link nav-link2"
             :to="links.rightLink.to"
             >{{ links.rightLink.title }}</router-link
+          >
+          <router-link
+            v-if="role(links.adminLink?.for)"
+            :to="links.adminLink?.to"
+            class="link"
+            >{{ links.adminLink.title }}</router-link
+          >
+          <router-link
+            v-if="currentUser"
+            :to="links.profileLink.to"
+            class="link"
+            >{{ currentUser.email }}</router-link
           >
         </ul>
       </transition>
@@ -112,6 +144,8 @@ import {
 } from "vue";
 import { useOnResize } from "vue-composable";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+
 export default {
   name: "Navbar",
   props: {
@@ -126,6 +160,17 @@ export default {
 
     const route = useRoute();
     const routeName = computed(() => route.name);
+
+    const store = useStore();
+    const currentUser = computed(() => store.state.auth.user);
+    if (currentUser.value) {
+      currentUser.value.username =
+        currentUser.value.firstname + " " + currentUser.value.lastname;
+    }
+
+    const role = (navrole) => {
+      return currentUser.value?.roles.includes(navrole);
+    };
 
     const { width } = useOnResize(document.body);
     const state = reactive({
@@ -182,7 +227,15 @@ export default {
     onMounted(() => window.addEventListener("scroll", updateScroll));
     onUnmounted(() => window.removeEventListener("scroll", updateScroll));
 
-    return { links, ...toRefs(state), toggleMobileNav, clickOutside, width };
+    return {
+      currentUser,
+      role,
+      links,
+      ...toRefs(state),
+      toggleMobileNav,
+      clickOutside,
+      width,
+    };
   },
 };
 </script>
@@ -235,6 +288,11 @@ header {
         color: $haas-light;
         text-shadow: 0px -1px 10px rgba(253, 216, 0, 0.5);
       }
+    }
+
+    .link-user {
+      max-width: 90px;
+      word-break: break-all;
     }
 
     .navigation a.router-link-active {

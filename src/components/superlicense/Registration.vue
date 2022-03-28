@@ -3,65 +3,52 @@
     <div class="auth-card">
       <div class="header">
         <div class="title">
-          <h4>{{ state.formName }}</h4>
+          <h4>Register</h4>
         </div>
         <div class="links">
           <router-link to="/superlicense"><a>Back</a></router-link>
         </div>
       </div>
-      <div class="inputs">
+      <Form @submit="handleRegister" :validation-schema="schema" class="inputs">
         <div class="input-field">
           <label>
-            <input v-model="state.name" type="text" placeholder="" class="" />
+            <Field name="firstname" type="text" placeholder="" class="" />
             <span>First Name</span>
           </label>
-          <span v-if="v$.name.$error" class="error-msg">{{
-            v$.name.$errors[0].$message
-          }}</span>
+          <ErrorMessage name="firstname" class="error-msg" />
         </div>
         <div class="input-field">
           <label>
-            <input
-              v-model="state.surname"
-              type="text"
-              placeholder=""
-              class=""
-            />
+            <Field name="lastname" type="text" placeholder="" class="" />
             <span>Last Name</span>
           </label>
-          <span v-if="v$.surname.$error" class="error-msg">{{
-            v$.surname.$errors[0].$message
-          }}</span>
+          <ErrorMessage name="lastname" class="error-msg" />
         </div>
         <div class="input-field">
           <label>
-            <input
-              v-model="state.emailRegister"
+            <Field
+              name="email"
               type="email"
               placeholder=""
               class="emailRegister"
             />
             <span>E-mail</span>
           </label>
-          <span v-if="v$.emailRegister.$error" class="error-msg">{{
-            v$.emailRegister.$errors[0].$message
-          }}</span>
+          <ErrorMessage name="email" class="error-msg" />
         </div>
         <div class="input-field">
           <label>
-            <input
-              v-model="state.password.password"
+            <Field
+              name="password"
               type="password"
               placeholder=""
               class="password"
             />
             <span>Password</span>
           </label>
-          <span v-if="v$.password.password.$error" class="error-msg">{{
-            v$.password.password.$errors[0].$message
-          }}</span>
+          <ErrorMessage name="password" class="error-msg" />
         </div>
-        <div class="input-field">
+        <!-- <div class="input-field">
           <label>
             <input
               v-model="state.password.confirm"
@@ -74,73 +61,96 @@
           <span v-if="v$.password.confirm.$error" class="error-msg">{{
             v$.password.confirm.$errors[0].$message
           }}</span>
-        </div>
-      </div>
-      <div class="keepCon">
-        <input
-          id="keep"
-          type="checkbox"
-          class="checkbox"
-          v-model="state.aceptTerms"
-        />
-        <label for="keep"
-          >By clicking 'Confirm' you accept the terms and conditions</label
-        >
-      </div>
+        </div> -->
 
-      <button @click.prevent="submitForm">CONFIRM</button>
+        <div class="keepCon">
+          <input id="keep" type="checkbox" class="checkbox" />
+          <label for="keep"
+            >By clicking 'Confirm' you accept the terms and conditions</label
+          >
+        </div>
+        <div class="">
+          <Loader v-if="loading" :btn="true" />
+          <button v-else>CONFIRM</button>
+        </div>
+      </Form>
+      <div v-if="message" :class="successful ? 'success-msg' : 'error-msg'">
+        {{ message }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import useValidate from "@vuelidate/core";
-import {
-  required,
-  email,
-  minLength,
-  maxLength,
-  sameAs,
-} from "@vuelidate/validators";
-import { reactive, computed } from "vue";
+import Loader from "@/components/Loader.vue";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { ref, computed } from "vue";
+
 export default {
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+    Loader,
+  },
+
   setup() {
-    const state = reactive({
-      emailRegister: "",
-      name: "",
-      surname: "",
-      password: {
-        password: "",
-        confirm: "",
-      },
-      aceptTerms: false,
-      formName: "Register",
+    const schema = yup.object().shape({
+      firstname: yup
+        .string()
+        .required("Username is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(20, "Must be maximum 20 characters!"),
+      email: yup
+        .string()
+        .required("Email is required!")
+        .email("Email is invalid!")
+        .max(50, "Must be maximum 50 characters!"),
+      password: yup
+        .string()
+        .required("Password is required!")
+        .min(6, "Must be at least 6 characters!")
+        .max(40, "Must be maximum 40 characters!"),
     });
-    const rules = computed(() => {
-      return {
-        name: { required, minLength: minLength(2), maxLength: maxLength(15) },
-        surname: {
-          required,
-          minLength: minLength(2),
-          maxLength: maxLength(15),
+
+    const store = useStore();
+    const route = useRoute();
+
+    const successful = ref(false);
+    const loading = ref(false);
+    const message = ref("");
+
+    const loggedIn = computed(() => store.state.auth.status.loggedIn);
+    if (loggedIn.value) route.push("/");
+
+    const handleRegister = (user) => {
+      console.log(99, user);
+      message.value = "";
+      successful.value = false;
+      loading.value = true;
+      store.dispatch("register", user).then(
+        (data) => {
+          message.value = data.message;
+          successful.value = true;
+          loading.value = false;
         },
-        emailRegister: { required, email, minLength: minLength(3) },
-        password: {
-          password: { required, minLength: minLength(6) },
-          confirm: { required, sameAs: sameAs(state.password.password) },
-        },
-      };
-    });
-    const v$ = useValidate(rules, state);
-    function submitForm() {
-      this.v$.$validate();
-      if (!this.v$.$error) {
-        alert("its ok");
-      } else {
-        alert("check errors!!!");
-      }
-    }
-    return { state, v$, submitForm };
+        (error) => {
+          message.value =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          successful.value = false;
+          loading.value = false;
+        }
+      );
+    };
+
+    return { loading, schema, handleRegister, successful, message };
   },
 };
 </script>

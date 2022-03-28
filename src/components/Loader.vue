@@ -1,5 +1,5 @@
 <template>
-  <h3 class="loading">
+  <h3 :class="btn ? 'loading-btn' : 'loading'">
     <div id="loading4"></div>
     <span>loading ...</span>
   </h3>
@@ -8,6 +8,12 @@
 <script>
 export default {
   name: "Loader",
+  props: {
+    btn: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 
@@ -23,6 +29,18 @@ export default {
     color: $red;
   }
 }
+.loading-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5em;
+  padding: 1em;
+
+  span {
+    color: $red;
+  }
+}
+
 #loading4 {
   width: 2em;
   height: 2em;

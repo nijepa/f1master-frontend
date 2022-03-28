@@ -2,7 +2,7 @@
   <div class="auth-card">
     <div class="header">
       <div class="title">
-        <h4>{{ state.formName }}</h4>
+        <h4>SignIn</h4>
       </div>
 
       <div class="links">
@@ -13,83 +13,87 @@
       </div>
     </div>
 
-    <div class="inputs">
+    <Form @submit="handleLogin" :validation-schema="schema" class="inputs">
       <div class="input-field">
         <label>
-          <input
-            type="email"
-            placeholder=""
-            class="emailLogin"
-            v-model="state.emailLogin"
-          />
+          <Field name="email" type="email" placeholder="" class="emailLogin" />
           <span>E-mail</span>
         </label>
-        <span v-if="v$.emailLogin.$error" class="error-msg">{{
-          v$.emailLogin.$errors[0].$message
-        }}</span>
+        <ErrorMessage name="email" class="error-msg" />
       </div>
       <div class="input-field">
         <label>
-          <input
+          <Field
+            name="password"
             type="password"
             placeholder=""
             class="password"
-            v-model="state.password"
           />
           <span>Password</span>
         </label>
-        <span v-if="v$.password.$error" class="error-msg">{{
-          v$.password.$errors[0].$message
-        }}</span>
+        <ErrorMessage name="password" class="error-msg" />
       </div>
-    </div>
 
-    <div class="keepCon">
-      <input
-        id="keep"
-        v-model="state.keepConnected"
-        type="checkbox"
-        class="checkbox"
-      />
-      <label for="keep">Keep Connected</label>
-    </div>
-
-    <button @click.prevent="submitForm">CONFIRM</button>
+      <div class="keepCon">
+        <input id="keep" type="checkbox" class="checkbox" />
+        <label for="keep">Keep Connected</label>
+      </div>
+      <Loader v-if="loading" :btn="true" />
+      <button v-else>CONFIRM</button>
+    </Form>
   </div>
 </template>
 
 <script>
-import useValidate from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
-import { reactive, computed } from "vue";
+import Loader from "@/components/Loader.vue";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default {
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+    Loader,
+  },
+
   setup() {
-    const state = reactive({
-      emailLogin: "",
-      password: "",
-      keepConnected: false,
-      formName: "SignIn",
+    const schema = yup.object().shape({
+      email: yup.string().required("E-mail is required!"),
+      password: yup.string().required("Password is required!"),
     });
-    const rules = computed(() => {
-      return {
-        emailLogin: { required, email, minLength: minLength(3) },
-        password: { required, minLength: minLength(6) },
-      };
-    });
+    const loading = ref(false);
+    const message = ref("");
 
-    const v$ = useValidate(rules, state);
+    const store = useStore();
+    const router = useRouter();
 
-    function submitForm() {
-      this.v$.$validate();
-      if (!this.v$.$error) {
-        alert("its ok");
-      } else {
-        alert("check errors!!!");
-      }
-    }
+    const loggedIn = computed(() => store.state.auth.status.loggedIn);
+    if (loggedIn.value) router.push("/");
 
-    return { state, v$, submitForm };
+    const handleLogin = (user) => {
+      console.log(user)
+      loading.value = true;
+      store.dispatch("login", user).then(
+        () => {
+          router.push("/profile");
+        },
+        (error) => {
+          loading.value = false;
+          message.value =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    };
+
+    return { loading, schema, handleLogin, message };
   },
 };
 </script>

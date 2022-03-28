@@ -48,6 +48,16 @@ const routes = [
     },
   },
   {
+    path: "/profile",
+    component: () =>
+      import(
+        /* webpackChunkName "auth" */ "@/components/superlicense/Profile.vue"
+      ),
+    meta: {
+      layout: "AppLayoutHome",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () =>

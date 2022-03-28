@@ -4,7 +4,7 @@ import liveBet from "./liveBet";
 import results from "./results";
 import bets from "./bets";
 import f1data from "./f1data";
-//import auth from './auth';
+import auth from "./auth";
 
 export default createStore({
   modules: {
@@ -12,7 +12,7 @@ export default createStore({
     bets,
     f1data,
     results,
-    //auth
+    auth,
   },
   plugins: [createPersistedState()],
 });

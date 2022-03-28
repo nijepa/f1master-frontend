@@ -5,6 +5,7 @@
     <div class="hello">
       <img src="@/assets/images/logo2.png" />
     </div>
+    <button @click="logOut">sdf</button>
   </div>
 </template>
 
@@ -13,6 +14,8 @@
 //import { ref, computed, getCurrentInstance } from "vue";
 import Counter from "@/components/Counter.vue";
 import useCurrentRace from "@/composables/useCurrentRace";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default {
   name: "HelloWorld",
@@ -22,7 +25,15 @@ export default {
   setup() {
     const currentRace = useCurrentRace();
 
-    return { currentRace };
+    const store = useStore();
+    const router = useRouter();
+
+    const logOut = () => {
+      store.dispatch("logout");
+      router.push("/");
+    };
+
+    return { currentRace, logOut };
   },
 };
 </script>

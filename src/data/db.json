@@ -316,7 +316,7 @@
   ],
   "bets": [
     {
-      "createdAt": "2022-03-27T18:41:10.416Z",
+      "createdAt": "2022-03-28T07:09:14.110Z",
       "user": {
         "id": 0,
         "email": "rayannezinha@f1master.com"
@@ -325,7 +325,7 @@
         "id": 2,
         "name": "AUSTRALIA GRAND PRIX"
       },
-      "pole": "1'11'111'''",
+      "pole": "1'24'542'''",
       "masters": [
         {
           "idx": 0,
@@ -339,75 +339,48 @@
         },
         {
           "idx": 2,
-          "id": 4,
-          "val": "G.RUSSELL"
+          "id": 6,
+          "val": "C.LECLERC"
         },
         {
           "idx": 3,
-          "id": 5,
-          "val": "C.SAINZ"
-        },
-        {
-          "idx": 4,
           "id": 3,
           "val": "L.HAMILTON"
         },
         {
+          "idx": 4,
+          "id": 5,
+          "val": "C.SAINZ"
+        },
+        {
           "idx": 5,
+          "id": 8,
+          "val": "D.RICCIARDO"
+        },
+        {
+          "idx": 6,
           "id": 7,
           "val": "L.NORRIS"
         },
         {
-          "idx": 6,
+          "idx": 7,
+          "id": 4,
+          "val": "G.RUSSELL"
+        },
+        {
+          "idx": 8,
           "id": 9,
           "val": "F.ALONSO"
         },
         {
-          "idx": 7,
-          "id": 12,
-          "val": "Y.TSUNODA"
-        },
-        {
-          "idx": 8,
-          "id": 11,
-          "val": "P.GASLY"
-        },
-        {
           "idx": 9,
-          "id": 10,
-          "val": "E.OCON"
+          "id": 13,
+          "val": "S.VETTEL"
         }
       ],
       "evo": [
         {
           "idx": 0,
-          "id": 3,
-          "val": "L.HAMILTON"
-        },
-        {
-          "idx": 2,
-          "id": 6,
-          "val": "C.LECLERC"
-        },
-        {
-          "idx": 1,
-          "id": 11,
-          "val": "P.GASLY"
-        },
-        {
-          "idx": 3,
-          "id": 7,
-          "val": "L.NORRIS"
-        },
-        {
-          "idx": 4,
-          "id": 9,
-          "val": "F.ALONSO"
-        }
-      ],
-      "head": [
-        {
-          "idx": 0,
           "id": 5,
           "val": "C.SAINZ"
         },
@@ -418,13 +391,35 @@
         },
         {
           "idx": 2,
-          "id": 8,
-          "val": "D.RICCIARDO"
+          "id": 7,
+          "val": "L.NORRIS"
+        },
+        {
+          "idx": 3,
+          "id": 13,
+          "val": "S.VETTEL"
         },
         {
           "idx": 4,
-          "id": 15,
-          "val": "V.BOTTAS"
+          "id": 17,
+          "val": "N.LATIFI"
+        }
+      ],
+      "head": [
+        {
+          "idx": 0,
+          "id": 6,
+          "val": "C.LECLERC"
+        },
+        {
+          "idx": 1,
+          "id": 3,
+          "val": "L.HAMILTON"
+        },
+        {
+          "idx": 2,
+          "id": 7,
+          "val": "L.NORRIS"
         },
         {
           "idx": 3,
@@ -432,9 +427,14 @@
           "val": "N.LATIFI"
         },
         {
+          "idx": 4,
+          "id": 15,
+          "val": "V.BOTTAS"
+        },
+        {
           "idx": 5,
-          "id": 2,
-          "val": "S.PEREZ"
+          "id": 1,
+          "val": "M.VERSTAPPEN"
         },
         {
           "idx": 6,
@@ -448,8 +448,8 @@
         },
         {
           "idx": 8,
-          "id": 20,
-          "val": "K.MAGNUSSEN"
+          "id": 19,
+          "val": "M.SCHUMACHER"
         },
         {
           "idx": 9,

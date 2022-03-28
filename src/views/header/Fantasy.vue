@@ -64,7 +64,8 @@ export default {
     const bets = betsData.value;
     const teams = bets.head.map((b) => {
       let dr = drivers.value.find((d) => d.name === b.val);
-      b.team = dr.team;
+      if (dr?.id) b.team = dr.team;
+      else b.team = "";
       return b;
     });
     bets.head = teams;

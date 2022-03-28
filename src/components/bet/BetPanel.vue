@@ -70,50 +70,6 @@ export default {
     const liveBet = computed(() => store.getters.getliveBet);
     const currentRace = useCurrentRace();
 
-    const handleConfirmation = () => {
-      if (
-        liveBet.value !== undefined &&
-        liveBet.value.pole &&
-        liveBet.value.masters.length &&
-        liveBet.value.evo.length &&
-        liveBet.value.head.length &&
-        liveBet.value.misc.length
-      ) {
-        // NOTE find lest event before current date
-        store.dispatch("liveBetUpdate", {
-          type: "event",
-          value: { id: currentRace.value.id, name: currentRace.value.name },
-        });
-        // NOTE get/set logged in user
-        store.dispatch("liveBetUpdate", {
-          type: "user",
-          value: { id: 0, email: "rayannezinha@f1master.com" },
-        });
-        // TODO load existing bets for logged in user and add/update new one
-        store.dispatch("liveBetUpdate", {
-          type: "createdAt",
-          value: new Date(),
-        });
-        // store.dispatch("fetchBets");
-        // store.dispatch("fetchBet", liveBet.value);
-        // const bet = computed(() => store.getters.getBet);
-        // liveBet.value.id = bet.value.id;
-        store.dispatch("betAdd", liveBet.value);
-        const bets = computed(() => store.getters.getBets);
-        console.log("muuu", bets.value);
-        alert("OK - " + JSON.stringify(liveBet.value));
-        return;
-      }
-      alert("NOT");
-    };
-
-    const resetAll = ref(false);
-    const reset = () => {
-      resetAll.value = true;
-      store.dispatch("liveBetClear");
-      setTimeout(() => (resetAll.value = false), 0);
-    };
-
     const masters = ref(
       drivers.map((driver) => {
         return { id: driver.id, name: driver.name, number: driver.number };
@@ -142,6 +98,58 @@ export default {
       { id: 0, name: "YES" },
       { id: 1, name: "NO" },
     ]);
+
+    const handleConfirmation = () => {
+      if (
+        liveBet.value !== undefined &&
+        liveBet.value.pole &&
+        liveBet.value.masters.length &&
+        liveBet.value.evo.length &&
+        liveBet.value.head.length &&
+        liveBet.value.misc.length
+      ) {
+        // NOTE add last event before current date
+        store.dispatch("liveBetUpdate", {
+          type: "event",
+          value: { id: currentRace.value.id, name: currentRace.value.name },
+        });
+        // NOTE get/set logged in user
+        store.dispatch("liveBetUpdate", {
+          type: "user",
+          value: { id: 0, email: "rayannezinha@f1master.com" },
+        });
+        // NOTE add date/time to live bet
+        store.dispatch("liveBetUpdate", {
+          type: "createdAt",
+          value: new Date(),
+        });
+        // NOTE check if exists bet for same event
+        store.dispatch("fetchBets");
+        const bet = computed(() => store.getters.getBets);
+        const found = bet.value.data.find(
+          (b) => b.event.id === liveBet.value.event.id
+        );
+        // NOTE update existing or add new bet
+        if (found.event.id) {
+          liveBet.value.id = found.id;
+          store.dispatch("betUpdate", liveBet.value);
+        } else {
+          store.dispatch("betAdd", liveBet.value);
+        }
+        const bets = computed(() => store.getters.getBets);
+        console.log("muuu", bets.value);
+        alert("OK - " + JSON.stringify(liveBet.value));
+        return;
+      }
+      alert("NOT");
+    };
+
+    const resetAll = ref(false);
+    const reset = () => {
+      resetAll.value = true;
+      store.dispatch("liveBetClear");
+      setTimeout(() => (resetAll.value = false), 0);
+    };
 
     return {
       currentRace,

@@ -23,14 +23,14 @@ const mutations = {
     state.bet = {};
   },
 
-  addBet(state, text) {
-    state.bets = [text, ...state.bets];
+  addBet(state, betData) {
+    state.bets = [betData, ...state.bets];
   },
 
   updateBet(state, bet) {
     state.bets = [
       ...state.bets.map((item) =>
-        item._id !== bet._id
+        item.id !== bet.id
           ? item
           : {
               ...item,
@@ -41,7 +41,7 @@ const mutations = {
   },
 
   deleteBet(state, id) {
-    state.bets = [...state.bets.filter((item) => item._id !== id)];
+    state.bets = [...state.bets.filter((item) => item.id !== id)];
   },
 };
 
@@ -49,7 +49,7 @@ const mutations = {
 const actions = {
   fetchBets({ commit }) {
     axios
-      .get(URL)
+      .get(URL + "bets/")
       .then((response) => {
         commit("setBets", response);
       })
@@ -61,7 +61,7 @@ const actions = {
         //   commit("setErrors", error);
         // }
       });
-    commit("setBets", bets);
+    //commit("setBets", bets);
   },
 
   async fetchBet({ commit }, betData) {
@@ -91,26 +91,25 @@ const actions = {
   },
 
   async betUpdate({ commit }, betData) {
-    // await axios
-    //   .put(URL + "api/v1/langs/" + betData._id, betData)
-    //   .then((response) => {
-    //     commit("updateBet", response.data);
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       commit("setErrors", error.response.data.error);
-    //     } else {
-    //       commit("setErrors", error);
-    //     }
-    //   });
-    commit("updateBet", betData);
+    await axios
+      .put(URL + "bets/" + betData.id, betData)
+      .then((response) => {
+        commit("updateBet", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          commit("setErrors", error.response.data.error);
+        } else {
+          commit("setErrors", error);
+        }
+      });
   },
 
   async betDelete({ commit }, betData) {
     await axios
-      .delete(URL + "api/v1/langs/" + betData._id, betData)
+      .delete(URL + "bets/" + betData.id, betData)
       .then((response) => {
-        commit("deleteBet", response.data._id);
+        commit("deleteBet", response.data.id);
       })
       .catch((error) => {
         if (error.response) {
