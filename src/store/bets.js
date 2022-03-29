@@ -11,6 +11,16 @@ const state = {
 const getters = {
   getBets: (state) => state.bets,
 
+  getBetsUser: (state) => (userId) => {
+    return state.bets.data.filter((b) => b.user.id === userId);
+  },
+
+  getBetsEventUser: (state) => (eventUser) => {
+    return state.bets.data.find(
+      (b) => b.user.id === eventUser.user && b.event.id === eventUser.event
+    );
+  },
+
   getBet: (state) => state.bet,
 };
 

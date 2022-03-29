@@ -121,7 +121,7 @@ export default {
       () => [...selected.value],
       (currentValue) => {
         const source =
-          routeName.value == "bet" ? "liveBetUpdate" : "resultsUpdate";
+          routeName.value == "results" ? "resultsUpdate" : "liveBetUpdate";
         store.dispatch(source, {
           type: props.dataName,
           value: currentValue,

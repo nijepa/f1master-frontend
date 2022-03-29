@@ -101,8 +101,13 @@ export default {
     const schema = yup.object().shape({
       firstname: yup
         .string()
-        .required("Username is required!")
-        .min(3, "Must be at least 3 characters!")
+        .required("First is required!")
+        .min(2, "Must be at least 2 characters!")
+        .max(20, "Must be maximum 20 characters!"),
+      lastname: yup
+        .string()
+        .required("Last is required!")
+        .min(2, "Must be at least 2 characters!")
         .max(20, "Must be maximum 20 characters!"),
       email: yup
         .string()

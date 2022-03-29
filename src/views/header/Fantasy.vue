@@ -4,48 +4,51 @@
 
     <div class="">
       <h3>User</h3>
-      <h2>{{ bets.user.email }}</h2>
+      <h2>{{ bets[0].user.email }}</h2>
     </div>
-    <div class="">
-      <h3>Created</h3>
-      <h4>{{ bets.createdAt.slice(0, 10) }}</h4>
-    </div>
-    <div class="">
-      <h3>Event</h3>
-      <h4>{{ bets.event.name }}</h4>
-    </div>
-    <div class="fantasy-single">
+
+    <div v-for="bet in bets" :key="bet.id" class="fantasy-wrapper">
       <div class="">
-        <h3>Pole Time</h3>
-        <span>{{ bets.pole }}</span>
+        <h3>Created</h3>
+        <h4>{{ bet.createdAt.slice(0, 10) }}</h4>
       </div>
       <div class="">
-        <h3>Misc</h3>
-        <span>{{ bets.misc[0].val }}</span>
+        <h3>Event</h3>
+        <h4>{{ bet.event.name }}</h4>
       </div>
-    </div>
-    <div class="fantasy-list">
-      <div class="">
-        <h3>F1 Masters</h3>
-        <li v-for="(bet, i) in bets.masters" :key="i">
-          <span>{{ bet.idx + 1 }}</span> -
-          <span>{{ bet.val }}</span>
-        </li>
+      <div class="fantasy-single">
+        <div class="">
+          <h3>Pole Time</h3>
+          <span>{{ bet.pole }}</span>
+        </div>
+        <div class="">
+          <h3>Misc</h3>
+          <span>{{ bet.misc[0].val }}</span>
+        </div>
       </div>
-      <div class="">
-        <h3>Evo</h3>
-        <li v-for="(bet, i) in bets.evo" :key="i">
-          <span>{{ bet.idx + 1 }}</span> -
-          <span>{{ bet.val }}</span>
-        </li>
-      </div>
-      <div class="">
-        <h3>Head 2 Head</h3>
-        <ul>
-          <li v-for="(bet, i) in bets.head" :key="i" class="fantasy-head">
-            <span>{{ bet.team }} </span> - <span>{{ bet.val }}</span>
+      <div class="fantasy-list">
+        <div class="">
+          <h3>F1 Masters</h3>
+          <li v-for="(be, i) in bet.masters" :key="i">
+            <span>{{ be.idx + 1 }}</span> -
+            <span>{{ be.val }}</span>
           </li>
-        </ul>
+        </div>
+        <div class="">
+          <h3>Evo</h3>
+          <li v-for="(be, i) in bet.evo" :key="i">
+            <span>{{ be.idx + 1 }}</span> -
+            <span>{{ be.val }}</span>
+          </li>
+        </div>
+        <div class="">
+          <h3>Head 2 Head</h3>
+          <ul>
+            <li v-for="(be, i) in bet.head" :key="i" class="fantasy-head">
+              <span>{{ be.team }} </span> - <span>{{ be.val }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -54,22 +57,30 @@
 <script>
 import { useStore } from "vuex";
 import { computed } from "vue";
+import useCurrentUser from "@/composables/useCurrentUser";
 
 export default {
   setup() {
+    const currentUser = useCurrentUser();
     const store = useStore();
-    store.dispatch("fetchBet", 1);
-    const betsData = computed(() => store.getters.getBet);
+    store.dispatch("fetchBets");
+    const betsData = computed(() =>
+      store.getters.getBetsUser(currentUser.value.id)
+    );
+
     const drivers = computed(() => store.getters.getF1datas("drivers"));
     const bets = betsData.value;
-    const teams = bets.head.map((b) => {
-      let dr = drivers.value.find((d) => d.name === b.val);
-      if (dr?.id) b.team = dr.team;
-      else b.team = "";
-      return b;
+    bets.forEach((bet) => {
+      const teams = bet.head.map((b) => {
+        let dr = drivers.value.find((d) => d.name === b.val);
+        if (dr?.id) b.team = dr.team;
+        else b.team = "";
+        return b;
+      });
+      bet.head = teams;
     });
-    bets.head = teams;
 
+    console.log(bets);
     return { bets };
   },
 };
@@ -101,22 +112,29 @@ export default {
     color: white;
   }
 
-  .fantasy-list,
-  .fantasy-single {
+  .fantasy-wrapper {
     display: flex;
-    column-gap: 3em;
-    text-align: left;
-    list-style: none;
+    flex-direction: column;
+    align-items: center;
 
-    h3 {
-      text-align: center;
-    }
-
-    .fantasy-head {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+    .fantasy-list,
+    .fantasy-single {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 3em;
+      text-align: left;
       list-style: none;
-      column-gap: 1em;
+
+      h3 {
+        text-align: center;
+      }
+
+      .fantasy-head {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        list-style: none;
+        column-gap: 1em;
+      }
     }
   }
 }

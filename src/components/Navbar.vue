@@ -29,6 +29,7 @@
           >{{ links.leftLink.title }}</router-link
         >
         <router-link
+          v-if="!role('ROLE_USER') && !role('ROLE_ADMIN')"
           class="link nav-link nav-link2"
           :to="links.rightLink.to"
           active-class="active2"
@@ -112,6 +113,7 @@
             </div>
           </div>
           <router-link
+            v-if="!role('ROLE_USER') && !role('ROLE_ADMIN')"
             @click="mobileNav = false"
             active-class="active2"
             class="link nav-link nav-link2"

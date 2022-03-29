@@ -11,22 +11,20 @@
         </div>
       </div>
 
-      <div class="inputs">
+      <Form @submit="handleRegister" :validation-schema="schema" class="inputs">
         <div class="input-field">
           <label>
-            <input
-              v-model="state.emailRegistration"
+            <Field
+              name="email"
               type="email"
               placeholder=""
               class="emailRegistration"
             />
             <span>E-mail</span>
           </label>
-          <span v-if="v$.emailRegistration.$error" class="error-msg">{{
-            v$.emailRegistration.$errors[0].$message
-          }}</span>
+          <ErrorMessage name="email" class="error-msg" />
         </div>
-      </div>
+      </Form>
 
       <button @click.prevent="submitForm">CONFIRM</button>
     </div>
@@ -34,29 +32,49 @@
 </template>
 
 <script>
-import useValidate from "@vuelidate/core";
-import { required, email, minLength } from "@vuelidate/validators";
-import { reactive, computed } from "vue";
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
 export default {
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
   setup() {
-    const state = reactive({
-      emailRegistration: "",
+    const schema = yup.object().shape({
+      email: yup
+        .string()
+        .required("Email is required!")
+        .email("Email is invalid!")
+        .max(50, "Must be maximum 50 characters!"),
     });
-    const rules = computed(() => {
-      return {
-        emailRegistration: { required, email, minLength: minLength(3) },
-      };
-    });
-    const v$ = useValidate(rules, state);
-    function submitForm() {
-      this.v$.$validate();
-      if (!this.v$.$error) {
-        alert("its ok");
-      } else {
-        alert("check errors!!!");
-      }
-    }
-    return { state, v$, submitForm };
+
+    const message = ref("");
+
+    const store = useStore();
+    const router = useRouter();
+
+    const handleRegister = (user) => {
+      store.dispatch("login", user).then(
+        () => {
+          router.push("/profile");
+        },
+        (error) => {
+          message.value =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    };
+
+    return { schema, handleRegister };
   },
 };
 </script>

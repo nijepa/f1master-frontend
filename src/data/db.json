@@ -305,18 +305,11 @@
       "qualifyingStart": "yti",
       "active": "",
       "id": 4
-    },
-    {
-      "name": "qqqqqqq",
-      "raceStart": "2022-03-26T23:22:00.000Z",
-      "qualifyingStart": "33",
-      "active": true,
-      "id": 5
     }
   ],
   "bets": [
     {
-      "createdAt": "2022-03-28T21:24:40.642Z",
+      "createdAt": "2022-03-29T13:51:34.350Z",
       "user": {
         "id": 3,
         "email": "nijepa@gmail.com"
@@ -325,37 +318,37 @@
         "id": 2,
         "name": "AUSTRALIA GRAND PRIX"
       },
-      "pole": "1'23'982'''",
+      "pole": "1'25'436'''",
       "masters": [
         {
           "idx": 0,
-          "id": 6,
-          "val": "C.LECLERC"
+          "id": 3,
+          "val": "L.HAMILTON"
         },
         {
           "idx": 1,
-          "id": 5,
-          "val": "C.SAINZ"
-        },
-        {
-          "idx": 2,
           "id": 1,
           "val": "M.VERSTAPPEN"
         },
         {
-          "idx": 3,
+          "idx": 2,
           "id": 2,
           "val": "S.PEREZ"
         },
         {
+          "idx": 3,
+          "id": 6,
+          "val": "C.LECLERC"
+        },
+        {
           "idx": 4,
-          "id": 4,
-          "val": "G.RUSSELL"
+          "id": 5,
+          "val": "C.SAINZ"
         },
         {
           "idx": 5,
-          "id": 3,
-          "val": "L.HAMILTON"
+          "id": 4,
+          "val": "G.RUSSELL"
         },
         {
           "idx": 6,
@@ -364,52 +357,52 @@
         },
         {
           "idx": 7,
-          "id": 8,
-          "val": "D.RICCIARDO"
-        },
-        {
-          "idx": 8,
           "id": 9,
           "val": "F.ALONSO"
         },
         {
+          "idx": 8,
+          "id": 11,
+          "val": "P.GASLY"
+        },
+        {
           "idx": 9,
-          "id": 13,
-          "val": "S.VETTEL"
+          "id": 8,
+          "val": "D.RICCIARDO"
         }
       ],
       "evo": [
         {
           "idx": 0,
-          "id": 11,
-          "val": "P.GASLY"
-        },
-        {
-          "idx": 1,
-          "id": 15,
-          "val": "V.BOTTAS"
-        },
-        {
-          "idx": 2,
-          "id": 18,
-          "val": "A.ALBON"
+          "id": 17,
+          "val": "N.LATIFI"
         },
         {
           "idx": 3,
-          "id": 19,
-          "val": "M.SCHUMACHER"
+          "id": 12,
+          "val": "Y.TSUNODA"
+        },
+        {
+          "idx": 1,
+          "id": 20,
+          "val": "K.MAGNUSSEN"
+        },
+        {
+          "idx": 2,
+          "id": 16,
+          "val": "G.ZHOU"
         },
         {
           "idx": 4,
-          "id": 16,
-          "val": "G.ZHOU"
+          "id": 15,
+          "val": "V.BOTTAS"
         }
       ],
       "head": [
         {
           "idx": 0,
-          "id": 6,
-          "val": "C.LECLERC"
+          "id": 5,
+          "val": "C.SAINZ"
         },
         {
           "idx": 1,
@@ -423,8 +416,8 @@
         },
         {
           "idx": 3,
-          "id": 17,
-          "val": "N.LATIFI"
+          "id": 18,
+          "val": "A.ALBON"
         },
         {
           "idx": 4,
@@ -443,13 +436,13 @@
         },
         {
           "idx": 7,
-          "id": 13,
-          "val": "S.VETTEL"
+          "id": 14,
+          "val": "L.STROLL"
         },
         {
           "idx": 8,
-          "id": 19,
-          "val": "M.SCHUMACHER"
+          "id": 20,
+          "val": "K.MAGNUSSEN"
         },
         {
           "idx": 9,

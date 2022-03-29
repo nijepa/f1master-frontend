@@ -44,10 +44,6 @@
     />
   </div>
   <ConfirmGroup @reseted="reset" @confirmed="handleConfirmation" />
-  <!-- <div class="btn-wrapper">
-    <button class="btn reset" @click="reset">Reset All</button>
-    <button class="btn confirm" @click="handleConfirmation">Confirm</button>
-  </div> -->
   <p>{{ liveBet }}</p>
 </template>
 
@@ -67,9 +63,11 @@ export default {
 
   setup() {
     const store = useStore();
-    const liveBet = computed(() => store.getters.getliveBet);
+
     const currentRace = useCurrentRace();
     const currentUser = useCurrentUser();
+
+    store.dispatch("liveBetClear");
 
     const masters = ref(
       drivers.map((driver) => {
@@ -100,6 +98,18 @@ export default {
       { id: 1, name: "NO" },
     ]);
 
+    // NOTE check if bet exists for same event and current user
+    store.dispatch("fetchBets");
+    const checkBets = computed(() =>
+      store.getters.getBetsEventUser({
+        user: currentUser.value.id,
+        event: currentRace.value.id,
+      })
+    );
+    if (checkBets.value.id !== null)
+      store.dispatch("liveBetSet", checkBets.value);
+    const liveBet = computed(() => store.getters.getliveBet);
+
     const handleConfirmation = () => {
       if (
         liveBet.value !== undefined &&
@@ -109,7 +119,7 @@ export default {
         liveBet.value.head.length &&
         liveBet.value.misc.length
       ) {
-        // NOTE add last event before current date
+        // NOTE set last event before current date to live bet
         store.dispatch("liveBetUpdate", {
           type: "event",
           value: { id: currentRace.value.id, name: currentRace.value.name },
@@ -119,29 +129,38 @@ export default {
           type: "user",
           value: { id: currentUser.value.id, email: currentUser.value.email },
         });
-        // NOTE add date/time to live bet
+        // NOTE set date/time to live bet
         store.dispatch("liveBetUpdate", {
           type: "createdAt",
           value: new Date(),
         });
         // NOTE check if exists bet for same event
-        store.dispatch("fetchBets");
-        const bet = computed(() => store.getters.getBets);
-        const found = bet.value?.data.find(
-          (b) =>
-            b.event.id === liveBet.value.event.id &&
-            b.user.id === liveBet.value.user.id
-        );
+        // store.dispatch("fetchBets");
+        // const bet = computed(() => store.getters.getBets);
+        // const found = bet.value?.data.find(
+        //   (b) =>
+        //     b.event.id === liveBet.value.event.id &&
+        //     b.user.id === liveBet.value.user.id
+        // );
         // NOTE update existing or add new bet
-        if (found?.event.id) {
-          liveBet.value.id = found.id;
+        // if (found?.event.id) {
+        //   liveBet.value.id = found.id;
+        //   store.dispatch("betUpdate", liveBet.value);
+        // } else {
+        //   store.dispatch("betAdd", liveBet.value);
+        // }
+
+        if (checkBets.value?.event.id) {
+          //liveBet.value.id = checkBets.value.id;
           store.dispatch("betUpdate", liveBet.value);
         } else {
           store.dispatch("betAdd", liveBet.value);
         }
-        const bets = computed(() => store.getters.getBets);
-        console.log("muuu", bets.value);
+        //const bets = computed(() => store.getters.getBets);
+        // console.log("muuu", bets.value);
         alert("OK - " + JSON.stringify(liveBet.value));
+        // TODO check if time is up for event befor saving
+        store.dispatch("liveBetClear");
         return;
       }
       alert("NOT");
