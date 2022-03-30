@@ -1,10 +1,10 @@
 <template>
-  <div class="home-wrapper">
+  <div class="home-wrapper" :class="{ 'no-user': isUser }">
     <div class="">
       <h1>{{ currentRace.name }}</h1>
       <Counter :end="currentRace.raceStart" />
     </div>
-    <h1 class="home-msg">
+    <h1 class="home-msg" v-if="!currentUser">
       <router-link to="/superlicense" class="adv-link"
         >sign in/up to play</router-link
       >
@@ -18,6 +18,8 @@
 <script>
 import Counter from "@/components/Counter.vue";
 import useCurrentRace from "@/composables/useCurrentRace";
+import useCurrentUser from "@/composables/useCurrentUser";
+import { computed } from "vue";
 
 export default {
   name: "HelloWorld",
@@ -26,8 +28,11 @@ export default {
   },
   setup() {
     const currentRace = useCurrentRace();
+    const currentUser = useCurrentUser();
 
-    return { currentRace };
+    const isUser = computed(() => (!currentUser.value ? true : false));
+
+    return { currentRace, currentUser, isUser };
   },
 };
 </script>
@@ -37,7 +42,7 @@ export default {
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
 
   h1 {
     color: #fdd800;
@@ -62,5 +67,8 @@ export default {
       }
     }
   }
+}
+.no-user {
+  grid-template-rows: auto auto 1fr;
 }
 </style>

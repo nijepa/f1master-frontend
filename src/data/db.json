@@ -46,14 +46,14 @@
       "id": 7,
       "name": "L.NORRIS",
       "number": "04",
-      "team": "McLAREN",
+      "team": "MCLAREN",
       "active": true
     },
     {
       "id": 8,
       "name": "D.RICCIARDO",
       "number": "03",
-      "team": "McLAREN",
+      "team": "MCLAREN",
       "active": true
     },
     {
@@ -155,7 +155,7 @@
       "active": true,
       "historyNumber": 1,
       "teamName": "FERRARI",
-      "start": "01/01/2022",
+      "start": "2022-01-01T13:45:00.000Z",
       "currentySeasonPosition": 1,
       "seasonNumber": 1
     },
@@ -165,7 +165,7 @@
       "active": true,
       "historyNumber": 2,
       "teamName": "MERCEDES",
-      "start": "03/01/2022",
+      "start": "2022-01-03T13:45:00.000Z",
       "currentySeasonPosition": 2,
       "seasonNumber": 1
     },
@@ -175,7 +175,7 @@
       "active": true,
       "historyNumber": 3,
       "teamName": "MCLAREN",
-      "start": "05/01/2022",
+      "start": "2022-01-05T13:45:00.000Z",
       "currentySeasonPosition": 3,
       "seasonNumber": 4
     },
@@ -185,7 +185,7 @@
       "active": true,
       "historyNumber": 4,
       "teamName": "WILLIAMS",
-      "start": "07/01/2022",
+      "start": "2022-01-07T13:45:00.000Z",
       "currentySeasonPosition": 4,
       "seasonNumber": 8
     },
@@ -195,7 +195,7 @@
       "active": false,
       "historyNumber": 5,
       "teamName": "RENAULT",
-      "start": "09/01/2022",
+      "start": "2022-01-09T13:45:00.000Z",
       "currentySeasonPosition": 6,
       "seasonNumbe": 0
     },
@@ -205,7 +205,7 @@
       "active": true,
       "historyNumber": 6,
       "teamName": "ALFA ROMEO",
-      "start": "11/01/2022",
+      "start": "2022-01-11T13:46:00.000Z",
       "currentySeasonPosition": 5,
       "seasonNumber": 9
     },
@@ -215,7 +215,7 @@
       "active": true,
       "historyNumber": 7,
       "teamName": "RED BULL",
-      "start": "13/01/2022",
+      "start": "2022-01-13T13:46:00.000Z",
       "currentySeasonPosition": 7,
       "seasonNumber": 2
     },
@@ -225,7 +225,7 @@
       "active": true,
       "historyNumber": 8,
       "teamName": "ALPHA TAURI",
-      "start": "15/01/2022",
+      "start": "2022-01-15T13:46:00.000Z",
       "currentySeasonPosition": 8,
       "seasonNumber": 7
     },
@@ -235,7 +235,7 @@
       "active": true,
       "historyNumber": 9,
       "teamName": "ASTON MARTIN",
-      "start": "17/01/2022",
+      "start": "2022-01-17T13:46:00.000Z",
       "currentySeasonPosition": 9,
       "seasonNumber": 6
     },
@@ -245,7 +245,7 @@
       "active": true,
       "historyNumber": 1,
       "teamName": "HAAS",
-      "start": "19/01/2022",
+      "start": "2022-01-19T13:46:00.000Z",
       "currentySeasonPosition": 10,
       "seasonNumber": 0
     },
@@ -255,7 +255,7 @@
       "active": true,
       "historyNumber": 1,
       "teamName": "ALPINE",
-      "start": "21/01/2022",
+      "start": "2022-01-21T13:46:00.000Z",
       "currentySeasonPosition": 6,
       "seasonNumber": 5
     },
@@ -265,7 +265,7 @@
       "active": false,
       "historyNumber": 1,
       "teamName": "ANDRETTI",
-      "start": "23/01/2022",
+      "start": "2022-01-23T13:44:00.000Z",
       "currentySeasonPosition": 11,
       "seasonNumber": 0
     }
@@ -274,42 +274,35 @@
     {
       "id": 0,
       "name": "BAHRAIN GRAND PRIX",
-      "raceStart": "2022-03-20T09:00:00.000+00:00",
-      "qualifyingStart": "saturday, 19mar,9:00:hs",
+      "raceStart": "2022-03-20T08:00:00.000Z",
+      "qualifyingStart": "2022-03-19T08:00:00.000Z",
       "start": "2021-03-19T10:00:0.000+00:00"
     },
     {
       "id": 1,
       "name": "SAUDI ARABIAN GRAND PRIX",
-      "raceStart": "2022-03-27T20:00:00.000+00:00",
-      "qualifyingStart": "saturday, 26mar,20:00:hs",
+      "raceStart": "2022-03-27T18:00:00.000Z",
+      "qualifyingStart": "2022-03-26T19:00:00.000Z",
       "start": "2022-03-26T20:00:0.000+00:00"
     },
     {
       "id": 2,
       "name": "AUSTRALIA GRAND PRIX",
-      "raceStart": "2022-04-08T10:00:00.000+00:00",
-      "qualifyingStart": "saturday, 7apr,9:00:hs",
+      "raceStart": "2022-04-08T08:00:00.000Z",
+      "qualifyingStart": "2022-04-07T07:00:00.000Z",
       "start": "2022-04-07T09:00:0.000+00:00"
     },
     {
       "id": 3,
       "name": "EMILIA ROMANA GRAND PRIX",
-      "raceStart": "2022-04-22T10:00:00.000+00:00",
-      "qualifyingStart": "saturday, 21apr,9:00:hs",
+      "raceStart": "2022-04-22T08:00:00.000Z",
+      "qualifyingStart": "2022-04-21T07:00:00.000Z",
       "start": "2022-04-21T09:00:0.000+00:00"
-    },
-    {
-      "name": "ytyityity",
-      "raceStart": "2022-03-27T18:11:00.000Z",
-      "qualifyingStart": "yti",
-      "active": "",
-      "id": 4
     }
   ],
   "bets": [
     {
-      "createdAt": "2022-03-29T13:51:34.350Z",
+      "createdAt": "2022-03-30T17:05:54.636Z",
       "user": {
         "id": 3,
         "email": "nijepa@gmail.com"

@@ -43,6 +43,7 @@
       class="misc"
     />
   </div>
+  <Toast class="msg" />
   <ConfirmGroup @reseted="reset" @confirmed="handleConfirmation" />
   <p>{{ liveBet }}</p>
 </template>
@@ -51,6 +52,7 @@
 import Poletime from "./PoletimeBet.vue";
 import SelectWrapper from "./SelectWrapper.vue";
 import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
+import Toast from "../Toast.vue";
 import drivers from "@/data/drivers";
 import teams from "@/data/teams";
 import useCurrentRace from "@/composables/useCurrentRace";
@@ -59,7 +61,7 @@ import { useStore } from "vuex";
 import useCurrentUser from "@/composables/useCurrentUser";
 
 export default {
-  components: { Poletime, SelectWrapper, ConfirmGroup },
+  components: { Poletime, SelectWrapper, ConfirmGroup, Toast },
 
   setup() {
     const store = useStore();
@@ -161,6 +163,14 @@ export default {
         alert("OK - " + JSON.stringify(liveBet.value));
         // TODO check if time is up for event befor saving
         store.dispatch("liveBetClear");
+        store.dispatch("updateToast", {
+          title: "Success !",
+          message: "Your Bet is placed",
+          colorVariant: "info",
+          position: "center",
+          duration: 0,
+          buttonText: "ihaaa",
+        });
         return;
       }
       alert("NOT");

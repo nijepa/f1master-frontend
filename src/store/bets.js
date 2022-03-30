@@ -96,7 +96,7 @@ const actions = {
       .put(URL + "bets/" + betData.id, betData)
       .then((response) => {
         commit("updateBet", response.data);
-        router.push("/fantasy");
+        //router.push("/fantasy");
       })
       .catch((error) => {
         commit("setErrors", error, { root: true });

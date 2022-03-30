@@ -17,6 +17,15 @@
           >
             {{ key.heading }}
           </h4>
+          <select
+            v-if="key.type === 'select'"
+            v-model="item[key.name]"
+            @update:modelValue="[setIndex(i), handleChange($event)]"
+          >
+            <option :value="team.teamName" v-for="team in teams" :key="team.id">
+              {{ team.teamName }}
+            </option>
+          </select>
           <Datepicker
             v-model="item[key.name]"
             v-if="key.type === 'date'"
@@ -24,7 +33,11 @@
             dark
           ></Datepicker>
           <DefaultInput
-            v-else
+            v-if="
+              key.type === 'text' ||
+              key.type === 'checkbox' ||
+              key.type === 'number'
+            "
             @changed="[setIndex(i), handleChange($event)]"
             v-model="item[key.name]"
             :input-type="key.type"
@@ -83,7 +96,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import DefaultInput from "@/components/admin/DefaultInput.vue";
 import DefaultEntry from "@/components/admin/DefaultEntry.vue";
 import { ref, computed } from "@vue/reactivity";
-import { onMounted, watch } from "vue";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
@@ -115,6 +128,7 @@ export default {
     const store = useStore();
 
     const listData = computed(() => store.getters.getF1datas(route.name));
+    const teams = computed(() => store.getters.getF1datas("teams"));
     const model = ref(props.dataModel);
 
     const loadData = async () => {
@@ -123,7 +137,7 @@ export default {
 
     onMounted(() => {
       loadData();
-      console.log(1111)
+      console.log(1111);
       emit("loaded", true);
     });
 
@@ -143,6 +157,7 @@ export default {
         value: listData.value[idx.value],
       };
       store.dispatch("f1dataUpdate", dataForVuex);
+      selected.value = false;
     };
 
     const addItem = () => {
@@ -185,6 +200,7 @@ export default {
     });
 
     return {
+      teams,
       model,
       listData,
       fieldsClass,
@@ -230,6 +246,25 @@ export default {
       justify-content: center;
       align-items: center;
       flex-direction: column;
+
+      select {
+        background: rgba(16, 16, 16, 0.502);
+        border-radius: 4px;
+        border: none;
+        color: white;
+        padding: 1em;
+        letter-spacing: 1.5px;
+        transition: all 0.4s ease;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+          background: rgba(16, 16, 16, 1);
+          outline: none;
+          -webkit-box-shadow: inset 0px 0px 1px 1px $haas;
+          box-shadow: inset 0px 0px 1px 1px $haas;
+        }
+      }
 
       .list-heading {
         font-variant: small-caps;

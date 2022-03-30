@@ -94,7 +94,7 @@
           class="dropdown-nav"
         >
           <router-link
-            v-if="role('ROLE_USER')"
+            v-if="role('ROLE_USER') || role('ROLE_ADMIN')"
             @click="mobileNav = false"
             class="link nav-link nav-link1"
             active-class="active"
@@ -128,6 +128,7 @@
           >
           <router-link
             v-if="currentUser"
+            @click="mobileNav = false"
             :to="links.profileLink.to"
             class="link"
             >{{ currentUser.email }}</router-link

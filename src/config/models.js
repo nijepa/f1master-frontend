@@ -26,7 +26,7 @@ const models = {
       },
       {
         name: "team",
-        type: "text",
+        type: "select",
         readonly: false,
         placeholder: "team",
         heading: "Team",
@@ -60,7 +60,7 @@ const models = {
       },
       {
         name: "start",
-        type: "text",
+        type: "date",
         readonly: false,
         placeholder: "start",
         heading: "Start",
@@ -101,7 +101,7 @@ const models = {
       },
       {
         name: "qualifyingStart",
-        type: "text",
+        type: "date",
         readonly: false,
         placeholder: "qualifying start",
         heading: "Qualifying Start",

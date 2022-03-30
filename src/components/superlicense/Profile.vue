@@ -53,7 +53,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1em;
+    margin: 1em;
     row-gap: 1em;
     background-color: rgba(11, 31, 42, 0.7);
     border-radius: 8px;
