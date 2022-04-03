@@ -52,30 +52,28 @@
         />
       </div>
     </div>
+    <Toast class="msg" />
     <ConfirmGroup @reseted="reset" @confirmed="handleConfirmation" />
-    <!-- <div class="btn-wrapper">
-      <button class="btn reset" @click="reset">Reset All</button>
-      <button class="btn confirm" @click="handleConfirmation">Confirm</button>
-    </div> -->
   </div>
   <p>{{ results }}</p>
 </template>
 
 <script>
-//import InputComp from "@/components/bet/InputComponent.vue";
 import SelectWrapper from "@/components/bet/SelectWrapper.vue";
 import Poletime from "@/components/bet/PoletimeBet.vue";
 import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
+import Toast from "../Toast.vue";
 import { ref, computed } from "@vue/reactivity";
 import { useStore } from "vuex";
+import useCurrentUser from "@/composables/useCurrentUser";
 
 export default {
   name: "Results",
   components: {
-    //InputComp,
     SelectWrapper,
     Poletime,
     ConfirmGroup,
+    Toast,
   },
 
   setup() {
@@ -84,6 +82,8 @@ export default {
     store.dispatch("fetchF1datas", "events");
     const drivers = computed(() => store.getters.getF1datas("drivers"));
     const events = computed(() => store.getters.getF1datas("events"));
+
+    const currentUser = useCurrentUser();
 
     const results = computed(() => store.getters.getResults);
 
@@ -108,35 +108,50 @@ export default {
     const handleConfirmation = () => {
       if (
         results.value !== undefined &&
-        results.value.pole &&
+        results.value.poletime &&
         results.value.qualifying.length &&
         results.value.race.length &&
-        results.value.Misc.length
+        results.value.misc.length
       ) {
-        // NOTE find lest event before current date
-        // store.dispatch("liveBetUpdate", {
-        //   type: "Event",
-        //   value: { id: currentRace.value.id, name: currentRace.value.name },
-        // });
         // NOTE get/set logged in user
         store.dispatch("resultsUpdate", {
-          type: "User",
-          value: { id: 0, email: "rayannezinha@f1master.com" },
+          type: "user",
+          value: { id: currentUser.value.id, email: currentUser.value.email },
         });
-        // TODO load existing bets for logged in user and add/update new one
+        // NOTE set current date
         store.dispatch("resultsUpdate", {
           type: "createdAt",
           value: new Date(),
         });
 
-        store.dispatch("fetchBets");
-        store.dispatch("fetchBet", results.value);
-        const bet = computed(() => store.getters.getBet);
-        results.value._id = bet.value._id;
-        store.dispatch("betUpdate", results.value);
-        const bets = computed(() => store.getters.getBets);
-        console.log("muuu", bets.value);
+        store.dispatch("resultsUpdate", {
+          type: "season",
+          value: new Date().getFullYear(),
+        });
+
+        store.dispatch("fetchf1results");
+        const checkResults = computed(() =>
+          store.getters.getf1resultEvent({
+            event: results.value?.event?.id,
+          })
+        );
+        // NOTE check if there is results for selected event
+        if (checkResults.value?.event?.id) {
+          store.dispatch("f1resultUpdate", results.value);
+        } else {
+          store.dispatch("f1resultAdd", results.value);
+        }
+
         alert("OK - " + JSON.stringify(results.value));
+        store.dispatch("resultsClear");
+        store.dispatch("updateToast", {
+          title: "Success !",
+          message: "Results are saved",
+          colorVariant: "info",
+          position: "center",
+          duration: 0,
+          buttonText: "ihaaa",
+        });
         return;
       }
       alert("NOT");

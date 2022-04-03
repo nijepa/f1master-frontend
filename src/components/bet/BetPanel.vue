@@ -136,21 +136,6 @@ export default {
           type: "createdAt",
           value: new Date(),
         });
-        // NOTE check if exists bet for same event
-        // store.dispatch("fetchBets");
-        // const bet = computed(() => store.getters.getBets);
-        // const found = bet.value?.data.find(
-        //   (b) =>
-        //     b.event.id === liveBet.value.event.id &&
-        //     b.user.id === liveBet.value.user.id
-        // );
-        // NOTE update existing or add new bet
-        // if (found?.event.id) {
-        //   liveBet.value.id = found.id;
-        //   store.dispatch("betUpdate", liveBet.value);
-        // } else {
-        //   store.dispatch("betAdd", liveBet.value);
-        // }
 
         if (checkBets.value?.event.id) {
           //liveBet.value.id = checkBets.value.id;
@@ -158,8 +143,7 @@ export default {
         } else {
           store.dispatch("betAdd", liveBet.value);
         }
-        //const bets = computed(() => store.getters.getBets);
-        // console.log("muuu", bets.value);
+
         alert("OK - " + JSON.stringify(liveBet.value));
         // TODO check if time is up for event befor saving
         store.dispatch("liveBetClear");

@@ -67,8 +67,9 @@ export default {
     const betsData = computed(() =>
       store.getters.getBetsUser(currentUser.value.id)
     );
-
+    store.dispatch("fetchF1datas", "drivers");
     const drivers = computed(() => store.getters.getF1datas("drivers"));
+
     const bets = betsData.value;
     bets.forEach((bet) => {
       const teams = bet.head.map((b) => {
@@ -116,6 +117,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    row-gap: 1em;
 
     .fantasy-list,
     .fantasy-single {
