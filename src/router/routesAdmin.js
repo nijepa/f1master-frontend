@@ -22,7 +22,29 @@ const routesAdmin = [
         name: "Results",
         component: () =>
           import(
-            /* webpackChunkName: "admin" */ "../components/admin/Results.vue"
+            /* webpackChunkName: "admin" */ "../components/results/ResultsList.vue"
+          ),
+        meta: {
+          panel: "admin",
+        },
+      },
+      {
+        path: "results/:eventId",
+        name: "ResultsEvent",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/results/Results.vue"
+          ),
+        meta: {
+          panel: "admin",
+        },
+      },
+      {
+        path: "results/new",
+        name: "ResultsNew",
+        component: () =>
+          import(
+            /* webpackChunkName: "admin" */ "../components/results/Results.vue"
           ),
         meta: {
           panel: "admin",

@@ -9,13 +9,13 @@ const state = {
 
 /* -------------------------------------- GETTERS -------------------------------------- */
 const getters = {
-  getf1results: (state) => state.f1results,
+  getf1results: (state) => state.f1results.data,
 
   getf1resultEvent: (state) => (eventId) => {
     return state.f1results.data?.filter((b) => b.event.id === eventId);
   },
 
-  getBetsEventUser: (state) => (eventUser) => {
+  getBetsEventUser1: (state) => (eventUser) => {
     return state.bets.data.find(
       (b) => b.user.id === eventUser.user && b.event.id === eventUser.event
     );
