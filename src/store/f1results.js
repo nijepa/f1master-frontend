@@ -12,7 +12,7 @@ const getters = {
   getf1results: (state) => state.f1results.data,
 
   getf1resultEvent: (state) => (eventId) => {
-    return state.f1results.data?.filter((b) => b.event.id === eventId);
+    return state.f1results.data?.filter((b) => b.id === eventId);
   },
 
   getBetsEventUser1: (state) => (eventUser) => {
@@ -70,8 +70,17 @@ const actions = {
   },
 
   async fetchf1result({ commit }, resultData) {
-    const response = await axios.get(URL + "results/" + resultData, resultData);
-    commit("setf1result", response.data);
+    // const response = await axios.get(URL + "results/" + resultData);
+    // console.log(0, response)
+    // commit("setf1result", response);
+    axios
+      .get(URL + "results/" + resultData)
+      .then((response) => {
+        commit("setf1result", response.data);
+      })
+      .catch((error) => {
+        commit("setErrors", error);
+      });
     // const res = bets.find(
     //   (b) => b.User.id === betData.User.id && b.Event.id === betData.Event.id
     // );

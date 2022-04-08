@@ -33,7 +33,7 @@ const routesAdmin = [
         name: "ResultsEvent",
         component: () =>
           import(
-            /* webpackChunkName: "admin" */ "../components/results/Results.vue"
+            /* webpackChunkName: "admin" */ "../components/results/ResultsDetails.vue"
           ),
         meta: {
           panel: "admin",

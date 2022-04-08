@@ -288,9 +288,10 @@
     {
       "id": 2,
       "name": "AUSTRALIA GRAND PRIX",
-      "raceStart": "2022-04-08T08:00:00.000Z",
-      "qualifyingStart": "2022-04-07T07:00:00.000Z",
-      "start": "2022-04-07T09:00:0.000+00:00"
+      "raceStart": "2022-04-10T05:00:00.000Z",
+      "qualifyingStart": "2022-04-09T06:00:00.000Z",
+      "start": "2022-04-07T09:00:0.000+00:00",
+      "active": true
     },
     {
       "id": 3,

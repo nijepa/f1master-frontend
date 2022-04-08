@@ -108,7 +108,7 @@ export default {
         event: currentRace.value.id,
       })
     );
-    if (checkBets.value.id !== null)
+    if (checkBets.value?.id !== null)
       store.dispatch("liveBetSet", checkBets.value);
     const liveBet = computed(() => store.getters.getliveBet);
 
