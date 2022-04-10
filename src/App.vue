@@ -1,7 +1,7 @@
 <template>
   <transition name="route" mode="out-in">
     <AppLayout>
-      <router-view :key="$route.path" v-slot="{ Component }" >
+      <router-view :key="$route.path" v-slot="{ Component }">
         <component :is="Component"></component>
       </router-view>
     </AppLayout>

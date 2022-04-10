@@ -1,12 +1,22 @@
 <template>
   <div class="dashboard">
-    <h1>Dashboard</h1>
+    <h1>{{ $t("dashboard") }}</h1>
     <div class="panel__admin">
-      <router-link class="link__admin" to="/admin/results">results</router-link>
-      <router-link class="link__admin" to="/admin/teams">teams</router-link>
-      <router-link class="link__admin" to="/admin/drivers">drivers</router-link>
-      <router-link class="link__admin" to="/admin/events">events</router-link>
-      <router-link class="link__admin" to="/admin/users">users</router-link>
+      <router-link class="link__admin" to="/admin/results">{{
+        $t("result", 2)
+      }}</router-link>
+      <router-link class="link__admin" to="/admin/teams">{{
+        $t("team", 2)
+      }}</router-link>
+      <router-link class="link__admin" to="/admin/drivers">{{
+        $t("driver", 2)
+      }}</router-link>
+      <router-link class="link__admin" to="/admin/events">{{
+        $t("event", 2)
+      }}</router-link>
+      <router-link class="link__admin" to="/admin/users">{{
+        $t("user", 2)
+      }}</router-link>
     </div>
   </div>
 </template>

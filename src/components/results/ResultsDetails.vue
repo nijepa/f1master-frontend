@@ -66,26 +66,26 @@
           height="43.018"
         />
       </svg>
-      <span>Back</span>
+      <span>{{ $t("back") }}</span>
     </router-link>
-    <h1>Result</h1>
+    <h1>{{ $t("result", 2) }}</h1>
     <div class="results-details__event">
       <h3>{{ results.season }}</h3>
       <h3>{{ results.event[0].val }}</h3>
     </div>
     <div class="">
-      <h3>Pole Time</h3>
+      <h3>{{ $t("pole") }}</h3>
       <h4>{{ results.poletime }}</h4>
     </div>
     <div class="results-details__tables">
       <ul>
-        <h3>Qualifying</h3>
+        <h3>{{ $t("qualifying") }}</h3>
         <li v-for="pos in results.qualifying" :key="pos.id">
           <span class="pos">{{ pos.idx + 1 }}.</span><span>{{ pos.val }}</span>
         </li>
       </ul>
       <ul>
-        <h3>Race</h3>
+        <h3>{{ $t("race") }}</h3>
         <li v-for="pos in results.race" :key="pos.id">
           <span class="pos">{{ pos.idx + 1 }}.</span><span>{{ pos.val }}</span>
         </li>
@@ -97,10 +97,14 @@
 <script>
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { computed, ref } from "vue";
+//import { useI18n } from "vue-i18n";
 
 export default {
   setup() {
+    //const lang = ref(localStorage.getItem("lang") || "en");
+
+    //const { t } = useI18n({ locale: lang.value });
     const route = useRoute();
     const store = useStore();
     store.dispatch("fetchf1result", route.params.eventId);

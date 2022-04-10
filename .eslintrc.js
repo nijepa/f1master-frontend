@@ -8,24 +8,20 @@ module.exports = {
   extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
 
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: "babel-eslint",
   },
 
   rules: {
-    'no-console': 'off',
-    'no-debugger': 'off',
+    "no-console": "off",
+    "no-debugger": "off",
     "vue/no-multiple-template-root": "off",
-    'prettier/prettier': [
-      'error',
+    "prettier/prettier": [
+      "error",
       {
-        endOfLine: 'auto',
-      }
-    ]
+        endOfLine: "auto",
+      },
+    ],
   },
 
-  'extends': [
-    'plugin:vue/essential',
-    'eslint:recommended',
-    '@vue/prettier'
-  ]
+  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
 };

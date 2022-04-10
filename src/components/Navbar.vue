@@ -26,14 +26,14 @@
           class="link nav-link nav-link1"
           :to="links.leftLink.to"
           active-class="active"
-          >{{ links.leftLink.title }}</router-link
+          >{{ $t(links.leftLink.title) }}</router-link
         >
         <router-link
           v-if="!role('ROLE_USER') && !role('ROLE_ADMIN')"
           class="link nav-link nav-link2"
           :to="links.rightLink.to"
           active-class="active2"
-          >{{ links.rightLink.title }}</router-link
+          >{{ $t(links.rightLink.title).toUpperCase() }}</router-link
         >
         <router-link
           v-if="role(links.adminLink?.for)"
@@ -47,6 +47,7 @@
           class="link link-user"
           >{{ currentUser.username }}</router-link
         >
+        <LanguageSwitcher />
       </ul>
       <div class="icon">
         <svg
@@ -152,6 +153,7 @@ import {
 import { useOnResize } from "vue-composable";
 import { useRoute } from "vue-router";
 import useCurrentUser from "@/composables/useCurrentUser";
+import LanguageSwitcher from "@/components/LanguageSwitcher.vue";
 
 export default {
   name: "Navbar",
@@ -160,6 +162,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  components: {
+    LanguageSwitcher,
   },
 
   setup(props) {

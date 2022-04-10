@@ -1,7 +1,7 @@
 const navigation = {
   main: {
-    leftLink: { title: "PLAY TO EARN", to: "/playtoearn", for: "ROLE_USER" },
-    rightLink: { title: "SUPERLICENSE", to: "/superlicense" },
+    leftLink: { title: "play", to: "/playtoearn", for: "ROLE_USER" },
+    rightLink: { title: "superlicense", to: "/superlicense" },
     groupedLinks: [
       { id: 1, title: "F1", to: "/f1" },
       { id: 2, title: "News", to: "/news" },
