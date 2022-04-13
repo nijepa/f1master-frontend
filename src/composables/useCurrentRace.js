@@ -11,15 +11,17 @@ export default function () {
 
   const currentRace = ref([]);
   const currEv = () => {
-    const posibleEvents = events.value.filter((ev) => {
+    const posibleEvents = events.value?.filter((ev) => {
       return (
         dayjs(new Date(ev.raceStart)).format("YYYY-MM-DD") >
         dayjs(new Date()).format("YYYY-MM-DD")
       );
     });
-    currentRace.value = posibleEvents.reduce((a, b) => {
-      return new Date(b.start) > new Date(a.start) ? b : a;
-    });
+    if (posibleEvents.length) {
+      currentRace.value = posibleEvents.reduce((a, b) => {
+        return new Date(b.start) > new Date(a.start) ? b : a;
+      });
+    }
   };
   currEv();
 
