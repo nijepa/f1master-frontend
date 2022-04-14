@@ -2,13 +2,15 @@
   <div class="auth-card">
     <div class="header">
       <div class="title">
-        <h4>SignIn</h4>
+        <h4>{{ $t("signin") }}</h4>
       </div>
 
       <div class="links">
-        <router-link to="/registration"><a>Not a member yet?</a></router-link>
+        <router-link to="/registration"
+          ><a>{{ $t("notmember") }}</a></router-link
+        >
         <router-link to="/recovery-password"
-          ><a>Recovery Password?</a></router-link
+          ><a>{{ $t("recoverypass") }}</a></router-link
         >
       </div>
     </div>
@@ -29,17 +31,17 @@
             placeholder=""
             class="password"
           />
-          <span>Password</span>
+          <span>{{ $t("password") }}</span>
         </label>
         <ErrorMessage name="password" class="error-msg" />
       </div>
 
       <div class="keepCon">
         <input id="keep" type="checkbox" class="checkbox" />
-        <label for="keep">Keep Connected</label>
+        <label for="keep">{{ $t("keepcon") }}</label>
       </div>
       <Loader v-if="loading" :btn="true" />
-      <button v-else>CONFIRM</button>
+      <button v-else>{{ $t("Confirm").toUpperCase() }}</button>
     </Form>
   </div>
 </template>

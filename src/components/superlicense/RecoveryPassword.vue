@@ -3,11 +3,13 @@
     <div class="auth-card">
       <div class="header">
         <div class="title">
-          <h4>Password<br />Recovery</h4>
+          <h4>{{ $t("password") }}<br />{{ $t("recovery") }}</h4>
         </div>
 
         <div class="links">
-          <router-link to="/superlicense"><a>Back</a></router-link>
+          <router-link to="/superlicense"
+            ><a>{{ $t("back") }}</a></router-link
+          >
         </div>
       </div>
 
@@ -26,7 +28,9 @@
         </div>
       </Form>
 
-      <button @click.prevent="submitForm">CONFIRM</button>
+      <button @click.prevent="submitForm">
+        {{ $t("Confirm").toUpperCase() }}
+      </button>
     </div>
   </div>
 </template>

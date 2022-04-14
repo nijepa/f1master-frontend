@@ -1,7 +1,7 @@
 <template>
   <h3 :class="btn ? 'loading-btn' : 'loading'">
     <div id="loading4"></div>
-    <span>loading ...</span>
+    <span>{{ $t("loading") }} ...</span>
   </h3>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="results">
-    <h1>results</h1>
+    <h1>{{ $t("result", 2) }}</h1>
     <div class="">
       <div class="results-group">
         <SelectWrapper

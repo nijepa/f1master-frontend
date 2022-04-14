@@ -2,7 +2,7 @@
   <h1>{{ currentRace.name }}</h1>
   <div class="container">
     <div class="poletime">
-      <Poletime title="Pole time" :reset-all="resetAll" />
+      <Poletime title="pole time" :reset-all="resetAll" />
     </div>
     <SelectWrapper
       :title="'F1Masters'"
@@ -24,7 +24,7 @@
       class="evo"
     />
     <SelectWrapper
-      :title="'Head'"
+      :title="'Head to Head'"
       :data-name="'head'"
       :count="duels.length"
       :list="duels"

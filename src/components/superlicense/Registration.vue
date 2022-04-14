@@ -3,24 +3,26 @@
     <div class="auth-card">
       <div class="header">
         <div class="title">
-          <h4>Register</h4>
+          <h4>{{ $t("register") }}</h4>
         </div>
         <div class="links">
-          <router-link to="/superlicense"><a>Back</a></router-link>
+          <router-link to="/superlicense"
+            ><a>{{ $t("back") }}</a></router-link
+          >
         </div>
       </div>
       <Form @submit="handleRegister" :validation-schema="schema" class="inputs">
         <div class="input-field">
           <label>
             <Field name="firstname" type="text" placeholder="" class="" />
-            <span>First Name</span>
+            <span>{{ $t("first name") }}</span>
           </label>
           <ErrorMessage name="firstname" class="error-msg" />
         </div>
         <div class="input-field">
           <label>
             <Field name="lastname" type="text" placeholder="" class="" />
-            <span>Last Name</span>
+            <span>{{ $t("last name") }}</span>
           </label>
           <ErrorMessage name="lastname" class="error-msg" />
         </div>
@@ -44,7 +46,7 @@
               placeholder=""
               class="password"
             />
-            <span>Password</span>
+            <span>{{ $t("password") }}</span>
           </label>
           <ErrorMessage name="password" class="error-msg" />
         </div>
@@ -65,13 +67,11 @@
 
         <div class="keepCon">
           <input id="keep" type="checkbox" class="checkbox" />
-          <label for="keep"
-            >By clicking 'Confirm' you accept the terms and conditions</label
-          >
+          <label for="keep">{{ $t("clickconfirm") }}</label>
         </div>
         <div class="">
           <Loader v-if="loading" :btn="true" />
-          <button v-else>CONFIRM</button>
+          <button v-else>{{ $t("Confirm").toUpperCase() }}</button>
         </div>
       </Form>
       <div v-if="message" :class="successful ? 'success-msg' : 'error-msg'">
@@ -101,12 +101,12 @@ export default {
     const schema = yup.object().shape({
       firstname: yup
         .string()
-        .required("First is required!")
+        .required("First Name is required!")
         .min(2, "Must be at least 2 characters!")
         .max(20, "Must be maximum 20 characters!"),
       lastname: yup
         .string()
-        .required("Last is required!")
+        .required("Last Name is required!")
         .min(2, "Must be at least 2 characters!")
         .max(20, "Must be maximum 20 characters!"),
       email: yup

@@ -1,6 +1,6 @@
 <template>
   <div class="list-wrapper">
-    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="title">{{ $t(title.toLowerCase()) }}</h1>
     <template v-if="isHead">
       <div v-for="i in items.length" :key="i" class="select-wrapper">
         <sel-comp
@@ -26,7 +26,7 @@
       </div>
     </template>
     <div v-if="resetBtn" class="reset-btn btn-wrapper">
-      <button class="btn reset" @click="reset">Reset</button>
+      <button class="btn reset" @click="reset">{{ $t("Reset") }}</button>
     </div>
   </div>
 </template>

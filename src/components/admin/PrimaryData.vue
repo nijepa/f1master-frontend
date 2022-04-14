@@ -27,6 +27,7 @@ export default {
     const route = useRoute();
     const model = ref(models[route.name].fields);
     const title = ref(route.name);
+    title.value = title.value.slice(0, title.value.length - 1);
     const listClass = ref(model.value.length);
 
     const loading = ref(true);

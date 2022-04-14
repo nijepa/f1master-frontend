@@ -1,6 +1,6 @@
 <template>
   <div class="results-list">
-    <h2 class="list-title">results</h2>
+    <h2 class="list-title">{{ $t("result", 2) }}</h2>
     <button class="btn-new" @click="addItem">new</button>
     <ul>
       <li class="">

@@ -1,8 +1,8 @@
 <template>
   <div class="btn-wrapper" :class="{ direction: 'direction' }">
-    <button class="btn reset" @click="handleReset">{{ titleNo }}</button>
+    <button class="btn reset" @click="handleReset">{{ $t(titleNo) }}</button>
     <button class="btn confirm" @click="handleConfirmation">
-      {{ titleYes }}
+      {{ $t(titleYes) }}
     </button>
   </div>
 </template>

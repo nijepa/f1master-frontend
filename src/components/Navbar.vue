@@ -18,7 +18,7 @@
             "
             :to="link.to"
             class="link"
-            >{{ link.title }}</router-link
+            >{{ $t(link.title, 2) }}</router-link
           >
         </div>
         <router-link
@@ -26,14 +26,14 @@
           class="link nav-link nav-link1"
           :to="links.leftLink.to"
           active-class="active"
-          >{{ $t(links.leftLink.title) }}</router-link
+          >{{ $t(links.leftLink.title, 2).toUpperCase() }}</router-link
         >
         <router-link
           v-if="!role('ROLE_USER') && !role('ROLE_ADMIN')"
           class="link nav-link nav-link2"
           :to="links.rightLink.to"
           active-class="active2"
-          >{{ $t(links.rightLink.title).toUpperCase() }}</router-link
+          >{{ $t(links.rightLink.title, 2).toUpperCase() }}</router-link
         >
         <router-link
           v-if="role(links.adminLink?.for)"
@@ -100,7 +100,7 @@
             class="link nav-link nav-link1"
             active-class="active"
             :to="links.leftLink.to"
-            >{{ links.leftLink.title }}</router-link
+            >{{ $t(links.leftLink.title, 2).toUpperCase() }}</router-link
           >
           <div class="dropdown__sub-nav">
             <div v-for="(link, i) in links.groupedLinks" :key="i">
@@ -109,7 +109,7 @@
                 @click="mobileNav = false"
                 class="link"
                 :to="link.to"
-                >{{ link.title }}</router-link
+                >{{ $t(link.title, 2) }}</router-link
               >
             </div>
           </div>
@@ -119,7 +119,7 @@
             active-class="active2"
             class="link nav-link nav-link2"
             :to="links.rightLink.to"
-            >{{ links.rightLink.title }}</router-link
+            >{{ $t(links.rightLink.title, 2).toUpperCase() }}</router-link
           >
           <router-link
             v-if="role(links.adminLink?.for)"

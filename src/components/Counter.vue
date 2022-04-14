@@ -3,7 +3,7 @@
     <div v-for="(time, i) in times" :key="i" class="card">
       <h4 class="card-title">{{ time.time }}</h4>
       <div class="card-footer">
-        {{ time.text }}
+        {{ $t(time.text) }}
       </div>
     </div>
   </div>

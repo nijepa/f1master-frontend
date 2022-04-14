@@ -1,6 +1,6 @@
 <template>
-  <h2 class="list-title">{{ title }}</h2>
-  <button class="btn-new" @click="addItem">new</button>
+  <h2 class="list-title">{{ $t(title, 2) }}</h2>
+  <button class="btn-new" @click="addItem">{{ $t("new") }}</button>
   <ul class="list-ul">
     <li
       v-for="(item, i) in listData"

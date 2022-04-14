@@ -9,7 +9,7 @@ import ClickOutside from "./composables/useClickOutside.js";
 
 // import translation from "./config/translation";
 // import { createI18n } from "vue-i18n";
-import i18n from "./i18n";
+import i18n from "./config/i18n";
 
 // const i18n = createI18n({
 //   legacy: false,

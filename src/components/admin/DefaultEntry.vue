@@ -26,8 +26,8 @@
         </template>
       </div>
       <ConfirmGroup
-        :title-yes="'Save'"
-        :title-no="'Cancel'"
+        :title-yes="'save'"
+        :title-no="'cancel'"
         :direction="true"
         @reseted="handleConfirm"
         @confirmed="handleConfirm(false)"

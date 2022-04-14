@@ -1,7 +1,7 @@
 <template>
   <div id="demo">
     <div class="list-wrapper">
-      <h1 v-if="title">{{ title }}</h1>
+      <h1 v-if="title">{{ $t(title) }}</h1>
       <inputComp
         placeholder="0'00''000'''"
         class="input"
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="btn-wrapper">
-      <button class="btn reset" @click="reset">Reset</button>
+      <button class="btn reset" @click="reset">{{ $t("Reset") }}</button>
     </div>
   </div>
 </template>

@@ -12,12 +12,12 @@ const navigation = {
     profileLink: { title: "Profile", to: "/profile", for: "ROLE_USER" },
   },
   admin: {
-    leftLink: { title: "RESULTS", to: "/admin/results", for: "ROLE_ADMIN" },
+    leftLink: { title: "result", to: "/admin/results", for: "ROLE_ADMIN" },
     rightLink: { title: "USERS", to: "/admin/users", for: "ROLE_ADMIN" },
     groupedLinks: [
-      { id: 1, title: "Drivers", to: "/admin/drivers", for: "ROLE_ADMIN" },
-      { id: 2, title: "Teams", to: "/admin/teams", for: "ROLE_ADMIN" },
-      { id: 3, title: "Events", to: "/admin/events", for: "ROLE_ADMIN" },
+      { id: 1, title: "driver", to: "/admin/drivers", for: "ROLE_ADMIN" },
+      { id: 2, title: "team", to: "/admin/teams", for: "ROLE_ADMIN" },
+      { id: 3, title: "event", to: "/admin/events", for: "ROLE_ADMIN" },
     ],
     profileLink: { title: "Profile", to: "/profile", for: "ROLE_USER" },
   },

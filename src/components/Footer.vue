@@ -1,12 +1,12 @@
 <template>
   <footer id="footer" class="footer">
-    <router-link to="/about">About F1Master</router-link>
-    <router-link to="terms">Terms & Conditions</router-link>
-    <router-link to="/rules">Rules</router-link>
-    <router-link to="/community">Community</router-link>
-    <router-link to="/contact">Contact</router-link>
-    <router-link to="/marketplace">Marketplace</router-link>
-    <router-link to="/partners">Partners</router-link>
+    <router-link to="/about">{{ $t("about") }}</router-link>
+    <router-link to="terms">{{ $t("terms") }}</router-link>
+    <router-link to="/rules">{{ $t("rules") }}</router-link>
+    <router-link to="/community">{{ $t("community") }}</router-link>
+    <router-link to="/contact">{{ $t("contact") }}</router-link>
+    <router-link to="/marketplace">{{ $t("marketplace") }}</router-link>
+    <router-link to="/partners">{{ $t("partners") }}</router-link>
   </footer>
 </template>
 
