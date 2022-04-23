@@ -30,12 +30,12 @@ export default {
 
 <style lang="scss" scoped>
 select {
-  background: $mercedes-silver;
+  background: transparent;
   border: none;
   border-radius: 4px;
   padding: 0 0.2em;
   height: 32px;
-  color: $yellow;
+  color: $alphatauri;
   text-transform: uppercase;
   cursor: pointer;
   option {
