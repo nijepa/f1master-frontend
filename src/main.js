@@ -21,7 +21,7 @@ import i18n from "./config/i18n";
 //   fallbackLocale: "en",
 // });
 
-const app = createApp(App).use(i18n);
+const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(i18n);

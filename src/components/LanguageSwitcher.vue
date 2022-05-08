@@ -1,8 +1,14 @@
 <template>
   <div class="lang">
-    <select name="" id="" v-model="$i18n.locale" @change="handleChange($event)">
+    <!-- <select name="" id="" v-model="$i18n.locale" @change="handleChange($event)"></select> -->
+    <select name="" id="" v-model="locale" @change="handleChange($event)">
+      <!-- <option
+        v-for="(locale, i) in $i18n.availableLocales"
+        :key="`locale-${i}`"
+        :value="locale"
+      > -->
       <option
-        v-for="(locale, i) in locales"
+        v-for="(locale, i) in availableLocales"
         :key="`locale-${i}`"
         :value="locale"
       >
@@ -13,17 +19,18 @@
 </template>
 
 <script>
-import { ref } from "vue";
+//import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default {
   setup() {
+    const { locale, availableLocales } = useI18n();
     const handleChange = (e) => {
       localStorage.setItem("lang", e.target.value);
       window.location.reload;
     };
 
-    const locales = ref(["en", "pt"]);
-    return { locales, handleChange };
+    return { locale, availableLocales, handleChange };
   },
 };
 </script>

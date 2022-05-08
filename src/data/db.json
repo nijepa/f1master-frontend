@@ -139,13 +139,6 @@
       "number": "20",
       "team": "HAAS",
       "active": true
-    },
-    {
-      "name": "ooooo",
-      "number": "999",
-      "team": "iiiii",
-      "active": "",
-      "id": 21
     }
   ],
   "teams": [
@@ -291,7 +284,7 @@
       "raceStart": "2022-04-10T05:00:00.000Z",
       "qualifyingStart": "2022-04-09T06:00:00.000Z",
       "start": "2022-04-07T09:00:0.000+00:00",
-      "active": true
+      "active": false
     },
     {
       "id": 3,

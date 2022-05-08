@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/playtoearn",
     component: () =>
-      import(/* webpackChunkName "play" */ "@/views/PlayToEarn.vue"),
+      import(/* webpackChunkName "play" */ "@/components/bet/Draggable.vue"),
     meta: {
       layout: "AppLayoutHome",
       panel: "bet",
