@@ -121,6 +121,11 @@ export default {
 </script>
 
 <style lang="scss">
+h1 {
+  text-transform: uppercase;
+  color: $mercedes;
+  margin: 0.5em;
+}
 .button {
   margin-top: 35px;
 }
@@ -160,7 +165,7 @@ export default {
 
   .nr {
     background-color: black;
-    color: $red;
+    color: $mercedes;
     border-radius: 4px;
   }
 
