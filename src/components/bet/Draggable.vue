@@ -1,10 +1,10 @@
 <template>
-  <div class="row">
-    <div class="col-2">
+  <div>
+    <div>
       <ConfirmGroup @reseted="sort" @confirmed="handleConfirmation" />
     </div>
     <h1>Race</h1>
-    <div class="col-6">
+    <div class="drag">
       <ul class="list-group">
         <li v-for="nr in list.length" :key="nr" class="list-group-number">
           <span :class="nr > 10 && 'last-ten'">{{ nr }}</span>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import Logo from "@/components/Logo.vue";
+//import Logo from "@/components/Logo.vue";
 import ConfirmGroup from "../admin/ConfirmGroup.vue";
 import draggable from "vuedraggable";
 import { useStore } from "vuex";
@@ -68,7 +68,7 @@ export default {
   order: 6,
   components: {
     draggable,
-    Logo,
+    //Logo,
     ConfirmGroup,
   },
   data() {
@@ -139,7 +139,7 @@ h1 {
   opacity: 0.5;
   background: #c8ebfb;
 }
-.col-6 {
+.drag {
   display: flex;
   justify-content: center;
 }
