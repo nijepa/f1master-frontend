@@ -13,6 +13,18 @@
               dark
             ></Datepicker>
           </template>
+          <template class="" v-else-if="key.type === 'select'">
+            <label :for="key.name">{{ key.name }}</label>
+            <select v-model="modelData[key.name]" class="round">
+              <option
+                v-for="item in teams"
+                :key="item.id"
+                :value="item.teamName"
+              >
+                {{ item.teamName }}
+              </option>
+            </select>
+          </template>
           <template class="" v-else>
             <label :for="key.name">{{ key.name }}</label>
             <DefaultInput
@@ -42,6 +54,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import DefaultInput from "@/components/admin/DefaultInput.vue";
 import ConfirmGroup from "@/components/admin/ConfirmGroup.vue";
 import { reactive, ref, computed } from "@vue/reactivity";
+import { useStore } from "vuex";
 
 export default {
   name: "List",
@@ -67,6 +80,9 @@ export default {
   emits: ["canceled", "finished"],
 
   setup(props, { emit }) {
+    const store = useStore();
+
+    const teams = computed(() => store.getters.getF1datas("teams"));
     const model = ref(props.dataModel.slice(1, props.dataModel.length));
     const res = props.dataModel
       .map((p) => p.name)
@@ -92,6 +108,7 @@ export default {
     });
 
     return {
+      teams,
       model,
       modelData,
       fieldsClass,
@@ -184,5 +201,23 @@ export default {
 }
 .entry-enter-active {
   transition: all 0.4s ease-in;
+}
+select {
+  font-family: "Play", cursive;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background: rgba(16, 16, 16, 0.502);
+  color: white;
+  font-weight: bold;
+  border: 2px solid transparent;
+  padding: 1em;
+  letter-spacing: 1.5px;
+
+  option {
+    background: #070707;
+    font-weight: bold;
+    color: #ccc;
+  }
 }
 </style>

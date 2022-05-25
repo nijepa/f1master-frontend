@@ -51,17 +51,17 @@ import ConfirmGroup from "../admin/ConfirmGroup.vue";
 import draggable from "vuedraggable";
 import { useStore } from "vuex";
 import { ref, computed } from "@vue/reactivity";
-const message = [
-  "vue.draggable",
-  "draggable",
-  "component",
-  "for",
-  "vue.js 2.0",
-  "based",
-  "on",
-  "Sortablejs",
-];
-let order = message.length;
+// const message = [
+//   "vue.draggable",
+//   "draggable",
+//   "component",
+//   "for",
+//   "vue.js 2.0",
+//   "based",
+//   "on",
+//   "Sortablejs",
+// ];
+//let order = message.length;
 export default {
   name: "transition-example",
   display: "Transition",

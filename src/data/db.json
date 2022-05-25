@@ -284,14 +284,15 @@
       "raceStart": "2022-04-10T05:00:00.000Z",
       "qualifyingStart": "2022-04-09T06:00:00.000Z",
       "start": "2022-04-07T09:00:0.000+00:00",
-      "active": false
+      "active": true
     },
     {
       "id": 3,
       "name": "EMILIA ROMANA GRAND PRIX",
       "raceStart": "2022-04-22T08:00:00.000Z",
       "qualifyingStart": "2022-04-21T07:00:00.000Z",
-      "start": "2022-04-21T09:00:0.000+00:00"
+      "start": "2022-04-21T09:00:0.000+00:00",
+      "active": true
     }
   ],
   "results": [
