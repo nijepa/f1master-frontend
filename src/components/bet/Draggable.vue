@@ -102,7 +102,7 @@ export default {
     const loadImg = (img) => {
       const im = teamName(img);
       const path = `@/assets/images/teams/${im}.svg`;
-      return require(path);
+      //return require(path);
     };
     const listo = drivers.value.map((name, index) => {
       return {
