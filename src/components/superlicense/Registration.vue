@@ -88,6 +88,7 @@ import * as yup from "yup";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
+import { useUserStore } from "@/store/user";
 
 export default {
   components: {
@@ -121,6 +122,7 @@ export default {
         .max(40, "Must be maximum 40 characters!"),
     });
 
+    const auth = useUserStore();
     const store = useStore();
     const route = useRoute();
 
@@ -128,7 +130,8 @@ export default {
     const loading = ref(false);
     const message = ref("");
 
-    const loggedIn = computed(() => store.state.auth.status.loggedIn);
+    const loggedIn = computed(() => auth.initialState.status.loggedIn);
+    //const loggedIn = computed(() => store.state.auth.status.loggedIn);
     if (loggedIn.value) route.push("/");
 
     const handleRegister = (user) => {
@@ -136,7 +139,8 @@ export default {
       message.value = "";
       successful.value = false;
       loading.value = true;
-      store.dispatch("register", user).then(
+      //store.dispatch("register", user).then(
+      auth.register(user).then(
         (data) => {
           message.value = data.message;
           successful.value = true;
