@@ -85,7 +85,7 @@
 import Loader from "@/components/Loader.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import { useStore } from "vuex";
+//import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
 import { useUserStore } from "@/store/user";
@@ -123,7 +123,7 @@ export default {
     });
 
     const auth = useUserStore();
-    const store = useStore();
+    //const store = useStore();
     const route = useRoute();
 
     const successful = ref(false);

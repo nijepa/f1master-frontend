@@ -51,7 +51,7 @@ import Loader from "@/components/Loader.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import { ref, computed } from "vue";
-import { useStore } from "vuex";
+//import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/store/user";
 
@@ -72,7 +72,7 @@ export default {
     const message = ref("");
 
     const auth = useUserStore();
-    const store = useStore();
+    //const store = useStore();
     const router = useRouter();
 
     const loggedIn = computed(() => auth.initialState.status.loggedIn);

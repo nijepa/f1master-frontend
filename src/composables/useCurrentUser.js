@@ -1,9 +1,9 @@
 import { computed, watch } from "vue";
-import { useStore } from "vuex";
+//import { useStore } from "vuex";
 import { useUserStore } from "@/store/user";
 
 export default function () {
-  const store = useStore();
+  //const store = useStore();
   const auth = useUserStore();
 
   //const currentUser = computed(() => store.state.auth.user);
