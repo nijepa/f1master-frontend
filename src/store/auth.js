@@ -57,7 +57,7 @@ const mutations = {
   },
 
   registerSuccess(state) {
-    state.status.loggedIn = false;
+    state.status.loggedIn = true;
   },
 
   registerFailure(state) {

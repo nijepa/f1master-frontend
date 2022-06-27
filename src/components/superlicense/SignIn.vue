@@ -51,8 +51,9 @@ import Loader from "@/components/Loader.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import { ref, computed } from "vue";
-import { useStore } from "vuex";
+//import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { useUserStore } from "@/store/user";
 
 export default {
   components: {
@@ -70,15 +71,18 @@ export default {
     const loading = ref(false);
     const message = ref("");
 
-    const store = useStore();
+    const auth = useUserStore();
+    //const store = useStore();
     const router = useRouter();
 
-    const loggedIn = computed(() => store.state.auth.status.loggedIn);
+    const loggedIn = computed(() => auth.initialState.status.loggedIn);
+    //const loggedIn = computed(() => store.state.auth.status.loggedIn);
     if (loggedIn.value) router.push("/");
 
     const handleLogin = (user) => {
       loading.value = true;
-      store.dispatch("login", user).then(
+      //store.dispatch("login", user).then(
+      auth.login(user).then(
         () => {
           router.push("/profile");
         },

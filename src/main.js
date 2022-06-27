@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { createPinia } from 'pinia';
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -20,8 +21,9 @@ import i18n from "./config/i18n";
 //   },
 //   fallbackLocale: "en",
 // });
-
+const pinia = createPinia();
 const app = createApp(App);
+app.use(pinia);
 app.use(store);
 app.use(router);
 app.use(i18n);

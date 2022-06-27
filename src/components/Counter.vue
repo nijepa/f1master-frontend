@@ -16,6 +16,8 @@ export default {
     end: {
       type: String,
       required: true,
+      default:
+        "Mon Jul 25 2022 02:00:00 GMT+0200 (Central European Summer Time)",
     },
   },
 
