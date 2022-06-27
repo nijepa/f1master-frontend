@@ -20,6 +20,7 @@
         v-bind="dragOptions"
         @start="isDragging = true"
         @end="isDragging = false"
+        @change="finish($event)"
       >
         <template #item="{ element }">
           <li class="list-group-item">
@@ -115,7 +116,18 @@ export default {
       };
     });
     const list = ref([...listo]);
-    return { drivers, list, teamName, loadImg };
+    const handleConfirmation = () => {
+      const finalPositions = list.value.map((item, index) => {
+        if (!item.newPos) item.newPos = index + 1;
+        return { ...item };
+      });
+      console.log(finalPositions);
+    };
+    const finish = (e) => {
+      //console.log(item.moved.element) // { id: 1, name: 'Item 1' }
+      list.value[e.moved.newIndex].newPos = e.moved.newIndex + 1;
+    };
+    return { drivers, list, teamName, loadImg, handleConfirmation, finish };
   },
 };
 </script>
